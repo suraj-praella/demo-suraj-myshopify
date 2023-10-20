@@ -6,7 +6,7 @@
         "heading": {
           "type": "heading",
           "settings": {
-            "heading": "Browse our latest recipes",
+            "heading": "Browse our latest",
             "heading_size": "h1"
           }
         },
@@ -106,7 +106,7 @@
         "description": "",
         "show_description": false,
         "description_style": "body",
-        "collection": "frontpage",
+        "collection": "protein-club",
         "products_to_show": 4,
         "columns_desktop": 4,
         "full_width": false,
