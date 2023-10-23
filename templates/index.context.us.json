@@ -4,16 +4,5 @@
     "market": "us"
   },
   "sections": {
-    "image_banner": {
-      "settings": {
-      },
-      "blocks": {
-        "heading": {
-          "settings": {
-            "heading": "Browse our Variety of Healthy Food in USA"
-          }
-        }
-      }
-    }
   }
 }
