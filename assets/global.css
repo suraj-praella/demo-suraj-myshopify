@@ -128,3 +128,30 @@
     margin: 0 auto;
     position: relative;
   }
+
+
+input,
+button {
+  outline: none;
+}
+
+img {
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.mt-80 {
+  margin-top: 80px;
+}
+
+.mt-115 {
+  margin-top: 115px;
+}
+
+.ls-75 {
+  letter-spacing: 0.75px;
+}
+
+.ls-25 {
+  letter-spacing: 0.25px;
+}
