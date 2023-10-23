@@ -43,27 +43,42 @@
         "show_text_below": false
       }
     },
+    "34b76e98-0a95-4957-a5c1-759c1f89e9c9": {
+      "type": "rich-text",
+      "blocks": {
+        "template--21472132563253__34b76e98-0a95-4957-a5c1-759c1f89e9c9-heading-1": {
+          "type": "heading",
+          "settings": {
+            "heading": "We are here to make you healthy and fit",
+            "heading_size": "h1"
+          }
+        },
+        "template--21472132563253__34b76e98-0a95-4957-a5c1-759c1f89e9c9-text-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>We ensure to deliver you the high quality product that includes freshness and richness.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--21472132563253__34b76e98-0a95-4957-a5c1-759c1f89e9c9-heading-1",
+        "template--21472132563253__34b76e98-0a95-4957-a5c1-759c1f89e9c9-text-1"
+      ],
+      "custom_css": [
+
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
     "6650481a-09ba-4213-b077-bbfac5167ef8": {
       "type": "slideshow",
       "blocks": {
-        "template--21457672634677__6650481a-09ba-4213-b077-bbfac5167ef8-slide-1": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/flatlay-iron-skillet-with-meat-and-other-food.jpg",
-            "heading": "",
-            "heading_size": "h2",
-            "subheading": "Indians eat to fill their heart not the appetite.",
-            "button_label": "",
-            "link": "",
-            "button_style_secondary": true,
-            "box_align": "bottom-center",
-            "show_text_box": true,
-            "text_alignment": "center",
-            "image_overlay_opacity": 40,
-            "color_scheme": "background-2",
-            "text_alignment_mobile": "center"
-          }
-        },
         "template--21457672634677__6650481a-09ba-4213-b077-bbfac5167ef8-slide-2": {
           "type": "slide",
           "settings": {
@@ -81,11 +96,29 @@
             "color_scheme": "",
             "text_alignment_mobile": "center"
           }
+        },
+        "template--21457672634677__6650481a-09ba-4213-b077-bbfac5167ef8-slide-1": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/flatlay-iron-skillet-with-meat-and-other-food.jpg",
+            "heading": "",
+            "heading_size": "h2",
+            "subheading": "Indians eat to fill their heart not the appetite.",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "box_align": "bottom-center",
+            "show_text_box": true,
+            "text_alignment": "center",
+            "image_overlay_opacity": 40,
+            "color_scheme": "background-2",
+            "text_alignment_mobile": "center"
+          }
         }
       },
       "block_order": [
-        "template--21457672634677__6650481a-09ba-4213-b077-bbfac5167ef8-slide-1",
-        "template--21457672634677__6650481a-09ba-4213-b077-bbfac5167ef8-slide-2"
+        "template--21457672634677__6650481a-09ba-4213-b077-bbfac5167ef8-slide-2",
+        "template--21457672634677__6650481a-09ba-4213-b077-bbfac5167ef8-slide-1"
       ],
       "settings": {
         "layout": "full_bleed",
@@ -93,7 +126,7 @@
         "slider_visual": "dots",
         "auto_rotate": false,
         "change_slides_speed": 3,
-        "image_behavior": "none",
+        "image_behavior": "ambient",
         "show_text_below": true,
         "accessibility_info": "Slideshow about our brand"
       }
@@ -129,6 +162,7 @@
   },
   "order": [
     "image_banner",
+    "34b76e98-0a95-4957-a5c1-759c1f89e9c9",
     "6650481a-09ba-4213-b077-bbfac5167ef8",
     "df06f1f6-9dea-4d42-ac1c-d8072fab4390"
   ]
