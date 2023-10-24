@@ -101,9 +101,9 @@ header .header-menu-list-wrapper a {
 .mega-menu {
   width: 100%;
   background: white;
-  position: absolute;
+  position: fixed;
   left: 0;
-  top: 100%;
+  top: 123px;
   display: none;
   border-top: 1px solid #808080;
   padding: 40px 0;
