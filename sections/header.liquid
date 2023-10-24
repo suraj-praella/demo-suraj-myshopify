@@ -13,6 +13,7 @@
             loading="lazy"
             width=""
             height=""
+            alt="header logo"
           >
         {% else %}
           <h1>{{ shop.name }}</h1>
@@ -27,7 +28,7 @@
       </ul>
       <form class="header-search-bar d-flex flex-grow-1">
         <input placeholder="Search Out Store..." class="w-100 border-0">
-        <button class="border-0">
+        <button class="border-0" type="submit" aria-label="search">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
@@ -45,30 +46,38 @@
         </button>
       </form>
       <div class="header-menu-2 d-flex">
-        <button class="btn d-flex justify-content-center align-items-center">
+        <a aria-label="account button"  href="#" class="btn d-flex justify-content-center align-items-center">
           <img
             src="https://cdn.shopify.com/s/files/1/0842/4131/8197/files/account.svg?v=1698065520"
             loading="lazy"
             width=""
             height=""
+            alt="customer icon"
+            aria-hidden
           >
-        </button>
-        <button class="btn d-flex justify-content-center align-items-center">
+        </a>
+        <a href="#" aria-label="wishlist button" class="btn d-flex justify-content-center align-items-center">
           <img
             src="https://cdn.shopify.com/s/files/1/0842/4131/8197/files/wishlist.svg?v=1698065582"
             loading="lazy"
             width=""
             height=""
+            alt="wishlist icon"
+            aria-hidden
           >
-        </button>
-        <button
+        </a>
+        <a
+          href="#"
           class="btn d-flex justify-content-center align-items-center position-relative"
+          aria-label="cart button"
         >
           <img
             src="https://cdn.shopify.com/s/files/1/0842/4131/8197/files/cart.svg?v=1698065601"
             loading="lazy"
             width=""
             height=""
+            alt="cart icon"
+            aria-hidden
           >
           <span
             class="position-absolute top-0 start-100 translate-middle badge rounded-pill"
@@ -76,7 +85,7 @@
             2
             <span class="visually-hidden">unread messages</span>
           </span>
-        </button>
+        </a>
       </div>
     </div>
   </header>

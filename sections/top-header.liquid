@@ -12,7 +12,7 @@
         <div class="top-menu-left-section text-start col-md-6">
           <span>
             {{ section.settings.top_header_left_text }}
-            <a><b>Learn More</b></a>
+            <a href="{{section.settings.learn_more_link}}" target="_blank"><b>Learn More</b></a>
           </span>
         </div>
         <div class="top-menu-right-section ms-auto text-end col-md-6">
@@ -40,7 +40,7 @@
             </a>
           </span>
           <span>&nbsp;|&nbsp;</span>
-          <span>Pickup at Warehouse</span>
+          <a>Pickup at Warehouse</a>
           <span>&nbsp;|&nbsp;</span>
           <a href="#" style="color:{{section.settings.top_header_font_color}};">Customer Support</a>
         </div>
@@ -76,6 +76,11 @@
       "id": "top_header_left_text",
       "label": "Left Text",
       "default": "Visit out Outlet Store in Dallas, Texas!"
+    },
+    {
+      "type": "url",
+      "id": "learn_more_link",
+      "label": "Learn More URL"
     },
     {
       "type": "text",

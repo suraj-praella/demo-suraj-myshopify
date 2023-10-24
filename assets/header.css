@@ -59,11 +59,11 @@ header .header-menu a {
   margin-bottom: 2px;
 }
 
-.header-menu-2 button:not(:first-child) {
+.header-menu-2 a:not(:first-child) {
   margin-left: 15px;
 }
 
-.header-menu-2 button {
+.header-menu-2 a {
   max-width: 40px;
   max-height: 40px;
   border: 1px solid #d1d1d1;
@@ -71,7 +71,7 @@ header .header-menu a {
   background-color: transparent;
 }
 
-.header-menu-2 button .badge {
+.header-menu-2 a .badge {
   background: var(--primary-orange, #ff6e30);
   color: var(--primary-black, #000);
   font-family: "Public Sans";
