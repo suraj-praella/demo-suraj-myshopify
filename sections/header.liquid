@@ -22,9 +22,9 @@
       <ul class="header-menu d-flex">
         {% for link in linklists[section.settings.header_menu].links %}
           <li class="header-menu-list">
-            <div class="header-menu-list-wrapper">
-              {{ link.title | link_to: link.url }}
-            </div>
+            <div class="header-menu-list-wrapper">         
+            {{ link.title | link_to: link.url }}
+          </div>
             {% for block in section.blocks %}
               {%- if block.settings.header_mega_menu_label == link.title -%}
                 <div class="mega-menu">
