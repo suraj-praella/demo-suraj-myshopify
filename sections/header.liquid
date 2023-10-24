@@ -19,10 +19,44 @@
           <h1>{{ shop.name }}</h1>
         {% endif %}
       </div>
-      <ul class="header-menu">
+      <ul class="header-menu d-flex">
         {% for link in linklists[section.settings.header_menu].links %}
-          <li>
-            {{ link.title | link_to: link.url }}
+          <li class="header-menu-list">
+            <div class="header-menu-list-wrapper">
+              {{ link.title | link_to: link.url }}
+            </div>
+            {% for block in section.blocks %}
+              {%- if block.settings.header_mega_menu_label == link.title -%}
+                <div class="mega-menu">
+                  <div class="container d-flex">
+                    <div class="mega-menu-left-section">
+                      <h3>
+                        {{ block.settings.header_mega_menu_label }}
+                      </h3>
+                      <ul class="d-flex flex-column">
+                        {%- for menu in linklists[block.settings.header_mega_menu_menu].links -%}
+                          <li>
+                            {{ menu.title | link_to: menu.url }}
+                          </li>
+                        {%- endfor -%}
+                      </ul>
+                    </div>
+                    {% if section.settings.header_logo %}
+                      <div class="mega-menu-right-section m-auto">
+                        <img
+                          src="{{block.settings.header_mega_menu_image | image_url}}"
+                          class="mega-menu-image"
+                          loading="lazy"
+                          width=""
+                          height=""
+                          alt="Menu Image"
+                        >
+                      </div>
+                    {% endif %}
+                  </div>
+                </div>
+              {%- endif -%}
+            {% endfor %}
           </li>
         {% endfor %}
       </ul>
@@ -46,7 +80,7 @@
         </button>
       </form>
       <div class="header-menu-2 d-flex">
-        <a aria-label="account button"  href="#" class="btn d-flex justify-content-center align-items-center">
+        <a aria-label="account button" href="#" class="btn d-flex justify-content-center align-items-center">
           <img
             src="https://cdn.shopify.com/s/files/1/0842/4131/8197/files/account.svg?v=1698065520"
             loading="lazy"
@@ -116,6 +150,30 @@
       "type": "link_list",
       "id": "header_menu",
       "label": "Menu"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "html",
+      "name": "Mega Menu",
+      "settings": [
+        {
+          "type": "link_list",
+          "id": "header_mega_menu_menu",
+          "label": "Menu"
+        },
+        {
+          "type": "image_picker",
+          "id": "header_mega_menu_image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "header_mega_menu_label",
+          "label": "Menu Label",
+          "info": "This label should be exact same as the menu item."
+        }
+      ]
     }
   ]
 }

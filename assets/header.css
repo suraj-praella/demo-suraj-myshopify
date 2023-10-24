@@ -26,14 +26,14 @@ header .header-menu {
   white-space: nowrap;
 }
 
-header .header-menu a {
+header .header-menu-list-wrapper a {
   padding: 0 15.5px;
   font-weight: bold;
   color: #000;
   position: relative;
 }
 
-.header-menu a::after {
+.header-menu-list-wrapper a::after {
   content: "";
   width: 0;
   left: 50%;
@@ -42,10 +42,10 @@ header .header-menu a {
   border-bottom: 2px solid #ff6e30;
   top: calc(100% + 8px);
   z-index: 1001;
-  transition: all .3s;
+  transition: all 0.3s;
 }
 
-.header-menu a:hover::after{
+.header-menu-list-wrapper a:hover::after {
   width: 80%;
 }
 
@@ -96,4 +96,41 @@ header .header-menu a {
   font-weight: bold;
   margin-top: 4px;
   margin-left: -3px;
+}
+
+.mega-menu {
+  width: 100%;
+  background: white;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  display: none;
+  border-top: 1px solid #808080;
+  padding: 40px 0;
+  max-height: 400px;
+  overflow: auto;
+}
+
+.mega-menu li {
+  padding: 4px 0;
+}
+
+.mega-menu h3 {
+  color: #ff6e30;
+}
+
+.header-menu-list:hover > .mega-menu {
+  display: block;
+}
+
+.header-menu-list {
+  height: 79px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: max-content;
+}
+
+.mega-menu-image {
+  max-width: 300px;
 }
