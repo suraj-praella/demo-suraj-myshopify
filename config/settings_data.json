@@ -99,9 +99,9 @@
     "brand_headline": "",
     "brand_description": "<p><\/p>",
     "brand_image_width": 100,
-    "social_facebook_link": "",
-    "social_instagram_link": "",
-    "social_youtube_link": "",
+    "social_facebook_link": "https:\/\/facebook.com\/shopify",
+    "social_instagram_link": "http:\/\/instagram.com\/shopify",
+    "social_youtube_link": "https:\/\/www.youtube.com\/shopify",
     "social_tiktok_link": "",
     "social_twitter_link": "",
     "social_snapchat_link": "",
@@ -134,8 +134,9 @@
         "settings": {
           "show_top_header": true,
           "top_header_bg": "#ff6e30",
-          "top_header_font_color": "#000",
+          "top_header_font_color": "#000000",
           "top_header_left_text": "Visit out Outlet Store in Dallas, Texas!",
+          "learn_more_link": "",
           "top_header_contact": "866-855-4285"
         }
       },
@@ -144,10 +145,20 @@
         "settings": {
           "show_header": true,
           "header_logo": "shopify:\/\/shop_images\/header_company_logo.svg",
-          "header_bg": "#fff",
-          "header_menu": "header-menu",
-          "top_header_left_text": "Visit out Outlet Store in Dallas, Texas!",
-          "top_header_contact": "866-855-4285"
+          "header_bg": "#ffffff",
+          "header_menu": "header-menu"
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {
+          "show_footer": true,
+          "footer_map_link": "",
+          "footer_address": "2671 Freewood Drive Dallas, Texas 75220",
+          "footer_contact_number": "866-855-4285",
+          "footer_contact_timing": "M-F 8am-5pm CT",
+          "footer_company_menu": "footer-company-menu",
+          "footer_resources_menu": "footer-resources-menu"
         }
       }
     },

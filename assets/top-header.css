@@ -1,26 +1,26 @@
 .top-menu {
-    background: linear-gradient(180deg, #ff6e30 0%, #ff8139 48.96%, #ff6e30 100%);
-    font-size: 13px;
-    line-height: normal;
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
-  
-  .top-menu-wrapper {
-    max-width: 1410px !important;
-    padding-left: 37px;
-    padding-right: 4px;
-  }
-  
-  .top-menu-left-section a {
-    padding-left: 3px;
-  }
-  
-  .top-menu-right-section {
-    padding-right: 9px;
-  }
-  
-  .top-menu-contant-tag {
-    padding-left: 3px;
-    padding-right: 1px;
-  }
+  background: linear-gradient(180deg, #ff6e30 0%, #ff8139 48.96%, #ff6e30 100%);
+  font-size: 13px;
+  line-height: normal;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.top-menu-wrapper {
+  max-width: 1410px !important;
+  padding-left: 37px !important;
+  padding-right: 4px !important;
+}
+
+.top-menu-left-section a {
+  padding-left: 3px;
+}
+
+.top-menu-right-section {
+  padding-right: 9px;
+}
+
+.top-menu-contant-tag {
+  padding-left: 3px;
+  padding-right: 1px;
+}

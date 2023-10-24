@@ -1,6 +1,7 @@
-<link rel="stylesheet" href="{{ 'top-header.css' | asset_url }}">
-<link rel="stylesheet" href="{{ 'global.css' | asset_url }}">
 <link rel="stylesheet" href="{{ 'bootstrap.css' | asset_url }}">
+<link rel="stylesheet" href="{{ 'global.css' | asset_url }}">
+<link rel="stylesheet" href="{{ 'top-header.css' | asset_url }}">
+
 
 {% if section.settings.show_top_header %}
   <div
@@ -12,7 +13,7 @@
         <div class="top-menu-left-section text-start col-md-6">
           <span>
             {{ section.settings.top_header_left_text }}
-            <a href="{{section.settings.learn_more_link}}" target="_blank"><b>Learn More</b></a>
+            <a href="{{section.settings.learn_more_link}}" target="_blank"><b style="color:{{section.settings.top_header_font_color}};">Learn More</b></a>
           </span>
         </div>
         <div class="top-menu-right-section ms-auto text-end col-md-6">
