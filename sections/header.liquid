@@ -41,7 +41,11 @@
                     </ul> 
 
                     {% assign megamenu_blocks = section.blocks | where: 'type', 'megamenu' %}
-                    {{ megamenu_blocks | size }}=====
+                    {% assign menu_block = blank %}
+                    {% for block in megamenu_blocks %}
+                      {% break %}
+                    {% endfor %}
+              
                     <div class="mega-menu-right-section m-auto">
                       <img
                         src="{{ block.settings.header_mega_menu_image | image_url }}"
@@ -71,6 +75,7 @@
               </div>
             {%- endif -%}
 
+           {% comment %}
             {% for block in section.blocks %}
               {%- if block.settings.header_mega_menu_label == link.title -%}
                 <div class="mega-menu">
@@ -102,7 +107,7 @@
                   </div>
                 </div>
               {%- endif -%}
-            {% endfor %}
+            {% endfor %} {% endcomment %}
           </li>
         {% endfor %}
       </ul>
