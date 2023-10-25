@@ -41,7 +41,11 @@
                     </ul> 
 
                     {% assign megamenu_blocks = section.blocks | where: 'type', 'megamenu' %}
-                    {{ megamenu_blocks | size }}=====
+                    {% assign blockSettings = megamenu_blocks | map: 'settings' %}
+            
+              {% assign data = blockSettings | where: 'header_mega_menu_label', link.title %}
+{{ blockSettings }}=========
+              
                     <div class="mega-menu-right-section m-auto">
                       <img
                         src="{{ block.settings.header_mega_menu_image | image_url }}"
