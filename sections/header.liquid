@@ -44,7 +44,7 @@
                     {% assign blockSettings = megamenu_blocks | map: 'settings' %}
             
               {% assign data = blockSettings | where: 'header_mega_menu_label', link.title %}
-{{ blockSettings }}=========
+{{ blockSettings.header_mega_menu_label }}=========
               
                     <div class="mega-menu-right-section m-auto">
                       <img
