@@ -22,9 +22,55 @@
       <ul class="header-menu d-flex">
         {% for link in linklists[section.settings.header_menu].links %}
           <li class="header-menu-list">
-            <div class="header-menu-list-wrapper">         
-            {{ link.title | link_to: link.url }}
-          </div>
+            <div class="header-menu-list-wrapper">
+              {{ link.title | link_to: link.url }}
+            </div>
+            {%- if link.levels > 0 -%}
+              <div class="mega-menu">
+                <div class="container d-flex">
+                  <div class="mega-menu-left-section">
+                    <h3>
+                      {{ link.title }}
+                    </h3>
+                    <ul class="d-flex flex-column">
+                      {%- for child_link in link.links -%}
+                        <li>
+                          {{ child_link.title | link_to: child_link.url }}
+                        </li>
+                      {%- endfor -%}
+                    </ul> 
+
+                    {% assign megamenu_blocks = section.blocks | where: 'type', 'megamenu' %}
+                    {{ megamenu_blocks | size }}=====
+                    <div class="mega-menu-right-section m-auto">
+                      <img
+                        src="{{ block.settings.header_mega_menu_image | image_url }}"
+                        class="mega-menu-image"
+                        loading="lazy"
+                        width=""
+                        height=""
+                        alt="Menu Image"
+                      >
+                    </div>
+                  </div>
+                  {% comment %}
+                    {% if section.settings.header_logo %}
+                      <div class="mega-menu-right-section m-auto">
+                        <img
+                          src="{{block.settings.header_mega_menu_image | image_url}}"
+                          class="mega-menu-image"
+                          loading="lazy"
+                          width=""
+                          height=""
+                          alt="Menu Image"
+                        >
+                      </div>
+                    {% endif %}
+                  {% endcomment %}
+                </div>
+              </div>
+            {%- endif -%}
+
             {% for block in section.blocks %}
               {%- if block.settings.header_mega_menu_label == link.title -%}
                 <div class="mega-menu">
@@ -154,25 +200,37 @@
   ],
   "blocks": [
     {
-      "type": "html",
+      "type": "megamenu",
       "name": "Mega Menu",
       "settings": [
+        {
+          "type": "header",
+          "content": "Menu Selection"
+        },
         {
           "type": "link_list",
           "id": "header_mega_menu_menu",
           "label": "Menu"
         },
         {
-          "type": "image_picker",
-          "id": "header_mega_menu_image",
-          "label": "Image"
-        },
-        {
           "type": "text",
           "id": "header_mega_menu_label",
           "label": "Menu Label",
           "info": "This label should be exact same as the menu item."
-        }
+        },
+        {
+          "type": "header",
+          "content": "Content"
+        },
+        {
+          "type": "paragraph",
+          "content": "Content"
+        },
+        {
+          "type": "image_picker",
+          "id": "header_mega_menu_image",
+          "label": "Image"
+        }        
       ]
     }
   ]
