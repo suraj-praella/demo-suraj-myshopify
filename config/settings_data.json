@@ -142,19 +142,6 @@
       },
       "header": {
         "type": "header",
-        "blocks": {
-          "9db40081-79ec-473c-887a-f464a7a7af61": {
-            "type": "html",
-            "settings": {
-              "header_mega_menu_menu": "car-hauler-menu",
-              "header_mega_menu_image": "shopify:\/\/shop_images\/AdobeStock_Car_Preview_1.png",
-              "header_mega_menu_label": "Car Hauler"
-            }
-          }
-        },
-        "block_order": [
-          "9db40081-79ec-473c-887a-f464a7a7af61"
-        ],
         "settings": {
           "show_header": true,
           "header_logo": "shopify:\/\/shop_images\/header_company_logo.svg",
