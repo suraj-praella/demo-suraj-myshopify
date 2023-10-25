@@ -38,27 +38,12 @@
                           {{ child_link.title | link_to: child_link.url }}
                         </li>
                       {%- endfor -%}
-                    </ul> 
-
-                    {% assign megamenu_blocks = section.blocks | where: 'type', 'megamenu' %}
-                    {% assign menu_block = blank %}
-                    {% for block in megamenu_blocks %}
-                      {% break %}
-                    {% endfor %}
-              
-                    <div class="mega-menu-right-section m-auto">
-                      <img
-                        src="{{ block.settings.header_mega_menu_image | image_url }}"
-                        class="mega-menu-image"
-                        loading="lazy"
-                        width=""
-                        height=""
-                        alt="Menu Image"
-                      >
-                    </div>
+                    </ul>
                   </div>
-                  {% comment %}
-                    {% if section.settings.header_logo %}
+                  {% assign megamenu_blocks = section.blocks | where: 'type', 'megamenu' %}
+                  {% assign menu_block = blank %}
+                  {% for block in megamenu_blocks %}
+                    {%- if block.settings.header_mega_menu_label == link.title -%}
                       <div class="mega-menu-right-section m-auto">
                         <img
                           src="{{block.settings.header_mega_menu_image | image_url}}"
@@ -70,44 +55,10 @@
                         >
                       </div>
                     {% endif %}
-                  {% endcomment %}
+                  {% endfor %}
                 </div>
               </div>
             {%- endif -%}
-
-           {% comment %}
-            {% for block in section.blocks %}
-              {%- if block.settings.header_mega_menu_label == link.title -%}
-                <div class="mega-menu">
-                  <div class="container d-flex">
-                    <div class="mega-menu-left-section">
-                      <h3>
-                        {{ block.settings.header_mega_menu_label }}
-                      </h3>
-                      <ul class="d-flex flex-column">
-                        {%- for menu in linklists[block.settings.header_mega_menu_menu].links -%}
-                          <li>
-                            {{ menu.title | link_to: menu.url }}
-                          </li>
-                        {%- endfor -%}
-                      </ul>
-                    </div>
-                    {% if section.settings.header_logo %}
-                      <div class="mega-menu-right-section m-auto">
-                        <img
-                          src="{{block.settings.header_mega_menu_image | image_url}}"
-                          class="mega-menu-image"
-                          loading="lazy"
-                          width=""
-                          height=""
-                          alt="Menu Image"
-                        >
-                      </div>
-                    {% endif %}
-                  </div>
-                </div>
-              {%- endif -%}
-            {% endfor %} {% endcomment %}
           </li>
         {% endfor %}
       </ul>
@@ -213,11 +164,6 @@
           "content": "Menu Selection"
         },
         {
-          "type": "link_list",
-          "id": "header_mega_menu_menu",
-          "label": "Menu"
-        },
-        {
           "type": "text",
           "id": "header_mega_menu_label",
           "label": "Menu Label",
@@ -225,17 +171,13 @@
         },
         {
           "type": "header",
-          "content": "Content"
-        },
-        {
-          "type": "paragraph",
-          "content": "Content"
+          "content": "Image Selection"
         },
         {
           "type": "image_picker",
           "id": "header_mega_menu_image",
           "label": "Image"
-        }        
+        }
       ]
     }
   ]
