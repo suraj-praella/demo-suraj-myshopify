@@ -171,13 +171,55 @@
       },
       "footer": {
         "type": "footer",
+        "blocks": {
+          "4501cb2f-0bf0-4210-9675-454a1a7f905d": {
+            "type": "store_information",
+            "settings": {
+              "store_heading": "VISIT OUR OUTLET STORE!",
+              "store_heading_font_color": "#ff6e30",
+              "footer_map_link": "",
+              "footer_address": "2671 Freewood Drive Dallas, Texas 75220",
+              "footer_contact_number": "866-855-4285",
+              "footer_contact_timing": "M-F 8am-5pm CT"
+            }
+          },
+          "4268eee8-b804-46d1-aa4b-77c1a3ebc3bc": {
+            "type": "menu",
+            "settings": {
+              "footer_menu_heading_text": "COMPANY",
+              "footer_menu_heading_font_color": "#ffffff",
+              "footer_menu_list": "footer-company-menu",
+              "footer_menu_font_color": "#ffffff"
+            }
+          },
+          "f8fdcc1f-3131-4725-bd8f-667f4734403b": {
+            "type": "menu",
+            "settings": {
+              "footer_menu_heading_text": "RESOURCES & INFORMATION",
+              "footer_menu_heading_font_color": "#ffffff",
+              "footer_menu_list": "footer-resources-menu",
+              "footer_menu_font_color": "#ffffff"
+            }
+          },
+          "2df04c9c-f4b0-4e08-bf13-23ba1565c668": {
+            "type": "subscribe_form",
+            "settings": {
+              "show_subscribe_form": true,
+              "footer_form_heading_text": "SUBSCRIBE TO OUR NEWSLETTER",
+              "footer_form_input_placeholder": "Enter Your Email",
+              "footer_form_button_label": "Subscribe",
+              "footer_form_button_bg_color": "#FF6E30",
+              "footer_form_button_font_color": "#000"
+            }
+          }
+        },
+        "block_order": [
+          "4501cb2f-0bf0-4210-9675-454a1a7f905d",
+          "4268eee8-b804-46d1-aa4b-77c1a3ebc3bc",
+          "f8fdcc1f-3131-4725-bd8f-667f4734403b",
+          "2df04c9c-f4b0-4e08-bf13-23ba1565c668"
+        ],
         "settings": {
-          "show_footer": true,
-          "footer_map_link": "",
-          "footer_address": "2671 Freewood Drive Dallas, Texas 75220",
-          "footer_contact_number": "866-855-4285",
-          "footer_contact_timing": "M-F 8am-5pm CT",
-          "footer_company_menu": "footer-company-menu",
           "footer_resources_menu": "footer-resources-menu"
         }
       }
