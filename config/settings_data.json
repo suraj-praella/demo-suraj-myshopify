@@ -150,10 +150,19 @@
               "header_mega_menu_label": "Towing",
               "header_mega_menu_image": "shopify:\/\/shop_images\/AdobeStock_Car_Preview_1.png"
             }
+          },
+          "2b942213-2a2f-4972-9d6b-5f98a1eed604": {
+            "type": "megamenu",
+            "settings": {
+              "header_mega_menu_menu": "",
+              "header_mega_menu_label": "Car Hauler",
+              "header_mega_menu_image": "shopify:\/\/shop_images\/startup-desk.jpg"
+            }
           }
         },
         "block_order": [
-          "e61073a6-8cb0-4d9c-858e-d892b6bd5b5d"
+          "e61073a6-8cb0-4d9c-858e-d892b6bd5b5d",
+          "2b942213-2a2f-4972-9d6b-5f98a1eed604"
         ],
         "settings": {
           "show_header": true,
