@@ -41,10 +41,10 @@
                     </ul> 
 
                     {% assign megamenu_blocks = section.blocks | where: 'type', 'megamenu' %}
-                    {% assign blockSettings = megamenu_blocks | map: 'settings' %}
-            
-              {% assign data = blockSettings | where: 'header_mega_menu_label', link.title %}
-{{ blockSettings.header_mega_menu_label }}=========
+                    {% assign menu_block = blank %}
+                    {% for block in megamenu_blocks %}
+                      {% break %}
+                    {% endfor %}
               
                     <div class="mega-menu-right-section m-auto">
                       <img
