@@ -71,6 +71,7 @@
               </div>
             {%- endif -%}
 
+           {% comment %}
             {% for block in section.blocks %}
               {%- if block.settings.header_mega_menu_label == link.title -%}
                 <div class="mega-menu">
@@ -102,7 +103,7 @@
                   </div>
                 </div>
               {%- endif -%}
-            {% endfor %}
+            {% endfor %} {% endcomment %}
           </li>
         {% endfor %}
       </ul>
