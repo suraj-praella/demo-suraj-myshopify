@@ -142,6 +142,18 @@
       },
       "header": {
         "type": "header",
+        "blocks": {
+          "e61073a6-8cb0-4d9c-858e-d892b6bd5b5d": {
+            "type": "megamenu",
+            "settings": {
+              "header_mega_menu_menu": "",
+              "header_mega_menu_label": "Towing"
+            }
+          }
+        },
+        "block_order": [
+          "e61073a6-8cb0-4d9c-858e-d892b6bd5b5d"
+        ],
         "settings": {
           "show_header": true,
           "header_logo": "shopify:\/\/shop_images\/header_company_logo.svg",
