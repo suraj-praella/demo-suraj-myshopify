@@ -80,19 +80,11 @@
 
 .footer-bottom-container {
   margin-top: 21px;
-
-  /* margin: 21px auto 0 61px; */
   align-items: center;
-  color: var(--grayscale-20, #d1d1d1) !important;
   font-size: 13px;
   font-weight: 400;
   line-height: normal;
   padding-right: 10px;
-}
-
-.footer-bottom-container  a{
-  color: var(--grayscale-20, #d1d1d1) !important;
-  
 }
 
 .footer-bottom-container div span:nth-child(2),

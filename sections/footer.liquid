@@ -132,13 +132,13 @@
     <div
       class="footer-container d-flex container footer-bottom-container"
     >
-      <span>Autohauler Supply © 2008-2023</span>
+      <span style="color: {{ section.settings.footer_bottom_text_color }}">Autohauler Supply © 2008-2023</span>
       <div class="ms-auto">
-        <a href="#">Terms & Conditions</a>
-        <span>|</span>
-        <a href="#">Privacy Policy</a>
-        <span>|</span>
-        <a href="#">Sales Tax</a>
+        <a href="#" style="color: {{ section.settings.footer_bottom_text_color }}">Terms & Conditions</a>
+        <span style="color: {{ section.settings.footer_bottom_text_color }}">|</span>
+        <a href="#" style="color: {{ section.settings.footer_bottom_text_color }}">Privacy Policy</a>
+        <span style="color: {{ section.settings.footer_bottom_text_color }}">|</span>
+        <a href="#" style="color: {{ section.settings.footer_bottom_text_color }}">Sales Tax</a>
       </div>
     </div>
   {%- endif -%}
@@ -238,6 +238,12 @@
       "id": "show_footer_bottom",
       "label": "Show",
       "default": true
+    },
+    {
+      "type": "color",
+      "id": "footer_bottom_text_color",
+      "label": "Font Color",
+      "default": "#d1d1d1"
     }
   ],
   "blocks": [
