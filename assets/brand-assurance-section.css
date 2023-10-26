@@ -22,3 +22,8 @@
 .information-container-1 .information-container-content-wrapper:nth-child(3) {
   padding-left: 51px;
 }
+
+.section-divider-line {
+  border: 1px dashed black;
+}
+
