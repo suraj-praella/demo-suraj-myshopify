@@ -1,0 +1,278 @@
+<link rel="stylesheet" href="{{ 'bootstrap.css' | asset_url }}">
+<link rel="stylesheet" href="{{ 'global.css' | asset_url }}">
+<link rel="stylesheet" href="{{ 'diamond-weave-section.css' | asset_url }}">
+
+{%- if section.settings.show_diamond_weave_section -%}
+  <section class="diamond-weave-section" style="margin-top: {{ section.settings.diamond_mt }}px;">
+    <div
+      class="container diamond-weave-section-container"
+      style="background: {{ section.settings.diamond_bg }}; padding-top: {{ section.settings.diamond_pt }}px; padding-bottom: {{ section.settings.diamond_pb }}px; "
+    >
+      {%- if section.settings.diamond_text_shadow_image != blank -%}
+        <img
+          src="{{ section.settings.diamond_text_shadow_image | image_url }}"
+          class="diamond-weave-text-img"
+          width=""
+          height=""
+          loading="lazy"
+        >
+      {%- endif -%}
+
+      {%- if section.settings.diamond_main_image != blank -%}
+        <img
+          src="{{ section.settings.diamond_main_image | image_url }}"
+          class="diamond-weave-tyre-img"
+          width=""
+          height=""
+          loading="lazy"
+        >
+      {%- endif -%}
+
+      {%- if section.settings.diamond_strip_image != blank -%}
+        <img
+          src="{{ section.settings.diamond_strip_image | image_url }}"
+          class="diamond-weave-strip-img"
+          width=""
+          height=""
+          loading="lazy"
+        >
+      {%- endif -%}
+
+      <div class="diamond-weave-section-wrapper w-100 h-100">
+        <div class="diamond-weave-section-text-container position-relative {{ section.settings.diamond_content_alignment }}">
+          <h2
+            style="color: {{ section.settings.diamond_heading_color }}; font-size: {{ section.settings.diamond_heading_font_size }}px;"
+          >
+            {{ section.settings.diamond_heading }}
+          </h2>
+          <p
+            style="color: {{ section.settings.diamond_desc_color }}; font-size: {{ section.settings.diamond_desc_font_size }}px;"
+          >
+            {{ section.settings.diamond_desc }}
+          </p>
+          <div>
+            <button
+              class="btn-orange {{ section.settings.diamond_btn_size }}"
+              style="color: {{ section.settings.diamond_btn_font_color }}; background-color: {{ section.settings.diamond_btn_bg }};"
+            >
+              {{ section.settings.diamond_btn }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Diamond Weave Section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_diamond_weave_section",
+      "label": "Enable",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Section"
+    },
+    {
+      "type": "paragraph",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "diamond_mt",
+      "min": 10,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 115
+    },
+    {
+      "type": "range",
+      "id": "diamond_pt",
+      "min": 10,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "label": "Top Padding",
+      "default": 53
+    },
+    {
+      "type": "range",
+      "id": "diamond_pb",
+      "min": 10,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "label": "Bottom Padding",
+      "default": 51
+    },
+    {
+      "type": "paragraph",
+      "content": "Styling"
+    },
+    {
+        "type": "color_background",
+        "id": "diamond_bg",
+        "label": "Background",
+        "default": "llinear-gradient(90deg, #000 0%, #322e2d 100%)"
+      },
+ 
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "select",
+      "id": "diamond_content_alignment",
+      "label": "Content Alignment",
+      "options": [
+        {
+          "value": "text-start",
+          "label": "Left"
+        },
+        {
+          "value": "text-center",
+          "label": "Center"
+        },
+        {
+          "value": "text-end",
+          "label": "right"
+        }
+      ],
+      "default": "text-start"
+    },
+    {
+      "type": "paragraph",
+      "content": "Heading"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "diamond_heading",
+      "label": "Heading",
+      "default": "Heading"
+    },
+    {
+      "type": "color",
+      "id": "diamond_heading_color",
+      "label": "Font Color",
+      "default": "#fff"
+    },
+    {
+      "type": "range",
+      "id": "diamond_heading_font_size",
+      "min": 15,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Font Size",
+      "default": 38
+    },
+    {
+      "type": "paragraph",
+      "content": "Description"
+    },
+    {
+      "type": "textarea",
+      "id": "diamond_desc",
+      "label": "Description",
+      "default": "Description"
+    },
+    {
+      "type": "color",
+      "id": "diamond_desc_color",
+      "label": "Font Color",
+      "default": "#fff"
+    },
+    {
+      "type": "range",
+      "id": "diamond_desc_font_size",
+      "min": 8,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Font Size",
+      "default": 15
+    },
+    {
+      "type": "paragraph",
+      "content": "Button"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "diamond_btn",
+      "label": "Label",
+      "default": "Button"
+    },
+    {
+      "type": "select",
+      "id": "diamond_btn_size",
+      "label": "Button Size",
+      "options": [
+        {
+          "value": "",
+          "label": "Standard"
+        },
+        {
+          "value": "w-25",
+          "label": "Small"
+        },
+        {
+          "value": "w-50",
+          "label": "Medium"
+        },
+        {
+          "value": "w-75",
+          "label": "Large"
+        }
+      ],
+      "default": ""
+    },
+    {
+      "type": "color",
+      "id": "diamond_btn_bg",
+      "label": "Background Color",
+      "default": "#ff6e30"
+    },
+    {
+      "type": "color",
+      "id": "diamond_btn_font_color",
+      "label": "Font Color",
+      "default": "#000"
+    },
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "diamond_text_shadow_image",
+      "label": "Text Shadow Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "diamond_strip_image",
+      "label": "Strip Image"
+    },
+
+    {
+      "type": "image_picker",
+      "id": "diamond_main_image",
+      "label": "Main Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Diamond Weave Section"
+    }
+  ]
+}
+{% endschema %}
+
+{% javascript %}
+{% endjavascript %}
