@@ -80,9 +80,7 @@
             "show_ab_image": true,
             "ab_image": "shopify:\/\/shop_images\/affordable-logo.svg",
             "ab_heading": "Affordable Quality",
-            "ab_heading_color": "#000000",
-            "ab_detail": "Shop confidently knowing our products are designed to deliver                long-lasting value.",
-            "ab_detail_color": "#000000"
+            "ab_detail": "Shop confidently knowing our products are designed to deliver                long-lasting value."
           }
         },
         "template--21472184336693__28fb3965-6ded-4ba1-b4f4-5880e6b6c0c9-assurance_block-2": {
@@ -91,9 +89,7 @@
             "show_ab_image": true,
             "ab_image": "shopify:\/\/shop_images\/shipping-logo.svg",
             "ab_heading": "Free & Low Cost Shipping",
-            "ab_heading_color": "#000000",
-            "ab_detail": "Free Shipping on orders over $150*. Available in the Continental                US only.<a href=\"#\"><strong>Learn More<\/strong><\/a>",
-            "ab_detail_color": "#000000"
+            "ab_detail": "Free Shipping on orders over $150*. Available in the Continental                US only.<a href=\"#\"><strong>Learn More<\/strong><\/a>"
           }
         },
         "template--21472184336693__28fb3965-6ded-4ba1-b4f4-5880e6b6c0c9-assurance_block-3": {
@@ -102,9 +98,7 @@
             "show_ab_image": true,
             "ab_image": "shopify:\/\/shop_images\/guarantee-logo.svg",
             "ab_heading": "The Autohauler Supply Guarantee",
-            "ab_heading_color": "#000000",
-            "ab_detail": "30 day money-back guarantee. After 30 days, return unused for                store credit.",
-            "ab_detail_color": "#000000"
+            "ab_detail": "30 day money-back guarantee. After 30 days, return unused for                store credit."
           }
         }
       },
@@ -119,12 +113,38 @@
         "ba_top_padding": 45,
         "ba_bottom_padding": 40,
         "ba_heading_font_size": 16,
-        "ba_detail_font_size": 13
+        "ba_heading_color": "#000",
+        "ba_detail_font_size": 13,
+        "ba_detail_color": "#000"
+      }
+    },
+    "9f1bcd7a-38f1-4e80-b5e3-5d1c4614782a": {
+      "type": "diamond-weave-section",
+      "settings": {
+        "show_diamond_weave_section": true,
+        "diamond_mt": 115,
+        "diamond_pt": 53,
+        "diamond_pb": 51,
+        "diamond_bg": "",
+        "diamond_heading": "Experience the difference with Diamond Weave",
+        "diamond_heading_color": "#fff",
+        "diamond_heading_font_size": 38,
+        "diamond_desc": "Diamond Weave webbing has excellent abrasion resistant properties\n              when compared to standard webbing. This ultra-abrasion resistance\n              has been proven to perform under rugged conditions.",
+        "diamond_desc_color": "#fff",
+        "diamond_desc_font_size": 15,
+        "diamond_btn": "Shop Diamond Weave",
+        "diamond_btn_size": "",
+        "diamond_btn_bg": "#ff6e30",
+        "diamond_btn_font_color": "#000",
+        "diamond_text_shadow_image": "shopify:\/\/shop_images\/diamond_weave_text.svg",
+        "diamond_strip_image": "shopify:\/\/shop_images\/diamond_weave_strip.png",
+        "diamond_main_image": "shopify:\/\/shop_images\/diamond_weave_tyre.png"
       }
     }
   },
   "order": [
     "e5085ec4-f0cb-4afb-841f-f43327195ba8",
-    "28fb3965-6ded-4ba1-b4f4-5880e6b6c0c9"
+    "28fb3965-6ded-4ba1-b4f4-5880e6b6c0c9",
+    "9f1bcd7a-38f1-4e80-b5e3-5d1c4614782a"
   ]
 }
