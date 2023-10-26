@@ -1,0 +1,24 @@
+.information-container-1 .container {
+  padding: 45px 15px 40px 15px;
+}
+
+.information-container-1 .information-container-text-section {
+  margin-left: 25px;
+}
+
+.information-container-1 .information-container-text-section h4 {
+  font-family: "Public Sans";
+}
+
+.information-container-1 .information-container-text-section p {
+  line-height: 22px;
+  margin-top: 5px;
+}
+
+.information-container-1 .information-container-content-wrapper:nth-child(2) {
+  padding-left: 20px;
+}
+
+.information-container-1 .information-container-content-wrapper:nth-child(3) {
+  padding-left: 51px;
+}

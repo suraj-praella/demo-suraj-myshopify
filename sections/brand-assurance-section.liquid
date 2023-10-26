@@ -1,0 +1,201 @@
+<link rel="stylesheet" href="{{ 'bootstrap.css' | asset_url }}">
+<link rel="stylesheet" href="{{ 'global.css' | asset_url }}">
+<link rel="stylesheet" href="{{ 'brand-assurance-section.css' | asset_url }}">
+
+{%- assign brandAssuranceSection = section.blocks | where: 'type', 'assurance_block' -%}
+
+{%- if section.settings.show_brand_assurance_section -%}
+  <section class="information-container-1" style="background: {{ section.settings.ba_bg }};">
+    <div
+      class="container d-flex align-items-start"
+      style="padding-top: {{ section.settings.ba_top_padding }}px; padding-bottom: {{ section.settings.ba_bottom_padding }}px; "
+    >
+      <div class="row align-items-start">
+        {%- for block in brandAssuranceSection -%}
+          <div
+            class="information-container-content-wrapper d-flex align-items-center col-md-4"
+          >
+            {%- if block.settings.show_ab_image -%}
+              <div class="information-container-img-section">
+                {%- if block.settings.ab_image != blank -%}
+                  <img
+                    width=""
+                    height=""
+                    loading="lazy"
+                    src="{{ block.settings.ab_image | image_url }}"
+                  >
+                {%- else -%}
+                  <img
+                    width=""
+                    height=""
+                    loading="lazy"
+                    src="https://cdn.shopify.com/s/files/1/0842/4131/8197/files/guarantee-logo.svg?v=1698314751"
+                  >
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+
+            <div class="information-container-text-section">
+              <h4 style="font-size: {{ section.settings.ba_heading_font_size }}px; color:{{ section.settings.ba_heading_color }};">{{ block.settings.ab_heading }}</h4>
+              <p style="font-size: {{ section.settings.ba_detail_font_size }}px; color:{{ section.settings.ba_detail_color }};">
+                {{ block.settings.ab_detail }}
+              </p>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Brand Assurance Section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_brand_assurance_section",
+      "label": "Enable",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Container Styling"
+    },
+    {
+      "type": "color",
+      "id": "ba_bg",
+      "label": "Background Color",
+      "default": "#f4f4f4"
+    },
+    {
+      "type": "range",
+      "id": "ba_top_padding",
+      "min": 10,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "label": "Top Padding",
+      "default": 45
+    },
+    {
+      "type": "range",
+      "id": "ba_bottom_padding",
+      "min": 10,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "label": "Bottom Padding",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Text Styling"
+    },
+    {
+      "type": "paragraph",
+      "content": "Heading"
+    },
+    {
+      "type": "range",
+      "id": "ba_heading_font_size",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Font Size",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "ba_heading_color",
+      "label": "Font Color",
+      "default": "#000"
+    },
+    {
+      "type": "paragraph",
+      "content": "Description"
+    },
+    {
+      "type": "range",
+      "id": "ba_detail_font_size",
+      "min": 8,
+      "max": 25,
+      "step": 1,
+      "unit": "px",
+      "label": "Font Size",
+      "default": 13
+    },
+    {
+      "type": "color",
+      "id": "ba_detail_color",
+      "label": "Font Color",
+      "default": "#000"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "assurance_block",
+      "name": "Column",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Image"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_ab_image",
+          "label": "Show",
+          "default": true
+        },
+        {
+          "type": "image_picker",
+          "id": "ab_image",
+          "label": "Image"
+        },
+        {
+          "type": "paragraph",
+          "content": "Heading"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "ab_heading",
+          "label": "Heading",
+          "default": "Heading"
+        },
+
+        {
+          "type": "paragraph",
+          "content": "Details"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "ab_detail",
+          "label": "Content",
+          "default": "Lorem ipsum dolor sit amet, aliquip ex ea commodo consequat."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brand Assurance Block",
+      "blocks": [
+        {
+          "type": "assurance_block"
+        },
+        {
+          "type": "assurance_block"
+        },
+        {
+          "type": "assurance_block"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+{% javascript %}
+{% endjavascript %}
