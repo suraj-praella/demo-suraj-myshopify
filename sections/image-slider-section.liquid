@@ -1,0 +1,206 @@
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
+>
+<link rel="stylesheet" href="{{ 'bootstrap.css' | asset_url }}">
+<link rel="stylesheet" href="{{ 'global.css' | asset_url }}">
+<link rel="stylesheet" href="{{ 'image-slider-section.css' | asset_url }}">
+
+{%- assign image_slider = section.blocks | where: 'type', 'image_slider' -%}
+
+{%- if section.settings.show_image_slider_section -%}
+  <section class="container-1 position-relative">
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        {%- for block in image_slider -%}
+          <div class="swiper-slide h-auto">
+            <div class="container">
+              <div
+                class="container-1-left-section text-white position-relative"
+              >
+                <div
+                  class="container-1-left-section-content-wrapper"
+                  style="text-align: {{ block.settings.image_slider_text_alignment }}; color: {{ block.settings.image_slider_text_font }} !important;"
+                >
+                  <p class="container-1-top-text">{{ block.settings.image_slider_sub_heading }}</p>
+                  <h1 style="color: {{ block.settings.image_slider_text_font }} !important;">
+                    {{ block.settings.image_slider_heading }}
+                  </h1>
+                  <p>
+                    {{ block.settings.image_slider_text }}
+                  </p>
+                  <div>
+                    <button
+                      class="btn-orange shop-now-btn"
+                      style="background:  {{ block.settings.image_slider_btn_bg }}; color: {{ block.settings.image_slider_btn_font }}"
+                    >
+                      {{ block.settings.image_slider_btn_label }}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {%- if block.settings.slider_image != blank -%}
+              <img
+                style="opacity: {{ block.settings.image_opacity }}%"
+                class="swiper-image position-absolute"
+                src="{{ block.settings.slider_image | image_url }}"
+                loading="lazy"
+                width=""
+                height=""
+                alt="slider image"
+              >
+
+            {%- else -%}
+              {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg swiper-image' }}
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+
+    <div class="swiper-pagination"></div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Image Slider Section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_image_slider_section",
+      "label": "Enable",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image_slider",
+      "name": "Image Slider",
+      "limit": 5,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Content"
+        },
+        {
+          "type": "paragraph",
+          "content": "Styling"
+        },
+        {
+          "type": "select",
+          "id": "image_slider_text_alignment",
+          "label": "Text Alignment",
+          "options": [
+            {
+              "value": "start",
+              "label": "Start"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "end",
+              "label": "End"
+            }
+          ],
+          "default": "start"
+        },
+        {
+          "type": "color",
+          "id": "image_slider_text_font",
+          "label": "Font Color",
+          "default": "#fff"
+        },
+        {
+          "type": "paragraph",
+          "content": "Text"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "image_slider_sub_heading",
+          "label": "Sub Heading",
+          "default": "SUB HEADING"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "image_slider_heading",
+          "label": "Heading",
+          "default": "HEADING"
+        },
+        {
+          "type": "textarea",
+          "id": "image_slider_text",
+          "label": "Content",
+          "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+        },
+        {
+          "type": "paragraph",
+          "content": "Button"
+        },
+        {
+          "type": "text",
+          "id": "image_slider_btn_label",
+          "label": "Button Label",
+          "default": "Label"
+        },
+        {
+          "type": "color",
+          "id": "image_slider_btn_bg",
+          "label": "Background Color",
+          "default": "#FF6E30"
+        },
+        {
+          "type": "color",
+          "id": "image_slider_btn_font",
+          "label": "Font Color",
+          "default": "#000"
+        },
+        {
+          "type": "header",
+          "content": "Slider Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "slider_image",
+          "label": "Image"
+        },
+        {
+          "type": "range",
+          "id": "image_opacity",
+          "min": 0,
+          "max": 100,
+          "step": 10,
+          "unit": "%",
+          "label": "Opacity",
+          "default": 100
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image Slider Section",
+      "blocks": [
+        {
+          "type": "image_slider"
+        },
+        {
+          "type": "image_slider"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+{% javascript %}
+  var swiper = new Swiper('.mySwiper', {
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+  });
+{% endjavascript %}

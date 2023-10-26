@@ -1,0 +1,82 @@
+.container-1 {
+  background: linear-gradient(
+    90deg,
+    #322e2d 0%,
+    #000 79.17%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+.container-1 .container-1-left-section {
+  z-index: 2;
+  padding: 91px 13px 95px 0;
+  text-align: start;
+  width: 80%;
+}
+
+.container-1
+  .container-1-left-section
+  .container-1-left-section-content-wrapper {
+  max-width: 625px;
+}
+
+.container-1
+  .container-1-left-section
+  .container-1-left-section-content-wrapper
+  .container-1-top-text {
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0.75px;
+  margin-left: 2px;
+}
+
+.container-1 .swiper-pagination {
+  bottom: 10px;
+  padding: 0 12px;
+  margin-left: 6px;
+}
+
+.container-1 .swiper-pagination .swiper-pagination-bullet-active {
+  width: 32px !important;
+  height: 2px;
+  border: none;
+  border-radius: 0px;
+  background-color: white;
+}
+
+.container-1 .swiper-pagination .swiper-pagination-bullet {
+  width: 15px;
+  height: 2px;
+  border: none;
+  border-radius: 0px;
+  background-color: white;
+}
+
+.container-1 .container-1-left-section h1 {
+  font-size: 52px;
+  font-style: normal;
+  line-height: 61px;
+  margin: 14px 0px;
+  padding: 0px 0 0px 2px;
+  margin-top: 14px;
+  margin-left: 0;
+  font-weight: 800;
+}
+
+.container-1 .container-1-left-section span {
+  color: #fff;
+}
+
+.swiper-image {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  max-width: 812px;
+}
+
+.btn-orange.shop-now-btn {
+  margin-top: 20px;
+}
