@@ -152,9 +152,9 @@
             "customer_review_text_alignment": "start",
             "customer_review_desc": "Absolutely impressed! The items I purchased exceeded my expectations. Sturdy construction, made for easy loading, and secure transportation.",
             "customer_review_font_size": 15,
-            "customer_review_font_color": "#000",
+            "customer_review_font_color": "#000000",
             "customer_name": "Jerry S.",
-            "customer_name_font_color": "#000",
+            "customer_name_font_color": "#000000",
             "customer_name_font_size": 13
           }
         },
@@ -165,9 +165,9 @@
             "customer_review_text_alignment": "start",
             "customer_review_desc": "Completely professional grade equipment! I purchased a set of ratchet straps for my auto repair shop, and it's made vehicle pickups and drop-offs so much smoother. The durable construction make a world of difference.",
             "customer_review_font_size": 15,
-            "customer_review_font_color": "#000",
+            "customer_review_font_color": "#000000",
             "customer_name": "George H.",
-            "customer_name_font_color": "#000",
+            "customer_name_font_color": "#000000",
             "customer_name_font_size": 13
           }
         },
@@ -178,9 +178,9 @@
             "customer_review_text_alignment": "start",
             "customer_review_desc": "Built to Last. I bought these towing chains for occasional use, and they've surpassed my expectations. Sturdy links, reliable hooks, and a smooth towing experience. I feel prepared for any roadside emergency.",
             "customer_review_font_size": 15,
-            "customer_review_font_color": "#000",
+            "customer_review_font_color": "#000000",
             "customer_name": "Eddie T.",
-            "customer_name_font_color": "#000",
+            "customer_name_font_color": "#000000",
             "customer_name_font_size": 13
           }
         }
@@ -199,13 +199,82 @@
         "customer_feedback_bg": "",
         "customer_feedback_alignment": "start",
         "customer_feedback_sub_heading": "20 YEARS OF EXCELLENCE",
-        "customer_feedback_subheading_color": "#fff",
+        "customer_feedback_subheading_color": "#ffffff",
         "customer_feedback_subheading_font_size": 15,
         "customer_feedback_heading": "Hear it Directly From Our Happy Customers",
-        "customer_feedback_heading_color": "#fff",
+        "customer_feedback_heading_color": "#ffffff",
         "customer_feedback_heading_font_size": 32,
-        "customer_feedback_btn_bg": "#FF6E30",
+        "customer_feedback_btn_bg": "#ff6e30",
         "customer_feedback_subheading_bd_radius": 50
+      }
+    },
+    "53e47bec-245f-46d8-b3df-0eedc28dd378": {
+      "type": "shopping-banner-section",
+      "blocks": {
+        "template--21472184336693__53e47bec-245f-46d8-b3df-0eedc28dd378-large_banner-1": {
+          "type": "large_banner",
+          "settings": {
+            "large_banner_text_alignment": "start",
+            "large_banner_sub_heading": "ROLL INTO SAVINGS!",
+            "large_banner_sub_heading_color": "#fff",
+            "large_banner_sub_heading_size": 15,
+            "large_banner_heading": "Save on Flatbed and Heavy Haul Supplies",
+            "large_banner_heading_color": "#fff",
+            "large_banner_heading_size": 38,
+            "large_banner_desc": "Don't miss out on these flatbed savings that haul! From winch bars to transport chains to safety equipment - we have it all!",
+            "large_banner_desc_color": "#fff",
+            "large_banner_desc_size": 15,
+            "large_banner_btn_label": "Shop The Sale",
+            "large_banner_btn_bg": "#FF6E30",
+            "large_banner_btn_color": "#000",
+            "large_banner_btn_size": 15,
+            "large_banner_bg_img_opacity": 65,
+            "large_banner_sec_img_opacity": 100,
+            "large_banner_triangle_bg": "#FF6E30",
+            "large_banner_triangle_opacity": 50
+          }
+        },
+        "template--21472184336693__53e47bec-245f-46d8-b3df-0eedc28dd378-small_banner-1": {
+          "type": "small_banner",
+          "settings": {
+            "small_banner_text_alignment": "start",
+            "small_banner_heading": "Haul ATVs and Motorcycles Safely and Efficiently.",
+            "small_banner_heading_size": 24,
+            "small_banner_heading_color": "#fff",
+            "small_banner_btn_label": "Shop ATV Straps",
+            "small_banner_btn_bg": "#FF6E30",
+            "small_banner_btn_color": "#000",
+            "small_banner_btn_size": 15,
+            "small_banner_bg_img_opacity": 65,
+            "small_banner_sec_image_opacity": 100
+          }
+        },
+        "template--21472184336693__53e47bec-245f-46d8-b3df-0eedc28dd378-small_banner-2": {
+          "type": "small_banner",
+          "settings": {
+            "small_banner_text_alignment": "start",
+            "small_banner_heading": "<strong>Ensure Safer Travel when Transporting Tall Loads Long Distances.<\/strong>",
+            "small_banner_heading_size": 24,
+            "small_banner_heading_color": "#fff",
+            "small_banner_btn_label": "Shop Height Sticks",
+            "small_banner_btn_bg": "#FF6E30",
+            "small_banner_btn_color": "#000",
+            "small_banner_btn_size": 15,
+            "small_banner_bg_img": "shopify:\/\/shop_images\/Frame_12.png",
+            "small_banner_bg_img_opacity": 65,
+            "small_banner_sec_image": "shopify:\/\/shop_images\/ebay_Aug.png",
+            "small_banner_sec_image_opacity": 100
+          }
+        }
+      },
+      "block_order": [
+        "template--21472184336693__53e47bec-245f-46d8-b3df-0eedc28dd378-large_banner-1",
+        "template--21472184336693__53e47bec-245f-46d8-b3df-0eedc28dd378-small_banner-1",
+        "template--21472184336693__53e47bec-245f-46d8-b3df-0eedc28dd378-small_banner-2"
+      ],
+      "settings": {
+        "show_banner_section": true,
+        "banner_mt": 80
       }
     }
   },
@@ -213,6 +282,7 @@
     "e5085ec4-f0cb-4afb-841f-f43327195ba8",
     "28fb3965-6ded-4ba1-b4f4-5880e6b6c0c9",
     "9f1bcd7a-38f1-4e80-b5e3-5d1c4614782a",
-    "2a00c5ee-ea55-4893-b7e3-a1a8a1782bef"
+    "2a00c5ee-ea55-4893-b7e3-a1a8a1782bef",
+    "53e47bec-245f-46d8-b3df-0eedc28dd378"
   ]
 }
