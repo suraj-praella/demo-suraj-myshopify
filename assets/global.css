@@ -55,7 +55,7 @@
 body {
   margin: 0;
   padding: 0;
-  background: var(--Background-Grey, #f4f4f4);
+  background: var(--Background-Grey, #f4f4f4) !important;
   font-family: "Sintony";
   font-size: 15px;
   font-style: normal;

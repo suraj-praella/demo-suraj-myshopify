@@ -1,0 +1,527 @@
+<link rel="stylesheet" href="{{ 'bootstrap.css' | asset_url }}">
+<link rel="stylesheet" href="{{ 'global.css' | asset_url }}">
+<link rel="stylesheet" href="{{ 'shopping-banner-section.css' | asset_url }}">
+
+{%- assign large_banner = section.blocks | where: 'type', 'large_banner' -%}
+{%- assign small_banner = section.blocks | where: 'type', 'small_banner' -%}
+
+{%- if section.settings.show_banner_section -%}
+  <section class="section-images-3-container" style="margin-top: {{ section.settings.banner_mt }}px;">
+    <div class="container d-flex">
+      {%- for block in large_banner -%}
+        <div class="images-3-container">
+          {%- if block.settings.large_banner_img != blank -%}
+            <img
+              src="{{ block.settings.large_banner_img | image_url }}"
+              class="position-absolute w-100 h-100 top-0 start-0"
+              width=""
+              height=""
+              loading="lazy"
+            >
+
+          {%- else -%}
+            <img
+              src="https://cdn.shopify.com/s/files/1/0842/4131/8197/files/flatbed-chain-collection.png?v=1698393161"
+              class="position-absolute w-100 h-100 top-0 start-0"
+              width=""
+              height=""
+              loading="lazy"
+            >
+          {%- endif -%}
+
+          <div class="overlay" style="opacity: {{ block.settings.large_banner_bg_img_opacity }}%;"></div>
+          <div
+            class="triangle-orange d-block"
+            style="border-bottom-color: {{ block.settings.large_banner_triangle_bg }}; opacity: {{ block.settings.large_banner_triangle_opacity }}%;"
+          ></div>
+
+          {%- if block.settings.large_banner_sec_image != blank -%}
+            <img
+              src="{{ block.settings.large_banner_sec_image | image_url }}"
+              style="opacity: {{ block.settings.large_banner_sec_img_opacity }}%"
+              class="image image-3"
+              width=""
+              height=""
+              loading="lazy"
+            >
+          {%- else -%}
+            <img
+              style="opacity: {{ block.settings.large_banner_sec_img_opacity }}%"
+              src="https://cdn.shopify.com/s/files/1/0842/4131/8197/files/flatbed-chain.png?v=1698392809"
+              class="image image-3"
+              width=""
+              height=""
+              loading="lazy"
+            >
+          {%- endif -%}
+
+          <div
+            class="text-and-btn-container d-flex flex-column"
+            style="text-align: {{ block.settings.large_banner_text_alignment }};"
+          >
+            <span
+              class="ls-75"
+              style="color: {{ block.settings.large_banner_sub_heading_color }}; font-size: {{ block.settings.large_banner_sub_heading_size }}px;"
+            >
+              {{- block.settings.large_banner_sub_heading -}}
+            </span>
+            <h2
+              style="color: {{ block.settings.large_banner_heading_color }}; font-size: {{ block.settings.large_banner_heading_size }}px;"
+            >
+              {{ block.settings.large_banner_heading }}
+            </h2>
+            <span
+              style="color: {{ block.settings.large_banner_desc_color }}; font-size: {{ block.settings.large_banner_desc_size }}px;"
+            >
+              {{- block.settings.large_banner_desc -}}
+            </span>
+            <div>
+              <button
+                class="btn-orange"
+                style="background-color: {{ block.settings.large_banner_btn_bg }}; color: {{ block.settings.large_banner_btn_color }}; font-size: {{ block.settings.large_banner_btn_size }}px;"
+              >
+                {{ block.settings.large_banner_btn_label }}
+              </button>
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+      <div
+        class="images-2-container-wrapper d-flex flex-column justify-content-between"
+      >
+        {%- for block in small_banner -%}
+          <div class="images-2-container">
+            {%- if block.settings.small_banner_bg_img != blank -%}
+              <img
+                src="{{ block.settings.small_banner_bg_img | image_url }}"
+                class="position-absolute w-100 h-100 top-0 start-0"
+                width=""
+                height=""
+                loading="lazy"
+              >
+            {%- else -%}
+              <img
+                src="https://cdn.shopify.com/s/files/1/0842/4131/8197/files/AdobeStock_Car_Preview_1.png?v=1698208496"
+                class="position-absolute w-100 h-100 top-0 start-0"
+                width=""
+                height=""
+                loading="lazy"
+              >
+            {%- endif -%}
+
+            <div class="overlay" style="opacity: {{ block.settings.small_banner_bg_img_opacity }}%;"></div>
+
+            {%- if block.settings.small_banner_sec_image != blank -%}
+              <img
+                src="{{ block.settings.small_banner_sec_image | image_url }}"
+                style="opacity: {{ block.settings.small_banner_sec_image_opacity }}%;"
+                class="image image-2"
+                width=""
+                height=""
+                loading="lazy"
+              >
+            {%- else -%}
+              <img
+                src="https://cdn.shopify.com/s/files/1/0842/4131/8197/files/MC-ATV-Straps.png?v=1698392834"
+                style="opacity: {{ block.settings.small_banner_sec_image_opacity }}%;"
+                class="image image-2"
+                width=""
+                height=""
+                loading="lazy"
+              >
+            {%- endif -%}
+
+            <div
+              class="text-and-btn-container d-flex flex-column"
+              style="text-align: {{ block.settings.small_banner_text_alignment }};"
+            >
+              <p
+                class="font-family-header"
+                style="color: {{ block.settings.small_banner_heading_color }}; font-size: {{ block.settings.small_banner_heading_size }}px;"
+              >
+                {{ block.settings.small_banner_heading }}
+              </p>
+              <div>
+                <button
+                  class="btn-orange"
+                  style="color: {{ block.settings.small_banner_btn_color }}; background-color: {{ block.settings.small_banner_btn_bg }}; font-size: {{ block.settings.small_banner_btn_size }}px;"
+                >
+                  {{ block.settings.small_banner_btn_label }}
+                </button>
+              </div>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Shopping Banner Section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_banner_section",
+      "label": "Enable",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "banner_mt",
+      "min": 10,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 80
+    }
+  ],
+  "blocks": [
+    {
+      "type": "large_banner",
+      "name": "Large Banner",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Styling"
+        },
+        {
+          "type": "select",
+          "id": "large_banner_text_alignment",
+          "label": "Text Alignment",
+          "options": [
+            {
+              "value": "start",
+              "label": "Start"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "end",
+              "label": "End"
+            }
+          ],
+          "default": "start"
+        },
+        {
+          "type": "header",
+          "content": "Content"
+        },
+        {
+          "type": "paragraph",
+          "content": "Sub Heading"
+        },
+        {
+          "type": "text",
+          "id": "large_banner_sub_heading",
+          "label": "Sub Heading",
+          "default": "SUB HEADING"
+        },
+        {
+          "type": "color",
+          "id": "large_banner_sub_heading_color",
+          "label": "Font Color",
+          "default": "#fff"
+        },
+        {
+          "type": "range",
+          "id": "large_banner_sub_heading_size",
+          "min": 8,
+          "max": 25,
+          "step": 1,
+          "unit": "px",
+          "label": "Font Size",
+          "default": 15
+        },
+        {
+          "type": "paragraph",
+          "content": "Heading"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "large_banner_heading",
+          "label": "Heading",
+          "default": "Heading"
+        },
+        {
+          "type": "color",
+          "id": "large_banner_heading_color",
+          "label": "Font Color",
+          "default": "#fff"
+        },
+        {
+          "type": "range",
+          "id": "large_banner_heading_size",
+          "min": 15,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Font Size",
+          "default": 38
+        },
+        {
+          "type": "paragraph",
+          "content": "Description"
+        },
+        {
+          "type": "textarea",
+          "id": "large_banner_desc",
+          "label": "Description",
+          "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        },
+        {
+          "type": "color",
+          "id": "large_banner_desc_color",
+          "label": "Font Color",
+          "default": "#fff"
+        },
+        {
+          "type": "range",
+          "id": "large_banner_desc_size",
+          "min": 8,
+          "max": 25,
+          "step": 1,
+          "unit": "px",
+          "label": "Font Size",
+          "default": 15
+        },
+        {
+          "type": "paragraph",
+          "content": "Button"
+        },
+        {
+          "type": "text",
+          "id": "large_banner_btn_label",
+          "label": "Label",
+          "default": "Label"
+        },
+        {
+          "type": "color",
+          "id": "large_banner_btn_bg",
+          "label": "Background Color",
+          "default": "#FF6E30"
+        },
+        {
+          "type": "color",
+          "id": "large_banner_btn_color",
+          "label": "Font Color",
+          "default": "#000"
+        },
+        {
+          "type": "range",
+          "id": "large_banner_btn_size",
+          "min": 8,
+          "max": 25,
+          "step": 1,
+          "unit": "px",
+          "label": "Font Size",
+          "default": 15
+        },
+        {
+          "type": "header",
+          "content": "Background Images"
+        },
+        {
+          "type": "image_picker",
+          "id": "large_banner_img",
+          "label": "Background Image"
+        },
+        {
+          "type": "range",
+          "id": "large_banner_bg_img_opacity",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "unit": "%",
+          "label": "Blur",
+          "default": 65
+        },
+        {
+          "type": "image_picker",
+          "id": "large_banner_sec_image",
+          "label": "Secondary Image"
+        },
+        {
+          "type": "range",
+          "id": "large_banner_sec_img_opacity",
+          "min": 0,
+          "max": 100,
+          "step": 10,
+          "unit": "%",
+          "label": "Visibilty",
+          "default": 100
+        },
+        {
+          "type": "header",
+          "content": "Triangle"
+        },
+        {
+          "type": "color",
+          "id": "large_banner_triangle_bg",
+          "label": "Background Color",
+          "default": "#FF6E30"
+        },
+        {
+          "type": "range",
+          "id": "large_banner_triangle_opacity",
+          "min": 0,
+          "max": 100,
+          "step": 10,
+          "unit": "%",
+          "label": "Visibilty",
+          "default": 50
+        }
+      ]
+    },
+    {
+      "type": "small_banner",
+      "name": "Small Banner",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Styling"
+        },
+        {
+          "type": "select",
+          "id": "small_banner_text_alignment",
+          "label": "Text Alignment",
+          "options": [
+            {
+              "value": "start",
+              "label": "Start"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "end",
+              "label": "End"
+            }
+          ],
+          "default": "start"
+        },
+        {
+          "type": "header",
+          "content": "Content"
+        },
+        {
+          "type": "paragraph",
+          "content": "Heading"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "small_banner_heading",
+          "label": "Heading",
+          "default": "Heading"
+        },
+        {
+          "type": "range",
+          "id": "small_banner_heading_size",
+          "min": 15,
+          "max": 40,
+          "step": 1,
+          "unit": "px",
+          "label": "Font Size",
+          "default": 24
+        },
+        {
+          "type": "color",
+          "id": "small_banner_heading_color",
+          "label": "Font Color",
+          "default": "#fff"
+        },
+
+        {
+          "type": "paragraph",
+          "content": "Button"
+        },
+        {
+          "type": "text",
+          "id": "small_banner_btn_label",
+          "label": "Label",
+          "default": "Label"
+        },
+        {
+          "type": "color",
+          "id": "small_banner_btn_bg",
+          "label": "Background Color",
+          "default": "#FF6E30"
+        },
+        {
+          "type": "color",
+          "id": "small_banner_btn_color",
+          "label": "Font Color",
+          "default": "#000"
+        },
+        {
+          "type": "range",
+          "id": "small_banner_btn_size",
+          "min": 8,
+          "max": 25,
+          "step": 1,
+          "unit": "px",
+          "label": "Font Size",
+          "default": 15
+        },
+        {
+          "type": "header",
+          "content": "Background Images"
+        },
+        {
+          "type": "image_picker",
+          "id": "small_banner_bg_img",
+          "label": "Background Image"
+        },
+        {
+          "type": "range",
+          "id": "small_banner_bg_img_opacity",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "unit": "%",
+          "label": "Blur",
+          "default": 65
+        },
+        {
+          "type": "image_picker",
+          "id": "small_banner_sec_image",
+          "label": "Secondary Image"
+        },
+        {
+          "type": "range",
+          "id": "small_banner_sec_image_opacity",
+          "min": 0,
+          "max": 100,
+          "step": 10,
+          "unit": "%",
+          "label": "Opacity",
+          "default": 100
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shopping Banner Section",
+      "blocks": [
+        {
+          "type": "large_banner"
+        },
+        {
+          "type": "small_banner"
+        },
+        {
+          "type": "small_banner"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
