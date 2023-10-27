@@ -1,0 +1,116 @@
+.excellence-container {
+  overflow-x: hidden;
+}
+
+.excellence-container .excellence-container-wrapper {
+  padding: 100px 0 106px 16px;
+}
+
+.excellence-container .vector-img {
+  position: absolute;
+  top: 127.5px;
+  left: 21px;
+}
+
+.excellence-container .excellence-container-left-wrapper {
+  z-index: 2;
+  max-width: 360px;
+  flex: 0 0 auto;
+  padding-top: 39px;
+}
+
+.excellence-container .excellence-container-left-wrapper h3 {
+  color: #fff;
+  margin-top: 7px;
+}
+
+.excellence-container .excellence-container-left-wrapper span {
+  color: #fff;
+  letter-spacing: 0.75px;
+}
+
+.excellence-container .excellence-container-left-wrapper button {
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  margin-top: 38px;
+}
+
+.excellence-container
+  .excellence-container-left-wrapper
+  .excellence-container-right-btn {
+  margin-left: 6px;
+}
+
+.excellence-container .excellence-container-right-wrapper {
+  z-index: 2;
+  margin-left: 95px;
+  overflow: visible;
+}
+
+.excellence-container
+  .excellence-container-right-wrapper
+  .excellence-container-customer-feedback {
+  position: relative;
+  height: auto;
+  max-width: 406px;
+  border: 1px solid grey;
+  border-radius: 15px;
+  margin-right: 30px;
+}
+
+.excellence-container
+  .excellence-container-right-wrapper
+  .excellence-container-customer-feedback.swiper-slide-active {
+  background-color: #fff;
+}
+
+.excellence-container .excellence-container-right-wrapper span,
+.excellence-container .excellence-container-right-wrapper p {
+  color: var(--grayscale-50, #808080) !important;
+}
+
+.excellence-container
+  .excellence-container-right-wrapper
+  .swiper-slide-active
+  span,
+.excellence-container
+  .excellence-container-right-wrapper
+  .swiper-slide-active
+  p {
+  color: var(--grayscale-50, #000) !important;
+}
+
+.excellence-container
+  .excellence-container-right-wrapper
+  .excellence-container-customer-feedback
+  .excellence-container-customer-feedback-empty-white-card {
+  position: absolute;
+  top: 0;
+  z-index: 2;
+}
+
+.excellence-container
+  .excellence-container-right-wrapper
+  .excellence-container-customer-feedback-wrapper {
+  z-index: 20;
+  padding: 40px 30px 40px 30px;
+}
+
+.excellence-container
+  .excellence-container-right-wrapper
+  .excellence-container-customer-feedback-wrapper
+  p {
+  margin-top: 10px;
+}
+
+.excellence-container
+  .excellence-container-right-wrapper
+  .excellence-container-customer-feedback-wrapper
+  span {
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.26px;
+  margin-top: 10px;
+  font-weight: bold;
+}

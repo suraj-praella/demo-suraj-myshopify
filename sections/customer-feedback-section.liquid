@@ -1,0 +1,439 @@
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
+>
+<link rel="stylesheet" href="{{ 'bootstrap.css' | asset_url }}">
+<link rel="stylesheet" href="{{ 'global.css' | asset_url }}">
+<link rel="stylesheet" href="{{ 'customer-feedback-section.css' | asset_url }}">
+
+{%- assign customer_review_slider = section.blocks | where: 'type', 'customer_review_slider' -%}
+
+{%- if section.settings.show_customer_feedback_section -%}
+  <section
+    class="excellence-container position-relative"
+    style="margin-top: {{ section.settings.customer_feedback_mt }}px; background: {{ section.settings.customer_feedback_bg }};"
+  >
+    {%- if section.settings.customer_feedback_bg_image != blank -%}
+      <img
+        style="opacity: {{ section.settings.customer_feedback_bg_image_opacity }}%"
+        class="position-absolute w-100 h-100"
+        src="{{ section.settings.customer_feedback_bg_image | image_url }}"
+        width=""
+        height=""
+        loading="lazy"
+      >
+
+    {%- else -%}
+      <img
+        style="opacity: {{ section.settings.customer_feedback_bg_image_opacity }}%"
+        src="https://cdn.shopify.com/s/files/1/0842/4131/8197/files/texture_bg_1.png?v=1698383505"
+        class="position-absolute w-100 h-100"
+        width=""
+        height=""
+        loading="lazy"
+      >
+    {%- endif -%}
+
+    <div
+      class="excellence-container-wrapper container position-relative d-flex align-items-center"
+      style="padding-top: {{ section.settings.customer_feedback_pt }}px; padding-bottom: {{ section.settings.customer_feedback_pb }}px;"
+    >
+      <div class="vector-img">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="302"
+          height="245"
+          viewBox="0 0 302 245"
+          fill="none"
+        >
+          <path
+            opacity="0.75"
+            d="M0 150.021C0 64.0608 57.29 19.034 76.1138 3.47934C81.8428 -0.614001 87.5718 -2.25134 94.1192 5.11667L106.396 17.3967C112.125 23.946 110.488 31.314 105.577 35.4074C96.5745 41.9567 48.2873 77.9781 47.4688 133.648C47.4688 133.648 61.3821 127.917 80.206 127.917C112.125 127.917 139.133 153.296 139.133 186.042C139.133 218.789 112.125 244.986 74.477 244.986C43.3767 244.986 0 221.245 0 150.021ZM162.867 150.021C162.867 64.0608 220.157 19.034 238.981 3.47934C244.71 -0.614001 250.439 -2.25134 256.986 5.11667L269.263 17.3967C274.992 23.946 273.355 31.314 268.444 35.4074C259.442 41.9567 211.154 77.9781 210.336 133.648C210.336 133.648 224.249 127.917 243.073 127.917C274.992 127.917 302 153.296 302 186.042C302 218.789 274.992 244.986 237.344 244.986C206.244 244.986 162.867 221.245 162.867 150.021Z"
+            fill="black"
+          />
+        </svg>
+      </div>
+      <div
+        class="excellence-container-left-wrapper"
+        style="text-align: {{ section.settings.customer_feedback_alignment }}"
+      >
+        <span style="color: {{ section.settings.customer_feedback_subheading_color }}; font-size: {{ section.settings.customer_feedback_subheading_font_size }}px; ">
+          {{ section.settings.customer_feedback_sub_heading }}
+        </span>
+        <h3 style="color: {{ section.settings.customer_feedback_heading_color }}; font-size: {{ section.settings.customer_feedback_heading_font_size }}px; ">
+          {{ section.settings.customer_feedback_heading }}
+        </h3>
+        <div>
+          <button
+            class="excellence-container-left-btn"
+            style="background: {{ section.settings.customer_feedback_btn_bg }}; border-radius:{{ section.settings.customer_feedback_subheading_bd_radius }}%;"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="36"
+              height="36"
+              viewBox="0 0 36 36"
+              fill="none"
+            >
+              <path
+                d="M20 25L13 18L20 11"
+                stroke="black"
+                stroke-width="1.25"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+          <button
+            class="excellence-container-right-btn"
+            style="background: {{ section.settings.customer_feedback_btn_bg }}; border-radius:{{ section.settings.customer_feedback_subheading_bd_radius }}%;"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="36"
+              height="36"
+              viewBox="0 0 36 36"
+              fill="none"
+            >
+              <path
+                d="M16 11L23 18L16 25"
+                stroke="black"
+                stroke-width="1.25"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div
+        class="excellence-container-right-wrapper w-100 d-flex align-items-center"
+      >
+        <div class="swiper mySwiper">
+          <div class="swiper-wrapper product-cards-wrapper d-flex">
+            {%- for block in customer_review_slider -%}
+              <div class="excellence-container-customer-feedback swiper-slide">
+                <div
+                  class="excellence-container-customer-feedback-wrapper w-100 h-100 position-relative d-flex flex-column"
+                  style="text-align: {{ block.settings.customer_review_text_alignment }}"
+                >
+                  <div class="eccfw-stars">
+                    {%- for i in (1..block.settings.customer_ratings) -%}
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M12.9175 2.60214C12.759 2.23657 12.3985 2 12 2C11.6016 2 11.2411 2.23657 11.0826 2.60214L8.75966 7.95871L2.90833 8.49764C2.50988 8.53434 2.17166 8.80502 2.04855 9.18575C1.92544 9.56647 2.04113 9.98393 2.34266 10.247L6.75268 14.0942L5.46254 19.7787C5.3742 20.1679 5.52576 20.5723 5.84811 20.8077C6.17046 21.043 6.60187 21.0641 6.94566 20.8614L12 17.8811L17.0544 20.8614C17.3982 21.0641 17.8296 21.043 18.152 20.8077C18.4743 20.5723 18.6259 20.1679 18.5375 19.7787L17.2474 14.0942L21.6574 10.247C21.959 9.98393 22.0746 9.56647 21.9515 9.18575C21.8284 8.80502 21.4902 8.53434 21.0918 8.49764L15.2404 7.95871L12.9175 2.60214Z" fill="#FEC600"/>
+                      </svg>
+                    {%- endfor -%}
+                  </div>
+                  <p style="color: {{ block.settings.customer_review_font_color }}; font-size: {{ block.settings.customer_review_font_size }}px">
+                    {{ block.settings.customer_review_desc }}
+                  </p>
+                  <span style="color: {{ block.settings.customer_name_font_color }}; font-size: {{ block.settings.customer_name_font_size }}px">
+                    {{ block.settings.customer_name }}
+                  </span>
+                </div>
+              </div>
+            {%- endfor -%}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Customer Feedback Section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_customer_feedback_section",
+      "label": "Enable",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Section"
+    },
+    {
+      "type": "paragraph",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "customer_feedback_mt",
+      "min": 10,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "customer_feedback_pt",
+      "min": 10,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "label": "Top Padding",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "customer_feedback_pb",
+      "min": 10,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "label": "Bottom Padding",
+      "default": 105
+    },
+    {
+      "type": "paragraph",
+      "content": "Styling"
+    },
+    {
+      "type": "image_picker",
+      "id": "customer_feedback_bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "range",
+      "id": "customer_feedback_bg_image_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 10,
+      "unit": "%",
+      "label": "Opacity",
+      "default": 100
+    },
+    {
+      "type": "color",
+      "id": "customer_feedback_bg",
+      "label": "Background"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "select",
+      "id": "customer_feedback_alignment",
+      "label": "Content Alignment",
+      "options": [
+        {
+          "value": "start",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "end",
+          "label": "right"
+        }
+      ],
+      "default": "start"
+    },
+    {
+      "type": "paragraph",
+      "content": "Sub Heading"
+    },
+    {
+      "type": "text",
+      "id": "customer_feedback_sub_heading",
+      "label": "Sub Heading",
+      "default": "SUB HEADING"
+    },
+    {
+      "type": "color",
+      "id": "customer_feedback_subheading_color",
+      "label": "Font Color",
+      "default": "#fff"
+    },
+    {
+      "type": "range",
+      "id": "customer_feedback_subheading_font_size",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Font Size",
+      "default": 15
+    },
+    {
+      "type": "paragraph",
+      "content": "Heading"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "customer_feedback_heading",
+      "label": "Heading",
+      "default": "Heading"
+    },
+    {
+      "type": "color",
+      "id": "customer_feedback_heading_color",
+      "label": "Font Color",
+      "default": "#fff"
+    },
+    {
+      "type": "range",
+      "id": "customer_feedback_heading_font_size",
+      "min": 15,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Font Size",
+      "default": 32
+    },
+    {
+      "type": "header",
+      "content": "Buttons"
+    },
+    {
+      "type": "color",
+      "id": "customer_feedback_btn_bg",
+      "label": "Font Color",
+      "default": "#FF6E30"
+    },
+    {
+      "type": "range",
+      "id": "customer_feedback_subheading_bd_radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "%",
+      "label": "Border Radius",
+      "default": 50
+    }
+  ],
+  "blocks": [
+    {
+      "type": "customer_review_slider",
+      "name": "Review Slider",
+      "limit": 5,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Customer Review"
+        },
+        {
+          "type": "range",
+          "id": "customer_ratings",
+          "min": 0,
+          "max": 5,
+          "step": 1,
+          "label": "Ratings",
+          "default": 5
+        },
+        {
+          "type": "paragraph",
+          "content": "Styling"
+        },
+        {
+          "type": "select",
+          "id": "customer_review_text_alignment",
+          "label": "Text Alignment",
+          "options": [
+            {
+              "value": "start",
+              "label": "Start"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "end",
+              "label": "End"
+            }
+          ],
+          "default": "start"
+        },
+        {
+          "type": "paragraph",
+          "content": "Customer Review"
+        },
+        {
+          "type": "textarea",
+          "id": "customer_review_desc",
+          "label": "Review",
+          "default": "Customer Review"
+        },
+        {
+          "type": "range",
+          "id": "customer_review_font_size",
+          "min": 5,
+          "max": 20,
+          "step": 1,
+          "unit": "px",
+          "label": "Font Size",
+          "default": 15
+        },
+        {
+          "type": "color",
+          "id": "customer_review_font_color",
+          "label": "Font Color",
+          "default": "#000"
+        },
+        {
+          "type": "paragraph",
+          "content": "Customer Name"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "customer_name",
+          "label": "Customer Name",
+          "default": "NAME"
+        },
+        {
+          "type": "color",
+          "id": "customer_name_font_color",
+          "label": "Font Color",
+          "default": "#000"
+        },
+        {
+          "type": "range",
+          "id": "customer_name_font_size",
+          "min": 5,
+          "max": 20,
+          "step": 1,
+          "unit": "px",
+          "label": "Font Size",
+          "default": 13
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Customer Feedbacks Section",
+      "blocks": [
+        {
+          "type": "customer_review_slider"
+        },
+        {
+          "type": "customer_review_slider"
+        },
+        {
+          "type": "customer_review_slider"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+{% javascript %}
+  var swiper3 = new Swiper('.mySwiper', {
+    slidesPerView: 2,
+    spaceBetween: 30,
+    // centeredSlides: true,
+    navigation: {
+      nextEl: '.excellence-container-right-btn',
+      prevEl: '.excellence-container-left-btn',
+    },
+  });
+{% endjavascript %}
