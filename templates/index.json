@@ -229,6 +229,102 @@
         "diamond_main_image": "shopify:\/\/shop_images\/diamond_weave_tyre.png"
       }
     },
+    "6100380d-0d84-4106-aeaf-3c776331b5e4": {
+      "type": "product-list-section",
+      "blocks": {
+        "template--21472184336693__6100380d-0d84-4106-aeaf-3c776331b5e4-products_slider-1": {
+          "type": "products_slider",
+          "settings": {
+            "product": "big-orange-10ft-double-j-wire-hook-and-hd-ratchet-wheel-strap-box-of-8"
+          }
+        },
+        "template--21472184336693__6100380d-0d84-4106-aeaf-3c776331b5e4-products_slider-2": {
+          "type": "products_slider",
+          "settings": {
+            "product": "4-pack-of-e-track-heavy-duty-o-ring-connector"
+          }
+        },
+        "template--21472184336693__6100380d-0d84-4106-aeaf-3c776331b5e4-products_slider-3": {
+          "type": "products_slider",
+          "settings": {
+            "product": "car-and-trailer-wheel-bonnet-strap-for-13-17-inch-wheels-for-e-track"
+          }
+        },
+        "template--21472184336693__6100380d-0d84-4106-aeaf-3c776331b5e4-products_slider-4": {
+          "type": "products_slider",
+          "settings": {
+            "product": "5-16-x-8-g70-auto-tie-down-chain-with-tj-combo-and-grab-hooks"
+          }
+        },
+        "template--21472184336693__6100380d-0d84-4106-aeaf-3c776331b5e4-products_slider-5": {
+          "type": "products_slider",
+          "settings": {
+            "product": "texas-short-wide-swivel-j-ratchet-handle-with-10-12k-strap"
+          }
+        },
+        "3ec00e4f-d510-402d-ab2d-c2506ee08571": {
+          "type": "option_btns",
+          "settings": {
+            "option_btn_label": "Car Hauler"
+          }
+        },
+        "cbb0781e-865e-45f9-9bcf-68aab91d7232": {
+          "type": "option_btns",
+          "settings": {
+            "option_btn_label": "Towing"
+          }
+        },
+        "a424c390-0733-4e36-9f8b-b84e6b17747e": {
+          "type": "option_btns",
+          "settings": {
+            "option_btn_label": "Flatbed"
+          }
+        },
+        "522d79e8-2b7b-4ab5-9202-58388ce191e5": {
+          "type": "option_btns",
+          "settings": {
+            "option_btn_label": "Dry Van"
+          }
+        },
+        "60602d3b-dd96-42f0-90f6-73149bc44606": {
+          "type": "products_slider",
+          "settings": {
+            "product": "big-orange-10ft-double-j-wire-hook-and-hd-ratchet-wheel-strap-box-of-8"
+          }
+        },
+        "3a51c398-4b3e-4b9f-9a76-e6edb94aba17": {
+          "type": "products_slider",
+          "settings": {
+            "product": "car-and-trailer-wheel-bonnet-strap-for-13-17-inch-wheels-for-e-track"
+          }
+        }
+      },
+      "block_order": [
+        "template--21472184336693__6100380d-0d84-4106-aeaf-3c776331b5e4-products_slider-1",
+        "template--21472184336693__6100380d-0d84-4106-aeaf-3c776331b5e4-products_slider-2",
+        "template--21472184336693__6100380d-0d84-4106-aeaf-3c776331b5e4-products_slider-3",
+        "template--21472184336693__6100380d-0d84-4106-aeaf-3c776331b5e4-products_slider-4",
+        "template--21472184336693__6100380d-0d84-4106-aeaf-3c776331b5e4-products_slider-5",
+        "3ec00e4f-d510-402d-ab2d-c2506ee08571",
+        "cbb0781e-865e-45f9-9bcf-68aab91d7232",
+        "a424c390-0733-4e36-9f8b-b84e6b17747e",
+        "522d79e8-2b7b-4ab5-9202-58388ce191e5",
+        "60602d3b-dd96-42f0-90f6-73149bc44606",
+        "3a51c398-4b3e-4b9f-9a76-e6edb94aba17"
+      ],
+      "settings": {
+        "show_section": true,
+        "section_mt": 80,
+        "text_alignment": "start",
+        "section_sub_heading": "built for strength and durability.",
+        "section_sub_heading_color": "#000",
+        "section_sub_heading_font_size": 15,
+        "section_heading": "Shop Our Best Sellers",
+        "section_heading_color": "#000",
+        "section_heading_font_size": 32,
+        "top_btn_selection": "multiple"
+      }
+    },
     "2a00c5ee-ea55-4893-b7e3-a1a8a1782bef": {
       "type": "customer-feedback-section",
       "blocks": {
@@ -293,6 +389,81 @@
         "customer_feedback_heading_font_size": 32,
         "customer_feedback_btn_bg": "#ff6e30",
         "customer_feedback_subheading_bd_radius": 50
+      }
+    },
+    "0ff18755-03f3-40f7-9984-2883e3a164d2": {
+      "type": "product-list-section",
+      "blocks": {
+        "template--21472184336693__0ff18755-03f3-40f7-9984-2883e3a164d2-products_slider-1": {
+          "type": "products_slider",
+          "settings": {
+            "product": "12-ft-frankenstein-ratchet-strap-big-orange-12-double-j-wheel-strap-hd"
+          }
+        },
+        "template--21472184336693__0ff18755-03f3-40f7-9984-2883e3a164d2-products_slider-3": {
+          "type": "products_slider",
+          "settings": {
+            "product": "forged-1-2-d-ring-weld-on-4000-lbs-wll"
+          }
+        },
+        "template--21472184336693__0ff18755-03f3-40f7-9984-2883e3a164d2-products_slider-4": {
+          "type": "products_slider",
+          "settings": {
+            "product": "forged-5-8-d-ring-weld-on-6300-lbs-wll"
+          }
+        },
+        "template--21472184336693__0ff18755-03f3-40f7-9984-2883e3a164d2-products_slider-5": {
+          "type": "products_slider",
+          "settings": {
+            "product": "3-8-x-10-ft-g80-chain-with-one-grab-hook-and-blank-end"
+          }
+        },
+        "6f49886b-6398-4b5f-b4c1-d681b26f35d5": {
+          "type": "products_slider",
+          "settings": {
+            "product": "3-8-g100-clevis-sling-hook-with-latch"
+          }
+        },
+        "18cb0fbb-8f64-4628-973b-1dd3fcdc29c6": {
+          "type": "products_slider",
+          "settings": {
+            "product": "5-16-x-8-g70-auto-tie-down-chain-with-tj-combo-and-grab-hooks"
+          }
+        },
+        "df9f1926-6fd5-4858-8af6-071045186c78": {
+          "type": "products_slider",
+          "settings": {
+            "product": "forged-1-2-d-ring-weld-on-4000-lbs-wll"
+          }
+        },
+        "0f2171fd-22bd-41b5-adfb-8beef9340da0": {
+          "type": "products_slider",
+          "settings": {
+            "product": "3-8-x-10-ft-g80-chain-with-one-grab-hook-and-blank-end"
+          }
+        }
+      },
+      "block_order": [
+        "template--21472184336693__0ff18755-03f3-40f7-9984-2883e3a164d2-products_slider-1",
+        "template--21472184336693__0ff18755-03f3-40f7-9984-2883e3a164d2-products_slider-3",
+        "template--21472184336693__0ff18755-03f3-40f7-9984-2883e3a164d2-products_slider-4",
+        "template--21472184336693__0ff18755-03f3-40f7-9984-2883e3a164d2-products_slider-5",
+        "6f49886b-6398-4b5f-b4c1-d681b26f35d5",
+        "18cb0fbb-8f64-4628-973b-1dd3fcdc29c6",
+        "df9f1926-6fd5-4858-8af6-071045186c78",
+        "0f2171fd-22bd-41b5-adfb-8beef9340da0"
+      ],
+      "settings": {
+        "show_section": true,
+        "section_mt": 80,
+        "text_alignment": "start",
+        "section_sub_heading": "",
+        "section_sub_heading_color": "#000000",
+        "section_sub_heading_font_size": 15,
+        "section_heading": "New Products",
+        "section_heading_color": "#000000",
+        "section_heading_font_size": 32,
+        "top_btn_selection": "single"
       }
     },
     "53e47bec-245f-46d8-b3df-0eedc28dd378": {
@@ -370,7 +541,9 @@
     "28fb3965-6ded-4ba1-b4f4-5880e6b6c0c9",
     "788fd5ff-51ad-4a09-8bc5-8feee945cbe2",
     "9f1bcd7a-38f1-4e80-b5e3-5d1c4614782a",
+    "6100380d-0d84-4106-aeaf-3c776331b5e4",
     "2a00c5ee-ea55-4893-b7e3-a1a8a1782bef",
+    "0ff18755-03f3-40f7-9984-2883e3a164d2",
     "53e47bec-245f-46d8-b3df-0eedc28dd378"
   ]
 }
