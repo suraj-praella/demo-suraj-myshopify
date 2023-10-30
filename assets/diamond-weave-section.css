@@ -1,58 +1,55 @@
-
 .diamond-weave-section .diamond-weave-section-container {
-    padding: 53px 0 51px 26px;
-    max-width: 1280px;
-    border-radius: 12px;
-    background: var(
-      --gradients-pavement,
-      linear-gradient(90deg, #000 0%, #322e2d 100%)
-    );
-  }
-  
-  .diamond-weave-section
-    .diamond-weave-section-container
-    .diamond-weave-text-img {
-    position: absolute;
-    z-index: 1;
-    bottom: 0;
-    left: 10px;
-  }
-  
-  .diamond-weave-section
-    .diamond-weave-section-container
-    .diamond-weave-strip-img {
-    position: absolute;
-    z-index: 1;
-    top: -48px;
-    left: 527px;
-  }
-  
-  .diamond-weave-section
-    .diamond-weave-section-container
-    .diamond-weave-tyre-img {
-    position: absolute;
-    z-index: 1;
-    bottom: 0;
-    right: 0;
-    height: 100%;
-  }
-  
-  .diamond-weave-section
-    .diamond-weave-section-container
-    .diamond-weave-section-wrapper {
-    padding: 0 15px;
-  }
-  
-  .diamond-weave-section
-    .diamond-weave-section-container
-    .diamond-weave-section-text-container {
-    z-index: 2;
-    max-width: 490px;
-  }
-  
-  .diamond-weave-section
-    .diamond-weave-section-container
-    .diamond-weave-section-text-container
-    .btn-orange {
-    margin-top: 20px;
-  }
+  padding: 53px 0 51px 26px;
+  max-width: 1280px;
+  border-radius: 12px;
+  background: var(
+    --gradients-pavement,
+    linear-gradient(90deg, #000 0%, #322e2d 100%)
+  );
+}
+
+.diamond-weave-section
+  .diamond-weave-section-container
+  .diamond-weave-text-img {
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  left: 10px;
+}
+
+.diamond-weave-section
+  .diamond-weave-section-container
+  .diamond-weave-strip-img {
+  position: absolute;
+  z-index: 1;
+  top: -48px;
+  left: 527px;
+}
+
+.diamond-weave-section
+  .diamond-weave-section-container
+  .diamond-weave-tyre-img {
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  right: 0;
+  height: 100%;
+}
+
+.diamond-weave-section
+  .diamond-weave-section-container
+  .diamond-weave-section-wrapper {
+  padding: 0 15px;
+}
+
+.diamond-weave-section
+  .diamond-weave-section-container
+  .diamond-weave-section-text-container {
+  z-index: 2;
+  max-width: 490px;
+}
+
+.diamond-weave-section .btn-orange {
+  margin-top: 20px;
+  display: inline-block;
+}

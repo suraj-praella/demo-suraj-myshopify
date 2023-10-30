@@ -5,7 +5,7 @@
 {% if section.settings.show_header %}
   <header class="w-100 font-family-header" style="background:{{section.settings.header_bg}};">
     <div class="header-container container d-flex align-items-center">
-      <div class="header-img">
+      <a class="header-img" href="/">
         {% if section.settings.header_logo %}
           <img
             src="{{section.settings.header_logo | image_url}}"
@@ -18,7 +18,7 @@
         {% else %}
           <h1>{{ shop.name }}</h1>
         {% endif %}
-      </div>
+      </a>
       <ul class="header-menu d-flex">
         {% for link in linklists[section.settings.header_menu].links %}
           <li class="header-menu-list">
@@ -82,7 +82,7 @@
         </button>
       </form>
       <div class="header-menu-2 d-flex">
-        <a aria-label="account button" href="#" class="btn d-flex justify-content-center align-items-center">
+        <a aria-label="account button" href="/account" class="btn d-flex justify-content-center align-items-center">
           <img
             src="https://cdn.shopify.com/s/files/1/0842/4131/8197/files/account.svg?v=1698065520"
             loading="lazy"
@@ -103,7 +103,7 @@
           >
         </a>
         <a
-          href="#"
+          href="/cart"
           class="btn d-flex justify-content-center align-items-center position-relative"
           aria-label="cart button"
         >
@@ -118,7 +118,7 @@
           <span
             class="position-absolute top-0 start-100 translate-middle badge rounded-pill"
           >
-            2
+            {{ cart.item_count }}
             <span class="visually-hidden">unread messages</span>
           </span>
         </a>

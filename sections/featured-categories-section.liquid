@@ -7,43 +7,55 @@
     <div
       class="container d-flex flex-column justify-content-center align-items-center"
     >
-      <h2 style="color: {{ section.settings.heading_color }};
-        font-size: {{ section.settings.heading_font_size }}px;
-        ">{{ section.settings.heading }}</h2>
-      <p style="color: {{ section.settings.desc_color }};
-        font-size: {{ section.settings.desc_font_size }}px;
-        ">{{ section.settings.desciption }}</p>
+      <h2
+        style="
+          color: {{ section.settings.heading_color }};
+          font-size: {{ section.settings.heading_font_size }}px;
+        "
+      >
+        {{ section.settings.heading }}
+      </h2>
+      <p
+        style="
+          color: {{ section.settings.desc_color }};
+          font-size: {{ section.settings.desc_font_size }}px;
+        "
+      >
+        {{ section.settings.desciption }}
+      </p>
       <ul class="featured-categories-cards-wrapper d-flex flex-wrap">
         {%- for block in section.blocks -%}
           <li class="featured-categorie-card">
             <div class="fc-card-wrapper">
-              <div class="fc-card-img-wrapper">
-                {%- if block.settings.collection.featured_image != blank -%}
-                  <img
-                    src="{{ block.settings.collection.featured_image | image_url }}"
-                    class="w-100 h-auto"
-                    width=""
-                    height=""
-                    loading="lazy"
-                  >
+              <a href="{{ block.settings.collection.url }}">
+                <div class="fc-card-img-wrapper">
+                  {%- if block.settings.collection.featured_image != blank -%}
+                    <img
+                      src="{{ block.settings.collection.featured_image | image_url }}"
+                      class="w-100 h-auto"
+                      width=""
+                      height=""
+                      loading="lazy"
+                    >
 
-                {%- else -%}
-                  {{ 'collection-apparel-1' | placeholder_svg_tag: 'placeholder-svg w-100' }}
-                {%- endif -%}
-              </div>
-              <p class="font-family-header">
-                {%- if block.settings.collection.title != blank -%}
-                  {{ block.settings.collection.title }}
+                  {%- else -%}
+                    {{ 'collection-apparel-1' | placeholder_svg_tag: 'placeholder-svg w-100' }}
+                  {%- endif -%}
+                </div>
+                <p class="font-family-header">
+                  {%- if block.settings.collection.title != blank -%}
+                    {{ block.settings.collection.title }}
 
-                {%- else -%}
-                  Featured Categories
-                {%- endif -%}
-              </p>
+                  {%- else -%}
+                    Featured Categories
+                  {%- endif -%}
+                </p>
+              </a>
             </div>
           </li>
         {%- endfor -%}
       </ul>
-      <button class="btn-orange">Shop All Categories</button>
+      <a class="btn-orange" href="/collections">Shop All Categories</a>
     </div>
   </section>
 {%- endif -%}
