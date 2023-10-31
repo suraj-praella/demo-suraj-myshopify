@@ -315,7 +315,6 @@
       "settings": {
         "show_section": true,
         "section_mt": 80,
-        "text_alignment": "start",
         "section_sub_heading": "built for strength and durability.",
         "section_sub_heading_color": "#000",
         "section_sub_heading_font_size": 15,
@@ -456,7 +455,6 @@
       "settings": {
         "show_section": true,
         "section_mt": 80,
-        "text_alignment": "start",
         "section_sub_heading": "",
         "section_sub_heading_color": "#000000",
         "section_sub_heading_font_size": 15,
