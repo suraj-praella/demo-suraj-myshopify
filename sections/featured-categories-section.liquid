@@ -4,9 +4,7 @@
 
 {%- if section.settings.show_section -%}
   <section class="featured-categories-container" style="margin-top: {{ section.settings.section_mt }}px;">
-    <div
-      class="container d-flex flex-column justify-content-center align-items-center"
-    >
+    <div class="container d-flex flex-column justify-content-center align-items-center">
       <h2
         style="
           color: {{ section.settings.heading_color }};
@@ -29,7 +27,16 @@
             <div class="fc-card-wrapper">
               <a href="{{ block.settings.collection.url }}">
                 <div class="fc-card-img-wrapper">
-                  {%- if block.settings.collection.featured_image != blank -%}
+                  {%- if block.settings.collection_image != blank -%}
+                    <img
+                      src="{{ block.settings.collection_image| image_url }}"
+                      class="w-100 h-auto"
+                      width=""
+                      height=""
+                      loading="lazy"
+                    >
+
+                  {%- elsif block.settings.collection.featured_image != blank -%}
                     <img
                       src="{{ block.settings.collection.featured_image | image_url }}"
                       class="w-100 h-auto"
@@ -37,13 +44,15 @@
                       height=""
                       loading="lazy"
                     >
-
                   {%- else -%}
                     {{ 'collection-apparel-1' | placeholder_svg_tag: 'placeholder-svg w-100' }}
                   {%- endif -%}
                 </div>
                 <p class="font-family-header">
-                  {%- if block.settings.collection.title != blank -%}
+                  {%- if block.settings.collection_name != blank -%}
+                    {{ block.settings.collection_name }}
+
+                  {%- elsif block.settings.collection.title != blank -%}
                     {{ block.settings.collection.title }}
 
                   {%- else -%}
@@ -142,6 +151,16 @@
           "type": "collection",
           "id": "collection",
           "label": "Collection"
+        },
+        {
+          "type": "text",
+          "id": "collection_name",
+          "label": "Collection Name"
+        },
+        {
+          "type": "image_picker",
+          "id": "collection_image",
+          "label": "Collection Image"
         }
       ]
     }
