@@ -1,6 +1,5 @@
 header {
   padding-top: 7px;
-  padding-bottom: 4px;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -133,4 +132,31 @@ header .header-menu-list-wrapper a {
 
 .mega-menu-image {
   max-width: 300px;
+}
+
+.predictive-results {
+  position: absolute;
+  background: white;
+  width: 50%;
+  left: 50%;
+  right: 50%;
+  transform: translateX(-50%);
+  top: 100%;
+  padding: 20px;
+  border-top: 1px solid #808080;
+}
+
+.predictive-results li {
+  padding: 10px 0;
+  list-style: none;
+}
+
+.predictive-results li a {
+  color: black;
+  font-size: 14px;
+}
+
+.predictive-results-header {
+  border-bottom: 1px solid #808080;
+  padding-bottom: 10px;
 }

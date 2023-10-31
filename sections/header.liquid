@@ -62,25 +62,32 @@
           </li>
         {% endfor %}
       </ul>
-      <form class="header-search-bar d-flex flex-grow-1">
-        <input placeholder="Search Out Store..." class="w-100 border-0">
-        <button class="border-0" type="submit" aria-label="search">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 20 20"
-            fill="none"
+      <div>
+        <form class="header-search-bar d-flex flex-grow-1" id="predictive-search-form">
+          <input
+            placeholder="Search Out Store..."
+            class="w-100 border-0"
+            id="search-input"
           >
-            <circle cx="8.2" cy="8.2" r="7.2" stroke="white" />
-            <path
-              d="M18.9999 19.0004L15.3999 15.4004"
-              stroke="white"
-              stroke-linecap="round"
-            />
-          </svg>
-        </button>
-      </form>
+          <button class="border-0" type="submit" aria-label="search">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+            >
+              <circle cx="8.2" cy="8.2" r="7.2" stroke="white" />
+              <path
+                d="M18.9999 19.0004L15.3999 15.4004"
+                stroke="white"
+                stroke-linecap="round"
+              />
+            </svg>
+          </button>
+        </form>
+        <div class="predictive-results" id="predictive-results"></div>
+      </div>
       <div class="header-menu-2 d-flex">
         <a aria-label="account button" href="/account" class="btn d-flex justify-content-center align-items-center">
           <img
@@ -187,5 +194,52 @@
 {% stylesheet %}
 {% endstylesheet %}
 
-{% javascript %}
-{% endjavascript %}
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    let timeOut = '';
+
+    document.getElementById('search-input').addEventListener('input', handlePredictiveSearch);
+
+    function handlePredictiveSearch() {
+      var query = document.getElementById('search-input').value;
+      if (query.length < 2) {
+        document.getElementById('predictive-results').innerHTML = '';
+        return;
+      }
+
+      if (+timeOut > 0) {
+        clearTimeout(timeOut);
+      }
+
+      timeOut = setTimeout(async () => {
+        await fetch(window.Shopify.routes.root + `search/suggest.json?q=${query}`)
+          .then((response) => response.json())
+          .then((suggestions) => {
+            displayPredictiveResults(suggestions.resources.results);
+          })
+          .catch((err) => {
+            console.log('err', err);
+          });
+      }, 1000);
+    }
+
+    function displayPredictiveResults(results) {
+      console.log('results', results);
+      var resultsDiv = document.getElementById('predictive-results');
+      resultsDiv.innerHTML = '';
+      if (results.products.length === 0) {
+        resultsDiv.innerHTML += '<p>No results found.</p>';
+      } else {
+        resultsDiv.innerHTML = `<div class="predictive-results-header">PRODUCTS</div>`;
+
+        let listItems = '';
+
+        results.products.forEach((product, key) => {
+          listItems += '<li><a href="' + product.url + '">' + product.title + '</a></li>';
+        });
+
+        resultsDiv.innerHTML += `<ul>${listItems}</ul>`;
+      }
+    }
+  });
+</script>
