@@ -408,7 +408,8 @@
 
   const bestSellerMenuButtons = document.querySelectorAll('.best-seller-menu-btn');
 
-  bestSellerMenuButtons.forEach((button) => {
+  bestSellerMenuButtons.forEach((button, key) => {
+    if (key == 0) button.classList.add('active');
     button.addEventListener('click', () => {
       bestSellerMenuButtons.forEach((btn) => btn.classList.remove('active'));
       button.classList.add('active');
