@@ -8,6 +8,105 @@
     "theme_support_url": "https:\/\/support.shopify.com\/"
   },
   {
+    "name": "Product Card",
+    "settings": [
+      {
+        "type": "select",
+        "id": "product_card_text_alignment",
+        "options": [
+          {
+            "value": "left",
+            "label": "t:settings_schema.global.settings.text_alignment.options__1.label"
+          },
+          {
+            "value": "center",
+            "label": "t:settings_schema.global.settings.text_alignment.options__2.label"
+          },
+          {
+            "value": "right",
+            "label": "t:settings_schema.global.settings.text_alignment.options__3.label"
+          }
+        ],
+        "default": "left",
+        "label": "t:settings_schema.global.settings.text_alignment.label"
+      },
+      {
+        "type": "color",
+        "id": "product_card_bg",
+        "label": "Background Color",
+        "default": "#fff"
+      },
+      {
+        "type":"header",
+        "content":"Title"
+      },
+      {
+        "type": "color",
+        "id": "product_card_title_font_color",
+        "label": "Title Font Color",
+        "default": "#000"
+      },
+      {
+        "type":"header",
+        "content":"Price"
+      },
+      {
+        "type": "color",
+        "id": "product_card_price_font_color",
+        "label": "Price Font Color",
+        "default": "#000"
+      },
+      {
+        "type": "color",
+        "id": "product_card_sale_price_font_color",
+        "label": "Sale Price Font Color",
+        "default": "#e0171f"
+      },
+      {
+        "type": "color",
+        "id": "product_card_actual_price_font_color",
+        "label": "Actual Price Font Color",
+        "default": "#808080"
+      },
+      {
+        "type":"header",
+        "content":"Badges"
+      },
+      {
+        "type":"paragraph",
+        "content":"New Badge"
+      },
+      {
+        "type": "color",
+        "id": "product_card_new_badge_font_color",
+        "label": "Font Color",
+        "default": "#000"
+      },
+      {
+        "type": "color",
+        "id": "product_card_new_badge_bg",
+        "label": "Background Color",
+        "default": "#ff8139"
+      },
+      {
+        "type":"paragraph",
+        "content":"Off Badge"
+      },
+      {
+        "type": "color",
+        "id": "product_card_off_badge_font_color",
+        "label": "Font Color",
+        "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "product_card_off_badge_bg",
+        "label": "Background Color",
+        "default": "#e0171f"
+      }
+    ]
+  },
+  {
     "name": "t:settings_schema.logo.name",
     "settings": [
       {

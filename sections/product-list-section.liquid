@@ -72,10 +72,24 @@
       <div class="swiper mySwiper2">
         <div class="swiper-wrapper product-cards-wrapper d-flex">
           {%- for block in products_list -%}
-            <div class="swiper-slide product-card d-flex flex-column">
+            <div
+              class="swiper-slide product-card d-flex flex-column"
+              style="
+                background: {{ settings.product_card_bg }};
+                text-align: {{ settings.product_card_text_alignment }};
+              "
+            >
               <a href="{{ block.settings.product.url }}">
                 {%- if block.settings.product.tags contains 'Badge_New' -%}
-                  <div class="product-new-tag">NEW!</div>
+                  <div
+                    class="product-new-tag"
+                    style="
+                      background: {{ settings.product_card_new_badge_bg }};
+                      color: {{ settings.product_card_new_badge_font_color }};
+                    "
+                  >
+                    NEW!
+                  </div>
 
                 {%- elsif block.settings.product.tags contains 'Badge_Off' -%}
                   {%- assign actual_price = block.settings.product.compare_at_price | money_without_currency -%}
@@ -86,7 +100,15 @@
                     | divided_by: actual_price
                     | ceil
                   -%}
-                  <div class="product-off-tag">{{ subtract_value }}% OFF</div>
+                  <div
+                    class="product-off-tag"
+                    style="
+                      background: {{ settings.product_card_off_badge_bg }};
+                      color: {{ settings.product_card_off_badge_font_color }};
+                    "
+                  >
+                    {{ subtract_value }}% OFF
+                  </div>
                 {%- endif -%}
 
                 <button class="product-wishlist-btn">
@@ -114,7 +136,10 @@
                   {%- endif -%}
                 </div>
 
-                <p class="product-discription font-family-header" style="color: #000 !important;">
+                <p
+                  class="product-discription font-family-header"
+                  style="color: {{ settings.product_card_title_font_color }}; !important;"
+                >
                   {{ block.settings.product.title }}
                 </p>
                 {% comment %}
@@ -205,11 +230,11 @@
                   </div>
                 {% endcomment %}
                 {%- if block.settings.product.price == block.settings.product.compare_at_price -%}
-                  <span class="product-price d-inline-block">{{ block.settings.product.price | money }}</span>
+                  <span class="product-price d-inline-block" style="color: {{ settings.product_card_price_font_color }};">{{ block.settings.product.price | money }}</span>
                 {%- else -%}
                   <span class="product-price product-price-with-line-through d-flex align-items-center">
-                    <span class="text-danger">{{ block.settings.product.price | money }}</span>
-                    <span class="product-price-line-through">
+                    <span style="color: {{ settings.product_card_sale_price_font_color }};">{{ block.settings.product.price | money }}</span>
+                    <span class="product-price-line-through" style="color: {{ settings.product_card_actual_price_font_color }};">
                       {{- block.settings.product.compare_at_price | money -}}
                     </span>
                   </span>
