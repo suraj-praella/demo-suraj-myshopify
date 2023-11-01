@@ -1,0 +1,110 @@
+<link rel="stylesheet" href="{{ 'main-collection.css' | asset_url }}">
+
+<section class="mt-80">
+  <div class="container">
+    <div class="page-width">
+      <h1
+        style="
+          color: {{ section.settings.heading_font_color }};
+          font-size: {{ section.settings.heading_font_size }}px !important;
+          text-align: {{ section.settings.heading_text_alignment }};
+        "
+      >
+        {{ section.settings.collection_heading }}
+      </h1>
+
+      <ul
+        class="collection-list"
+      >
+        {%- for collection in collections -%}
+          <li
+            class="collection-list-item w-100"
+          >
+            <div class="collection-top d-flex align-items-center justify-content-between">
+              <h3>{{ collection.title }}</h3>
+              <a class="text-dark" href="{{ collection.url }}">Shop All</a>
+            </div>
+
+            {%- if collection.products_count > 0 -%}
+              <ul class="product-cards-wrapper d-flex">
+                {%- for product in collection.products limit: section.settings.max_products_in_row -%}
+                  <li>
+                    {%- render 'product-card', product: product -%}
+                  </li>
+                {%- endfor -%}
+              </ul>
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Main Collection",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "collection_heading",
+      "label": "Heading",
+      "default": "Collections"
+    },
+    {
+      "type": "select",
+      "id": "heading_text_alignment",
+      "label": "Vertical alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size",
+      "min": 15,
+      "max": 50,
+      "step": 1,
+      "default": 38,
+      "label": "Font Size"
+    },
+    {
+      "type": "color",
+      "id": "heading_font_color",
+      "label": "Font Color",
+      "default": "#000000"
+    },
+
+    {
+      "type": "header",
+      "content": "Collections"
+    },
+
+    {
+      "type": "range",
+      "id": "max_products_in_row",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 5,
+      "label": "Max Allowed Prodocts In A Row"
+    }
+  ]
+}
+{% endschema %}

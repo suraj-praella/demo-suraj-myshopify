@@ -1,0 +1,79 @@
+<link rel="stylesheet" href="{{ 'product-card.css' | asset_url }}">
+
+<div
+  class="product-card d-flex flex-column"
+  style="
+    background: {{ settings.product_card_bg }};
+    text-align: {{ settings.product_card_text_alignment }};
+  "
+>
+  <a href="{{ product.url }}">
+    {%- if product.tags contains 'Badge_New' -%}
+      <div
+        class="product-new-tag"
+        style="
+          background: {{ settings.product_card_new_badge_bg }};
+          color: {{ settings.product_card_new_badge_font_color }};
+        "
+      >
+        NEW!
+      </div>
+
+    {%- elsif product.tags contains 'Badge_Off' -%}
+      {%- assign actual_price = product.compare_at_price | money_without_currency -%}
+      {%- assign less_price = product.price | money_without_currency -%}
+      {%- assign subtract_value = actual_price | minus: less_price | times: 100 | divided_by: actual_price | ceil -%}
+      <div
+        class="product-off-tag"
+        style="
+          background: {{ settings.product_card_off_badge_bg }};
+          color: {{ settings.product_card_off_badge_font_color }};
+        "
+      >
+        {{ subtract_value }}% OFF
+      </div>
+    {%- endif -%}
+
+    <div class="product-img-container">
+      {%- if product.featured_image != blank -%}
+        <img
+          src="{{ product.featured_image | image_url }}"
+          width=""
+          class="w-100"
+          height=""
+          loading="lazy"
+        >
+      {%- else -%}
+        {{ 'product-apparel-1' | placeholder_svg_tag: 'placeholder-svg w-100' }}
+      {%- endif -%}
+    </div>
+
+    <p
+      class="product-discription font-family-header"
+      style="color: {{ settings.product_card_title_font_color }}; !important;"
+    >
+      {{ product.title }}
+    </p>
+
+    {%- if product.price == product.compare_at_price -%}
+      <span
+        class="product-price d-inline-block"
+        style="color: {{ settings.product_card_price_font_color }};"
+      >
+        {{- product.price | money -}}
+      </span>
+    {%- else -%}
+      <span class="product-price product-price-with-line-through d-flex align-items-center">
+        <span style="color: {{ settings.product_card_sale_price_font_color }};">
+          {{- product.price | money -}}
+        </span>
+        <span
+          class="product-price-line-through"
+          style="color: {{ settings.product_card_actual_price_font_color }};"
+        >
+          {{- product.compare_at_price | money -}}
+        </span>
+      </span>
+    {%- endif -%}
+  </a>
+</div>
