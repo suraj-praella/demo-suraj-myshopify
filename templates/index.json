@@ -124,61 +124,71 @@
         "template--21472184336693__788fd5ff-51ad-4a09-8bc5-8feee945cbe2-featured_categories-1": {
           "type": "featured_categories",
           "settings": {
-            "collection": "overstock-deals"
+            "collection": "overstock-deals",
+            "collection_name": ""
           }
         },
         "template--21472184336693__788fd5ff-51ad-4a09-8bc5-8feee945cbe2-featured_categories-2": {
           "type": "featured_categories",
           "settings": {
-            "collection": "enclosed-car-hauler-straps"
+            "collection": "enclosed-car-hauler-straps",
+            "collection_name": ""
           }
         },
         "template--21472184336693__788fd5ff-51ad-4a09-8bc5-8feee945cbe2-featured_categories-3": {
           "type": "featured_categories",
           "settings": {
-            "collection": "3-inch-ratchet-straps"
+            "collection": "3-inch-ratchet-straps",
+            "collection_name": ""
           }
         },
         "template--21472184336693__788fd5ff-51ad-4a09-8bc5-8feee945cbe2-featured_categories-4": {
           "type": "featured_categories",
           "settings": {
-            "collection": "loading-ramps"
+            "collection": "loading-ramps",
+            "collection_name": ""
           }
         },
         "template--21472184336693__788fd5ff-51ad-4a09-8bc5-8feee945cbe2-featured_categories-5": {
           "type": "featured_categories",
           "settings": {
-            "collection": "ratchet-handles"
+            "collection": "ratchet-handles",
+            "collection_name": ""
           }
         },
         "template--21472184336693__788fd5ff-51ad-4a09-8bc5-8feee945cbe2-featured_categories-6": {
           "type": "featured_categories",
           "settings": {
-            "collection": "snatch-blocks"
+            "collection": "snatch-blocks",
+            "collection_name": ""
           }
         },
         "template--21472184336693__788fd5ff-51ad-4a09-8bc5-8feee945cbe2-featured_categories-7": {
           "type": "featured_categories",
           "settings": {
-            "collection": "axle-straps"
+            "collection": "axle-straps",
+            "collection_name": ""
           }
         },
         "template--21472184336693__788fd5ff-51ad-4a09-8bc5-8feee945cbe2-featured_categories-8": {
           "type": "featured_categories",
           "settings": {
-            "collection": "height-sticks"
+            "collection": "height-sticks",
+            "collection_name": ""
           }
         },
         "template--21472184336693__788fd5ff-51ad-4a09-8bc5-8feee945cbe2-featured_categories-9": {
           "type": "featured_categories",
           "settings": {
-            "collection": "auto-tie-down-hooks"
+            "collection": "auto-tie-down-hooks",
+            "collection_name": ""
           }
         },
         "template--21472184336693__788fd5ff-51ad-4a09-8bc5-8feee945cbe2-featured_categories-10": {
           "type": "featured_categories",
           "settings": {
-            "collection": "chain-blinders"
+            "collection": "chain-blinders",
+            "collection_name": ""
           }
         }
       },
@@ -316,10 +326,10 @@
         "show_section": true,
         "section_mt": 80,
         "section_sub_heading": "built for strength and durability.",
-        "section_sub_heading_color": "#000",
+        "section_sub_heading_color": "#000000",
         "section_sub_heading_font_size": 15,
         "section_heading": "Shop Our Best Sellers",
-        "section_heading_color": "#000",
+        "section_heading_color": "#000000",
         "section_heading_font_size": 32,
         "top_btn_selection": "multiple"
       }
@@ -532,6 +542,54 @@
         "show_banner_section": true,
         "banner_mt": 80
       }
+    },
+    "f2d5e37b-2bd2-41a4-9444-c8aad4ee81c0": {
+      "type": "article-section",
+      "blocks": {
+        "template--21472184336693__f2d5e37b-2bd2-41a4-9444-c8aad4ee81c0-article_array-1": {
+          "type": "article_array",
+          "settings": {
+            "article": "news\/cars-transportation"
+          }
+        },
+        "template--21472184336693__f2d5e37b-2bd2-41a4-9444-c8aad4ee81c0-article_array-2": {
+          "type": "article_array",
+          "settings": {
+            "article": "news\/desert-racing"
+          }
+        },
+        "template--21472184336693__f2d5e37b-2bd2-41a4-9444-c8aad4ee81c0-article_array-3": {
+          "type": "article_array",
+          "settings": {
+            "article": "news\/goods-transportation"
+          }
+        }
+      },
+      "block_order": [
+        "template--21472184336693__f2d5e37b-2bd2-41a4-9444-c8aad4ee81c0-article_array-1",
+        "template--21472184336693__f2d5e37b-2bd2-41a4-9444-c8aad4ee81c0-article_array-2",
+        "template--21472184336693__f2d5e37b-2bd2-41a4-9444-c8aad4ee81c0-article_array-3"
+      ],
+      "settings": {
+        "show_section": true,
+        "section_mt": 80,
+        "section_content_alignment": "center",
+        "section_heading": "Articles",
+        "section_heading_color": "#000000",
+        "section_heading_size": 32,
+        "section_sub_heading": "",
+        "section_sub_heading_color": "#000000",
+        "section_sub_heading_size": 15,
+        "article_card_bg": "#ffffff",
+        "article_card_padding": 10,
+        "article_card_border_radius": 10,
+        "article_card_content_mt": 20,
+        "article_content_alignment": "center",
+        "article_title_color": "#000000",
+        "article_title_size": 20,
+        "article_desc_color": "#000000",
+        "article_desc_size": 16
+      }
     }
   },
   "order": [
@@ -542,6 +600,7 @@
     "6100380d-0d84-4106-aeaf-3c776331b5e4",
     "2a00c5ee-ea55-4893-b7e3-a1a8a1782bef",
     "0ff18755-03f3-40f7-9984-2883e3a164d2",
-    "53e47bec-245f-46d8-b3df-0eedc28dd378"
+    "53e47bec-245f-46d8-b3df-0eedc28dd378",
+    "f2d5e37b-2bd2-41a4-9444-c8aad4ee81c0"
   ]
 }

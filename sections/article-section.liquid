@@ -1,0 +1,327 @@
+<link rel="stylesheet" href="{{ 'bootstrap.css' | asset_url }}">
+<link rel="stylesheet" href="{{ 'global.css' | asset_url }}">
+<link rel="stylesheet" href="{{ 'article-section.css' | asset_url }}">
+
+{%- assign article_array = section.blocks | where: 'type', 'article_array' -%}
+
+{%- if section.settings.show_section -%}
+  <section class="article-section" style="margin-top: {{ section.settings.section_mt }}px;">
+    <div class="container">
+      <div class="text-container" style="text-align: {{ section.settings.section_content_alignment }}">
+        <h3
+          style="
+            color: {{ section.settings.section_heading_color }};
+            font-size: {{ section.settings.section_heading_size }}px;
+          "
+        >
+          {{ section.settings.section_heading }}
+        </h3>
+        <p
+          style="
+            color: {{ section.settings.section_sub_heading_color }};
+            font-size: {{ section.settings.section_sub_heading_size }}px;
+          "
+        >
+          {{ section.settings.section_sub_heading }}
+        </p>
+      </div>
+      <div
+        class="articles-container d-flex row"
+      >
+        {%- for block in article_array -%}
+          <div class="article-wrapper col-4 mb-5">
+            <a
+              class="text-and-btn-container d-flex flex-column h-100"
+              style="
+              text-align: {{ section.settings.article_content_alignment }};
+              padding: {{ section.settings.article_card_padding }}px;
+              background: {{ section.settings.article_card_bg }};
+              border-radius: {{ section.settings.article_card_border_radius }}px;
+              "
+              href="{{ block.settings.article.url }}"
+            >
+              {%- if block.settings.article.image != blank -%}
+                <img
+                  class="article-img"
+                  width=""
+                  height=""
+                  loading="lazy"
+                  src="{{ block.settings.article.image | image_url }}"
+                >
+              {%- else -%}
+                {{ 'blog-apparel-1' | placeholder_svg_tag: 'article-img' }}
+              {%- endif -%}
+              <div style="margin-top: {{ section.settings.article_card_content_mt }}px">
+                <h4
+                  class="font-family-header"
+                  style="
+                    color: {{ section.settings.article_title_color }};
+                    font-size: {{ section.settings.article_title_size }}px;
+                  "
+                >
+                  {%- if block.settings.article.title != blank -%}
+                    {{ block.settings.article.title }}
+                  {%- else -%}
+                    Article Title
+                  {%- endif -%}
+                </h4>
+
+                <p
+                  class="font-family-header"
+                  style="
+                    color: {{ section.settings.article_desc_color }};
+                    font-size: {{ section.settings.article_desc_size }}px;
+                    margin-top: 10px;
+                  "
+                >
+                  {%- if block.settings.article.content != blank -%}
+                    {{ block.settings.article.content }}
+                  {%- else -%}
+                    Article Description
+                  {%- endif -%}
+                </p>
+              </div>
+            </a>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Article Section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_section",
+      "label": "Enable",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "section_mt",
+      "min": 10,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 80
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "select",
+      "id": "section_content_alignment",
+      "label": "Text Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "end",
+          "label": "right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "paragraph",
+      "content": "Heading"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "section_heading",
+      "label": "Heading",
+      "default": "Heading"
+    },
+    {
+      "type": "color",
+      "id": "section_heading_color",
+      "label": "Font Color",
+      "default": "#000"
+    },
+    {
+      "type": "range",
+      "id": "section_heading_size",
+      "min": 15,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Font Size",
+      "default": 32
+    },
+    {
+      "type": "paragraph",
+      "content": "Sub Heading"
+    },
+    {
+      "type": "text",
+      "id": "section_sub_heading",
+      "label": "Sub Heading",
+      "default": "SUB HEADING"
+    },
+    {
+      "type": "color",
+      "id": "section_sub_heading_color",
+      "label": "Font Color",
+      "default": "#000"
+    },
+    {
+      "type": "range",
+      "id": "section_sub_heading_size",
+      "min": 8,
+      "max": 25,
+      "step": 1,
+      "unit": "px",
+      "label": "Font Size",
+      "default": 15
+    },
+
+    {
+      "type": "header",
+      "content": "Article Card Styling"
+    },
+    {
+      "type": "color",
+      "id": "article_card_bg",
+      "label": "Background Color",
+      "default": "#fff"
+    },
+    {
+      "type": "range",
+      "id": "article_card_padding",
+      "min": 5,
+      "max": 25,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding",
+      "default": 10
+    },
+
+    {
+      "type": "range",
+      "id": "article_card_border_radius",
+      "min": 5,
+      "max": 25,
+      "step": 1,
+      "unit": "px",
+      "label": "Border Radius",
+      "default": 10
+    },
+
+    {
+      "type": "header",
+      "content": "Article Content"
+    },
+    {
+      "type": "range",
+      "id": "article_card_content_mt",
+      "min": 10,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 20
+    },
+    {
+      "type": "select",
+      "id": "article_content_alignment",
+      "label": "Text Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "end",
+          "label": "right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "paragraph",
+      "content": "Title"
+    },
+    {
+      "type": "color",
+      "id": "article_title_color",
+      "label": "Font Color",
+      "default": "#000"
+    },
+    {
+      "type": "range",
+      "id": "article_title_size",
+      "min": 15,
+      "max": 35,
+      "step": 1,
+      "unit": "px",
+      "label": "Font Size",
+      "default": 20
+    },
+    {
+      "type": "paragraph",
+      "content": "Description"
+    },
+    {
+      "type": "color",
+      "id": "article_desc_color",
+      "label": "Font Color",
+      "default": "#000"
+    },
+    {
+      "type": "range",
+      "id": "article_desc_size",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Font Size",
+      "default": 16
+    }
+  ],
+  "blocks": [
+    {
+      "type": "article_array",
+      "name": "Article",
+      "limit": 10,
+      "settings": [
+        {
+          "type": "article",
+          "id": "article",
+          "label": "Article"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Article Section",
+      "blocks": [
+        {
+          "type": "article_array"
+        },
+        {
+          "type": "article_array"
+        },
+        {
+          "type": "article_array"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

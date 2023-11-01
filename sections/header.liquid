@@ -202,7 +202,7 @@
 
     function handlePredictiveSearch() {
       var query = document.getElementById('search-input').value;
-      if (query.length < 2) {
+      if (query.length < 1) {
         document.getElementById('predictive-results').innerHTML = '';
         return;
       }
