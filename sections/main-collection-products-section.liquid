@@ -1,0 +1,85 @@
+{{ 'main-collection-products-section.css' | asset_url | stylesheet_tag }}
+{%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
+
+<section class="mt-80">
+  <div class="container">
+    <div class="sorting-section">
+      <div class="select">
+        <select
+          name="sort_by"
+          class="facet-filters__sort select__select caption-large"
+          id="SortBy"
+          aria-describedby="a11y-refresh-page-message"
+        >
+          {%- for option in collection.sort_options -%}
+            <option
+              value="{{ option.value }}"
+              {% if option.value == sort_by %}
+                selected="selected"
+              {% endif %}
+            >
+              {{ option.name }}
+            </option>
+          {%- endfor -%}
+        </select>
+        {% render 'icon-caret' %}
+      </div>
+    </div>
+    <div class="product-section mt-80">
+      {%- paginate collection.products by section.settings.products_per_page -%}
+        <ul class="product-cards-wrapper d-flex flex-wrap justify-content-between">
+
+           {%- for product in collection.products -%}
+            <li class="mb-5 product-card-wrapper">
+              {%- render 'product-card', product: product -%}
+            </li>
+          {%- endfor -%}
+        </ul>
+        {%- if paginate.pages > 1 -%}
+          {% render 'pagination', paginate: paginate, anchor: '' %}
+        {%- endif -%}
+      {%- endpaginate -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.main-collection-product-grid.name",
+  "class": "section",
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "min": 5,
+      "max": 40,
+      "step": 1,
+      "label": "Products Per Page",
+      "default": 10
+    }
+  ]
+}
+{% endschema %}
+
+<script>
+  Shopify.queryParams = {};
+
+  if (location.search.length) {
+    var params = location.search.substr(1).split('&');
+    for (var i = 0; i < params.length; i++) {
+      var keyValue = params[i].split('=');
+
+      if (keyValue.length) {
+        Shopify.queryParams[decodeURIComponent(keyValue[0])] = decodeURIComponent(keyValue[1]);
+      }
+    }
+  }
+
+  document.querySelector('#SortBy').addEventListener('change', function (e) {
+    var value = e.target.value;
+    Shopify.queryParams.sort_by = value;
+    history.pushState(null, null, '?' + new URLSearchParams(Shopify.queryParams).toString());
+    // window.location.href = urlHref 
+    // location.search = new URLSearchParams(Shopify.queryParams).toString();
+  });
+</script>

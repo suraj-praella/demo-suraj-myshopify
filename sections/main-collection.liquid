@@ -28,7 +28,7 @@
             {%- if collection.products_count > 0 -%}
               <ul class="product-cards-wrapper d-flex">
                 {%- for product in collection.products limit: section.settings.max_products_in_row -%}
-                  <li>
+                  <li class="product-card-wrapper">
                     {%- render 'product-card', product: product -%}
                   </li>
                 {%- endfor -%}
