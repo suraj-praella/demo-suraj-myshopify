@@ -204,7 +204,11 @@
     await fetch(`${url}&sections=main-collection-products-section`)
       .then((res) => res.json())
       .then((res) => {
-        document.getElementById('main-collection-products-section').innerHTML = res['main-collection-products-section'];
+        let domNode = res['main-collection-products-section'];
+        const parser = new DOMParser();
+        const htmlDoc = parser.parseFromString(domNode, 'text/html');
+        let sectionNode = htmlDoc.querySelector('.container');
+        document.getElementById('main-collection-products-section').innerHTML = sectionNode.outerHTML;
       });
     history.pushState(null, null, url);
     setTimeout(() => {
