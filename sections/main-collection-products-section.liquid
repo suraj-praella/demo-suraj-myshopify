@@ -1,44 +1,138 @@
 {{ 'main-collection-products-section.css' | asset_url | stylesheet_tag }}
 {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
 
-<section class="mt-80">
+<section class="mt-80" id="main-collection-products-section">
   <div class="container">
-    <div class="sorting-section">
-      <div class="select">
-        <select
-          name="sort_by"
-          class="facet-filters__sort select__select caption-large"
-          id="SortBy"
-          aria-describedby="a11y-refresh-page-message"
-        >
-          {%- for option in collection.sort_options -%}
-            <option
-              value="{{ option.value }}"
-              {% if option.value == sort_by %}
-                selected="selected"
-              {% endif %}
-            >
-              {{ option.name }}
-            </option>
+    <div class="collection-top-section d-flex">
+      <div class="active-filters-section" id="active-filters-section">
+        <span>Applied Filters:</span>
+        {%- assign is_active_filters = false -%}
+        <ul>
+          {%- for filters in collection.filters -%}
+            {%- for active_filters in filters.active_values -%}
+              {%- assign is_active_filters = true -%}
+              <li data-id="{{ active_filters.label }}">
+                {{ active_filters.label }}
+              </li>
+            {%- endfor -%}
+            {%- if filters.type == 'price_range' and filters.max_value.value != blank -%}
+              <li data-id="price_range">
+                {{ filters.min_value.value | money }}
+                -
+                {{ filters.max_value.value | money }}
+              </li>
+            {%- endif -%}
           {%- endfor -%}
-        </select>
-        {% render 'icon-caret' %}
+        </ul>
+      </div>
+      <div class="sorting-section">
+        <div class="select">
+          <select
+            name="sort_by"
+            class="facet-filters__sort select__select caption-large"
+            id="SortBy"
+            aria-describedby="a11y-refresh-page-message"
+          >
+            {%- for option in collection.sort_options -%}
+              <option
+                value="{{ option.value }}"
+                {% if option.value == sort_by %}
+                  selected="selected"
+                {% endif %}
+              >
+                {{ option.name }}
+              </option>
+            {%- endfor -%}
+          </select>
+          {% render 'icon-caret' %}
+        </div>
       </div>
     </div>
-    <div class="product-section mt-80">
-      {%- paginate collection.products by section.settings.products_per_page -%}
-        <ul class="product-cards-wrapper d-flex flex-wrap justify-content-between">
+    <div class="d-flex mt-80">
+      <div class="filters-section">
+        <ul>
+          {%- for filter in collection.filters -%}
+            <li class="filter-list select mb-4 d-flex flex-column">
+              <div class="position-relative filter-list-wrapper">
+                <button class="filter-dropdown-btn w-100" data-filter="{{ filter.label }}">
+                  <span>
+                    {{ filter.label }}
+                  </span>
+                  {% render 'icon-caret' %}
+                </button>
 
-           {%- for product in collection.products -%}
-            <li class="mb-5 product-card-wrapper">
-              {%- render 'product-card', product: product -%}
+                {%- if filter.label != 'Price' -%}
+                  <div class="filter-dropdown">
+                    {%- for value in filter.values -%}
+                      <div class="d-flex align-items-center">
+                        <input
+                          data-url-to-add="{{ value.url_to_add }}"
+                          data-param="{{ filter.param_name }}"
+                          type="checkbox"
+                          id="{{ value.label }}"
+                          name="{{ value.label }}"
+                          value="{{ value.value }}"
+                          class="filter-checkbox"
+                          {%- if value.active -%}
+                            checked
+                          {%- endif -%}
+                        >
+                        <label class="ms-3" for="{{ value.label }}">{{ value.label }}</label>
+                      </div>
+                    {%- endfor -%}
+                  </div>
+
+                {%- else -%}
+                  <div class="filter-dropdown">
+                    <span>$0 - </span>
+                    <span id="current-price">
+                      {%- if filter.max_value.value != blank -%}
+                        {{ filter.max_value.value | money }}
+                      {%- else -%}
+                        {{ filter.range_max | money }}
+                      {%- endif -%}
+                    </span>
+
+                    {% comment %} <span id="current-price">${{ filter.range_max | money_without_currency }}</span> {% endcomment %}
+
+                    <input
+                      data-url-to-add="{{ filter.url_to_remove }}"
+                      data-param="{{ filter.param_name }}"
+                      max="{{ filter.range_max | money_without_currency }}"
+                      min="0"
+                      type="range"
+                      {%- if filter.max_value.value != blank -%}
+                        value="{{ filter.max_value.value | money_without_currency }}"
+                      {%- else -%}
+                        value="{{ filter.range_max | money_without_currency }}"
+                      {%- endif -%}
+
+                      id="price_filter"
+                      max="{{ filter.range_max | money_without_currency }}"
+                      class="filter-price-range"
+                    >
+                  </div>
+                  {% comment %} {{ filter.range_max | money }} {% endcomment %}
+                {%- endif -%}
+              </div>
             </li>
           {%- endfor -%}
         </ul>
-        {%- if paginate.pages > 1 -%}
-          {% render 'pagination', paginate: paginate, anchor: '' %}
-        {%- endif -%}
-      {%- endpaginate -%}
+      </div>
+      <div class="product-section">
+        {%- paginate collection.products by section.settings.products_per_page -%}
+          <ul class="product-cards-wrapper d-flex flex-wrap">
+            {%- for product in collection.products -%}
+              <li class="mb-5 product-card-wrapper">
+                {%- render 'product-card', product: product -%}
+              </li>
+            {%- endfor -%}
+          </ul>
+          {%- if paginate.pages > 1 -%}
+            {% render 'pagination', paginate: paginate, anchor: '' %}
+          {%- endif -%}
+        {%- endpaginate -%}
+      </div>
     </div>
   </div>
 </section>
@@ -62,24 +156,118 @@
 {% endschema %}
 
 <script>
-  Shopify.queryParams = {};
-
-  if (location.search.length) {
-    var params = location.search.substr(1).split('&');
-    for (var i = 0; i < params.length; i++) {
-      var keyValue = params[i].split('=');
-
-      if (keyValue.length) {
-        Shopify.queryParams[decodeURIComponent(keyValue[0])] = decodeURIComponent(keyValue[1]);
+  function sortingHandler(e) {
+    let query = `sort_by=${e.target.value}`;
+    let params = [];
+    if (location.search.length) {
+      params = location.search.substr(1).split('&');
+      if (params[params.length - 1].includes('sort_by')) {
+        params.splice(params.length - 1, 1);
       }
+    }
+    params.push(query);
+    let updatedURL = `${window.location.origin}${window.location.pathname}?${params.join('&')}`;
+
+    updatePage(updatedURL);
+  }
+
+  function checkboxClickHandler(e) {
+    const priceFilter = document.getElementById('price_filter');
+    const filterCheckBoxes = document.querySelectorAll('.filter-checkbox');
+    const checkedLabels = Array.from(filterCheckBoxes).filter((checkbox) => checkbox.checked);
+    let query = [];
+    let updatedURL = '';
+    let sortByQuery = '';
+    let params = [];
+    if (location.search.length) {
+      params = location.search.substr(1).split('&');
+      if (params[params.length - 1].includes('sort_by')) {
+        sortByQuery = `&${params[params.length - 1]}`;
+      }
+    }
+
+    checkedLabels.forEach((ele) => {
+      query.push(`${ele.dataset.param}=${ele.value}`);
+    });
+
+    let priceRange = `filter.v.price.gte=0&filter.v.price.lte=${priceFilter.value}`;
+
+    if (e == 'price_range') {
+    } else if (params.includes('filter.v.price.gte=0') || e.type == 'change') {
+      query.push(priceRange);
+    }
+    updatedURL = `${window.location.origin}${window.location.pathname}?${query.join('&')}${sortByQuery}`;
+    updatePage(updatedURL);
+  }
+
+  async function updatePage(url) {
+    await fetch(`${url}&sections=main-collection-products-section`)
+      .then((res) => res.json())
+      .then((res) => {
+        document.getElementById('main-collection-products-section').innerHTML = res['main-collection-products-section'];
+      });
+    history.pushState(null, null, url);
+    setTimeout(() => {
+      addingEventListerner();
+    }, 200);
+  }
+
+  function uncheckCorrespondingCheckbox(event) {
+    const filterCheckBoxes = document.querySelectorAll('.filter-checkbox');
+    const priceFilter = document.getElementById('price_filter');
+
+    const label = event.target.dataset.id;
+    const checkbox = Array.from(filterCheckBoxes).find((checkbox) => {
+      if (checkbox.id == event.target.dataset.id) {
+        return checkbox;
+      }
+    });
+
+    if (event.target.dataset.id == 'price_range') {
+      priceFilter.value = priceFilter.max;
+      checkboxClickHandler('price_range');
+    } else if (checkbox) {
+      checkbox.checked = false;
+      checkboxClickHandler('checkbox');
     }
   }
 
-  document.querySelector('#SortBy').addEventListener('change', function (e) {
-    var value = e.target.value;
-    Shopify.queryParams.sort_by = value;
-    history.pushState(null, null, '?' + new URLSearchParams(Shopify.queryParams).toString());
-    // window.location.href = urlHref 
-    // location.search = new URLSearchParams(Shopify.queryParams).toString();
-  });
+  function addingEventListerner() {
+    const filterDropdownBtns = document.querySelectorAll('.filter-dropdown-btn');
+    const filterCheckBoxes = document.querySelectorAll('.filter-checkbox');
+    const activeFilterSection = document.getElementById('active-filters-section');
+    const priceFilter = document.getElementById('price_filter');
+    // Add event listener to open filter dropdown
+
+    filterDropdownBtns.forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        let dropDown = btn.closest('.filter-list-wrapper').querySelector('.filter-dropdown');
+        dropDown.classList.toggle('open');
+      });
+    });
+
+    // For Sorting
+    document.querySelector('#SortBy').addEventListener('change', sortingHandler);
+
+    // Add event listener when checks a filter
+
+    filterCheckBoxes.forEach((checkbox) => {
+      checkbox.addEventListener('input', checkboxClickHandler);
+    });
+
+    // To remove filters
+
+    activeFilterSection.querySelectorAll('li').forEach((label) => {
+      label.addEventListener('click', uncheckCorrespondingCheckbox);
+    });
+
+    // To show price filter
+    priceFilter.addEventListener('change', (e) => {
+      document.getElementById('current-price').innerHTML = `$${e.target.value}`;
+    });
+
+    document.getElementById('price_filter').addEventListener('change', checkboxClickHandler);
+  }
+
+  addingEventListerner();
 </script>

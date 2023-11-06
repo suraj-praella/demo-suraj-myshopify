@@ -2,42 +2,40 @@
 
 <section class="mt-80">
   <div class="container">
-    <div class="page-width">
-      <h1
-        style="
-          color: {{ section.settings.heading_font_color }};
-          font-size: {{ section.settings.heading_font_size }}px !important;
-          text-align: {{ section.settings.heading_text_alignment }};
-        "
-      >
-        {{ section.settings.collection_heading }}
-      </h1>
+    <h1
+      style="
+        color: {{ section.settings.heading_font_color }};
+        font-size: {{ section.settings.heading_font_size }}px !important;
+        text-align: {{ section.settings.heading_text_alignment }};
+      "
+    >
+      {{ section.settings.collection_heading }}
+    </h1>
 
-      <ul
-        class="collection-list"
-      >
-        {%- for collection in collections -%}
-          <li
-            class="collection-list-item w-100"
-          >
-            <div class="collection-top d-flex align-items-center justify-content-between">
-              <h3>{{ collection.title }}</h3>
-              <a class="text-dark" href="{{ collection.url }}">Shop All</a>
-            </div>
+    <ul
+      class="collection-list"
+    >
+      {%- for collection in collections -%}
+        <li
+          class="collection-list-item w-100"
+        >
+          <div class="collection-top d-flex align-items-center justify-content-between">
+            <h3>{{ collection.title }}</h3>
+            <a class="text-dark" href="{{ collection.url }}">Shop All</a>
+          </div>
 
-            {%- if collection.products_count > 0 -%}
-              <ul class="product-cards-wrapper d-flex">
-                {%- for product in collection.products limit: section.settings.max_products_in_row -%}
-                  <li class="product-card-wrapper">
-                    {%- render 'product-card', product: product -%}
-                  </li>
-                {%- endfor -%}
-              </ul>
-            {%- endif -%}
-          </li>
-        {%- endfor -%}
-      </ul>
-    </div>
+          {%- if collection.products_count > 0 -%}
+            <ul class="product-cards-wrapper d-flex">
+              {%- for product in collection.products limit: section.settings.max_products_in_row -%}
+                <li class="product-card-wrapper">
+                  {%- render 'product-card', product: product -%}
+                </li>
+              {%- endfor -%}
+            </ul>
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ul>
   </div>
 </section>
 

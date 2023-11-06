@@ -1,7 +1,9 @@
+.product-cards-wrapper {
+  margin: 0 -10px;
+}
 .product-card-wrapper {
   padding: 0 10px;
   width: 20%;
-  margin: 0 -10px;
 }
 
 .product-rating-wrapper {
