@@ -20,14 +20,14 @@
   }
 {%- endstyle -%}
 
-<div class="color-{{ section.settings.color_scheme }} gradient no-js-hidden">
+<div class="no-js-hidden" style="background: {{ section.settings.color_scheme }}">
   <product-recommendations
-    class="related-products page-width section-{{ section.id }}-padding isolate{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+    class="container mt-80 d-block"
     data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ section.settings.products_to_show }}"
   >
     {% if recommendations.performed and recommendations.products_count > 0 %}
-      <h2 class="related-products__heading inline-richtext {{ section.settings.heading_size }}">
-        {{ section.settings.heading }}
+      <h2 class="mb-4" style="text-align: center; font-size:42px; font-weight:500;">
+        Related Products
       </h2>
       <ul
         class="grid product-grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down"
@@ -35,14 +35,7 @@
       >
         {% for recommendation in recommendations.products %}
           <li class="grid__item">
-            {% render 'card-product',
-              card_product: recommendation,
-              media_aspect_ratio: section.settings.image_ratio,
-              image_shape: section.settings.image_shape,
-              show_secondary_image: section.settings.show_secondary_image,
-              show_vendor: section.settings.show_vendor,
-              show_rating: section.settings.show_rating
-            %}
+            {%- render 'product-card', product: recommendation -%}
           </li>
         {% endfor %}
       </ul>
@@ -112,7 +105,7 @@
       "id": "color_scheme",
       "label": "t:sections.all.colors.label",
       "info": "t:sections.all.colors.has_cards_info",
-      "default": "background-1"
+      "default": "#f4f4f4"
     },
     {
       "type": "header",
@@ -245,3 +238,16 @@
   ]
 }
 {% endschema %}
+
+{% comment %} <script>
+  fetch(window.Shopify.routes.root + 'recommendations/products.json?product_id=8867161735477&limit=4&intent=related')
+    .then((response) => response.json())
+    .then(({ products }) => {
+      console.log("products",products);
+      if (products.length > 0) {
+        const firstRecommendedProduct = products[0];
+
+        alert(`The title of the first recommended product is: ${firstRecommendedProduct.title}`);
+      }
+    });
+</script> {% endcomment %}

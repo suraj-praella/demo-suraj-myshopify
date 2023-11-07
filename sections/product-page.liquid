@@ -1,0 +1,454 @@
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
+>
+<link rel="stylesheet" href="{{ 'bootstrap.css' | asset_url }}">
+<link rel="stylesheet" href="{{ 'global.css' | asset_url }}">
+<link rel="stylesheet" href="{{ 'product-page.css' | asset_url }}">
+
+<section class="mt-80">
+  <div class="container d-flex">
+    <div class="product-page-left-container w-50">
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          {%- for media in product.media -%}
+            <div class="swiper-slide">
+              {%- if media.media_type == 'image' -%}
+                <img class="product-img" width="" height="" loading="lazy" src="{{ media.src | image_url }}">
+
+              {%- elsif media.media_type == 'video' -%}
+                {%- for video in media.sources -%}
+                  <video src="{{ video.url }}" controls></video>
+                {%- endfor -%}
+              {%- endif -%}
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+
+    <div class="product-page-right-container w-50">
+      <h2 class="mb-3">
+        {{ product.title }}
+      </h2>
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'product_vendor' -%}
+            <p
+              class="mb-3"
+              style="font-size: {{ block.settings.vendor_font_size }}px; font-weight:{{ block.settings.vendor_font_weight }};"
+            >
+              {{ product.vendor }}
+            </p>
+
+          {%- when 'product_max_price' -%}
+            {%- if product.price != product.compare_at_price -%}
+              <p
+                style="font-size: {{ block.settings.mrp_font_size }}px; font-weight:{{ block.settings.mrp_font_weight }}; color: {{ block.settings.mrp_color }};"
+                class="product-mrp mb-3"
+              >
+                {{ product.compare_at_price | money }}
+              </p>
+            {%- endif -%}
+
+          {%- when 'product_selling_price' -%}
+            <p
+              class="mb-3"
+              style="font-size: {{ block.settings.selling_price_font_size }}px; font-weight:{{ block.settings.selling_price_font_weight }};"
+            >
+              {{ product.price | money }}
+            </p>
+          {%- else -%}
+        {%- endcase -%}
+      {%- endfor -%}
+
+      {%- form 'product', product -%}
+        <input
+          type="hidden"
+          name="id"
+          value="{{ product.selected_or_first_available_variant.id }}"
+          class="product-variant-id"
+        >
+        <input type="number" name="quantity" min="1" value="1" class="mb-3">
+        {%- for options in product.options_with_values -%}
+          {%- if options.name == 'Color' -%}
+            <ul class="mb-3">
+              {%- for value in options.values -%}
+                <li class="me-4">
+                  <input
+                    class="product-color d-none"
+                    value="{{ value }}"
+                    name="color"
+                    type="radio"
+                    id="{{ value }}"
+                  >
+                  <label
+                    for="{{ value }}"
+                    class="product-color-label"
+                    style="background-color: {{ value }};"
+                  ></label>
+                </li>
+              {%- endfor -%}
+            </ul>
+
+          {%- elsif options.name == 'Size' -%}
+            <ul class="mb-3">
+              {%- for value in options.values -%}
+                <li class="me-4">
+                  <input
+                    class="product-size d-none"
+                    value="{{ value }}"
+                    name="size"
+                    type="radio"
+                    id="{{ value }}"
+                  >
+                  <label
+                    for="{{ value }}"
+                    class="product-size-label"
+                  >
+                    {{- value | upcase }}
+                  </label>
+                </li>
+              {%- endfor -%}
+            </ul>
+          {%- endif -%}
+        {%- endfor -%}
+
+        <select name="id" class="d-none hidden-variant-seletor">
+          {% for variant in product.variants %}
+            <option
+              data-available="{{ variant.available }}"
+              class="variant-options"
+              data-value="{{ variant.title }}"
+              value="{{ variant.id }}"
+              {% if variant == product.selected_or_first_available_variant %}
+                selected="selected"
+              {% endif %}
+            >
+              {{ variant.title }} - {{ variant.price | money }}
+            </option>
+          {% endfor %}
+        </select>
+
+        <input type="submit" name="add" value="ADD TO CART" class="add-to-cart d-block" id="add-to-cart" disabled>
+      {%- endform -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Customer Feedback Section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_customer_feedback_section",
+      "label": "Enable",
+      "default": true
+    },
+
+    {
+      "type": "select",
+      "id": "customer_feedback_alignment",
+      "label": "Content Alignment",
+      "options": [
+        {
+          "value": "start",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "end",
+          "label": "right"
+        }
+      ],
+      "default": "start"
+    },
+    {
+      "type": "paragraph",
+      "content": "Sub Heading"
+    },
+    {
+      "type": "text",
+      "id": "customer_feedback_sub_heading",
+      "label": "Sub Heading",
+      "default": "SUB HEADING"
+    },
+    {
+      "type": "color",
+      "id": "customer_feedback_subheading_color",
+      "label": "Font Color",
+      "default": "#fff"
+    },
+    {
+      "type": "range",
+      "id": "customer_feedback_subheading_font_size",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Font Size",
+      "default": 15
+    },
+
+    {
+      "type": "header",
+      "content": "Buttons"
+    },
+    {
+      "type": "color",
+      "id": "customer_feedback_btn_bg",
+      "label": "Font Color",
+      "default": "#FF6E30"
+    },
+    {
+      "type": "range",
+      "id": "customer_feedback_subheading_bd_radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "%",
+      "label": "Border Radius",
+      "default": 50
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product_vendor",
+      "name": "Vendor Name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Vendor Name"
+        },
+        {
+          "type": "paragraph",
+          "content": "Styling"
+        },
+        {
+          "type": "range",
+          "id": "vendor_font_size",
+          "min": 5,
+          "max": 25,
+          "step": 1,
+          "unit": "px",
+          "label": "Font Size",
+          "default": 15
+        },
+        {
+          "type": "select",
+          "id": "vendor_font_weight",
+          "label": "Font Weight",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "bold",
+              "label": "Bold"
+            },
+            {
+              "value": "bolder",
+              "label": "bolder"
+            }
+          ],
+          "default": "normal"
+        }
+      ]
+    },
+    {
+      "type": "product_max_price",
+      "name": "MRP",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "header",
+          "content": "MRP"
+        },
+        {
+          "type": "paragraph",
+          "content": "Styling"
+        },
+        {
+          "type": "range",
+          "id": "mrp_font_size",
+          "min": 5,
+          "max": 25,
+          "step": 1,
+          "unit": "px",
+          "label": "Font Size",
+          "default": 15
+        },
+        {
+          "type": "select",
+          "id": "mrp_font_weight",
+          "label": "Font Weight",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "bold",
+              "label": "Bold"
+            },
+            {
+              "value": "bolder",
+              "label": "bolder"
+            }
+          ],
+          "default": "normal"
+        },
+        {
+          "type": "color",
+          "id": "mrp_color",
+          "label": "Font Color",
+          "default": "#717171"
+        }
+      ]
+    },
+    {
+      "type": "product_selling_price",
+      "name": "Selling Price",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Selling Price"
+        },
+        {
+          "type": "paragraph",
+          "content": "Styling"
+        },
+        {
+          "type": "range",
+          "id": "selling_price_font_size",
+          "min": 5,
+          "max": 25,
+          "step": 1,
+          "unit": "px",
+          "label": "Font Size",
+          "default": 15
+        },
+        {
+          "type": "select",
+          "id": "selling_price_font_weight",
+          "label": "Font Weight",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "bold",
+              "label": "Bold"
+            },
+            {
+              "value": "bolder",
+              "label": "bolder"
+            }
+          ],
+          "default": "bold"
+        }
+      ]
+    },
+    {
+      "type": "product_colors",
+      "name": "Color Options",
+      "limit": 1,
+      "settings": []
+    }
+  ]
+}
+{% endschema %}
+
+{% javascript %}
+  console.log('run');
+  var swiper = new Swiper('.swiper', {
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  });
+
+  const addToCartBtn = document.getElementById('add-to-cart');
+  const sizeBtns = document.querySelectorAll('.product-size');
+  const colorInputs = document.querySelectorAll('.product-color');
+  var selectedSize = null;
+  var selectedColor = null;
+
+  if (sizeBtns.length > 0) {
+    sizeBtns.forEach((checkbox) => {
+      checkbox.addEventListener('change', (e) => {
+        sizeBtns.forEach((radio) => {
+          if (radio.checked) {
+            selectedSize = radio.value;
+            findVariantId();
+          }
+        });
+      });
+    });
+  }
+
+  if (colorInputs.length > 0) {
+    colorInputs.forEach((checkbox) => {
+      checkbox.addEventListener('change', (e) => {
+        colorInputs.forEach((radio) => {
+          if (radio.checked) {
+            selectedColor = radio.value;
+            findVariantId();
+          }
+        });
+      });
+    });
+  }
+
+  function findVariantId() {
+    const variants = document.querySelectorAll('.variant-options');
+    for (let i = 0; i < variants.length; i++) {
+      if (sizeBtns.length > 0 && colorInputs.length > 0)
+        if (
+          variants[i].dataset.value.includes(selectedSize) &&
+          variants[i].dataset.value.includes(selectedColor) &&
+          variants[i].dataset.available == 'true'
+        ) {
+          let input = document.querySelector('input[name="id"]');
+          input.value = variants[i].value;
+          addToCartBtn.disabled = false;
+          break;
+        } else {
+          addToCartBtn.disabled = true;
+        }
+      else if (colorInputs.length > 0) {
+        if (variants[i].dataset.value.includes(selectedColor) && variants[i].dataset.available == 'true') {
+          let input = document.querySelector('input[name="id"]');
+          input.value = variants[i].value;
+          addToCartBtn.disabled = false;
+          break;
+        } else {
+          addToCartBtn.disabled = true;
+        }
+      } else if (sizeBtns.length > 0) {
+        if (variants[i].dataset.value.includes(selectedSize) && variants[i].dataset.available == 'true') {
+          let input = document.querySelector('input[name="id"]');
+          input.value = variants[i].value;
+          addToCartBtn.disabled = false;
+          break;
+        } else {
+          addToCartBtn.disabled = true;
+        }
+      } else {
+        addToCartBtn.disabled = false;
+      }
+    }
+  }
+
+  findVariantId();
+{% endjavascript %}
