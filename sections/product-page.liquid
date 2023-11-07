@@ -6,27 +6,29 @@
 <link rel="stylesheet" href="{{ 'global.css' | asset_url }}">
 <link rel="stylesheet" href="{{ 'product-page.css' | asset_url }}">
 
-<section class="mt-80">
+<section class="mt-80" id="product-page">
   <div class="container d-flex">
-    <div class="product-page-left-container w-50">
+    <div class="product-page-left-container w-50 position-relative">
       <div class="swiper">
         <div class="swiper-wrapper">
           {%- for media in product.media -%}
-            <div class="swiper-slide">
+            <div class="swiper-slide h-auto">
               {%- if media.media_type == 'image' -%}
                 <img class="product-img" width="" height="" loading="lazy" src="{{ media.src | image_url }}">
 
               {%- elsif media.media_type == 'video' -%}
                 {%- for video in media.sources -%}
-                  <video src="{{ video.url }}" controls></video>
+                  {%- if video.format == 'mp4' -%}
+                    <video src="{{ video.url }}" controls></video>
+                  {%- endif -%}
                 {%- endfor -%}
               {%- endif -%}
             </div>
           {%- endfor -%}
         </div>
       </div>
-      <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next d-block"></div>
+      <div class="swiper-button-prev d-block"></div>
     </div>
 
     <div class="product-page-right-container w-50">
@@ -83,6 +85,9 @@
                     name="color"
                     type="radio"
                     id="{{ value }}"
+                    {%- if options.selected_value == value -%}
+                      checked
+                    {%- endif -%}
                   >
                   <label
                     for="{{ value }}"
@@ -103,6 +108,9 @@
                     name="size"
                     type="radio"
                     id="{{ value }}"
+                    {%- if options.selected_value == value -%}
+                      checked
+                    {%- endif -%}
                   >
                   <label
                     for="{{ value }}"
@@ -116,7 +124,7 @@
           {%- endif -%}
         {%- endfor -%}
 
-        <select name="id" class="d-none hidden-variant-seletor">
+        <select class="d-none hidden-variant-seletor">
           {% for variant in product.variants %}
             <option
               data-available="{{ variant.available }}"
@@ -132,7 +140,7 @@
           {% endfor %}
         </select>
 
-        <input type="submit" name="add" value="ADD TO CART" class="add-to-cart d-block" id="add-to-cart" disabled>
+        <input type="submit" name="add" value="ADD TO CART" class="add-to-cart d-block" id="add-to-cart">
       {%- endform -%}
     </div>
   </div>
@@ -370,79 +378,85 @@
 {% endschema %}
 
 {% javascript %}
-  console.log('run');
-  var swiper = new Swiper('.swiper', {
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-  });
-
-  const addToCartBtn = document.getElementById('add-to-cart');
   const sizeBtns = document.querySelectorAll('.product-size');
   const colorInputs = document.querySelectorAll('.product-color');
   var selectedSize = null;
   var selectedColor = null;
-
-  if (sizeBtns.length > 0) {
-    sizeBtns.forEach((checkbox) => {
-      checkbox.addEventListener('change', (e) => {
-        sizeBtns.forEach((radio) => {
-          if (radio.checked) {
-            selectedSize = radio.value;
-            findVariantId();
-          }
-        });
-      });
+  function swiper() {
+    var swiper = new Swiper('.swiper', {
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
     });
   }
 
-  if (colorInputs.length > 0) {
-    colorInputs.forEach((checkbox) => {
-      checkbox.addEventListener('change', (e) => {
-        colorInputs.forEach((radio) => {
-          if (radio.checked) {
-            selectedColor = radio.value;
-            findVariantId();
-          }
-        });
+  function colorAndSizeEventHandler() {
+    console.log('size');
+    if (sizeBtns.length > 0) {
+      sizeBtns.forEach((radio) => {
+        if (radio.checked) {
+          console.log('radio', radio);
+          selectedSize = radio.value;
+        }
       });
-    });
+    }
+
+    if (colorInputs.length > 0) {
+      colorInputs.forEach((radio) => {
+        if (radio.checked) {
+          console.log('radio', radio);
+          selectedColor = radio.value;
+        }
+      });
+    }
+
+    findVariantId();
   }
 
   function findVariantId() {
+    const addToCartBtn = document.getElementById('add-to-cart');
     const variants = document.querySelectorAll('.variant-options');
     for (let i = 0; i < variants.length; i++) {
-      if (sizeBtns.length > 0 && colorInputs.length > 0)
-        if (
-          variants[i].dataset.value.includes(selectedSize) &&
-          variants[i].dataset.value.includes(selectedColor) &&
-          variants[i].dataset.available == 'true'
-        ) {
-          let input = document.querySelector('input[name="id"]');
-          input.value = variants[i].value;
-          addToCartBtn.disabled = false;
-          break;
-        } else {
-          addToCartBtn.disabled = true;
+      if (sizeBtns.length > 0 && colorInputs.length > 0) {
+        if (selectedSize != null && selectedColor != null) {
+          if (
+            variants[i].dataset.value.includes(selectedSize) &&
+            variants[i].dataset.value.includes(selectedColor) &&
+            variants[i].dataset.available == 'true'
+          ) {
+            let input = document.querySelector('input[name="id"]');
+            input.value = variants[i].value;
+            updateURL(variants[i].value);
+            addToCartBtn.disabled = false;
+            addToCartBtn.value = 'ADD TO CART';
+            break;
+          } else {
+            addToCartBtn.value = 'SOLD OUT';
+            addToCartBtn.disabled = true;
+          }
         }
-      else if (colorInputs.length > 0) {
+      } else if (colorInputs.length > 0) {
         if (variants[i].dataset.value.includes(selectedColor) && variants[i].dataset.available == 'true') {
           let input = document.querySelector('input[name="id"]');
           input.value = variants[i].value;
           addToCartBtn.disabled = false;
+          addToCartBtn.value = 'ADD TO CART';
           break;
         } else {
           addToCartBtn.disabled = true;
+          addToCartBtn.value = 'SOLD OUT';
         }
       } else if (sizeBtns.length > 0) {
         if (variants[i].dataset.value.includes(selectedSize) && variants[i].dataset.available == 'true') {
           let input = document.querySelector('input[name="id"]');
           input.value = variants[i].value;
           addToCartBtn.disabled = false;
+          addToCartBtn.value = 'ADD TO CART';
           break;
         } else {
           addToCartBtn.disabled = true;
+          addToCartBtn.value = 'SOLD OUT';
         }
       } else {
         addToCartBtn.disabled = false;
@@ -450,5 +464,34 @@
     }
   }
 
-  findVariantId();
+  async function updateURL(id) {
+    let updatedURL = `${window.location.origin}${window.location.pathname}?variant=${id}`;
+    // await fetch(`${updatedURL}&sections=product-page`)
+    //   .then((res) => res.json())
+    //   .then((res) => {
+    //     let domNode = res['product-page'];
+    //     const parser = new DOMParser();
+    //     const htmlDoc = parser.parseFromString(domNode, 'text/html');
+    //     let sectionNode = htmlDoc.querySelector('.container');
+    //     console.log("sectionNode",sectionNode);
+    //     document.getElementById('product-page').innerHTML = sectionNode.outerHTML;
+    //   });
+    history.pushState(null, null, updatedURL);
+  }
+
+  function addEventHandler() {
+    selectedSize = null;
+    selectedColor = null;
+
+    sizeBtns.forEach((checkbox) => {
+      checkbox.addEventListener('change', colorAndSizeEventHandler);
+    });
+
+    colorInputs.forEach((checkbox) => {
+      checkbox.addEventListener('change', colorAndSizeEventHandler);
+    });
+    swiper();
+  }
+
+  addEventHandler();
 {% endjavascript %}
