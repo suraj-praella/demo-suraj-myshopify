@@ -95,3 +95,10 @@
   height: 15px;
   border: 1px solid #6c757d;
 }
+
+.size-list {
+  font-size: 12px;
+  text-align: center;
+  padding: 10px;
+  border: 1px solid #6c757d;
+}

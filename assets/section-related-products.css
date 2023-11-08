@@ -5,3 +5,32 @@
 .related-products__heading {
   margin: 0 0 3rem;
 }
+
+.product-card-wrapper {
+  width: 20% !important;
+}
+
+.product-next-btn,
+.product-prev-btn {
+  border-radius: 50%;
+  position: absolute;
+  background-color: #ff6e30;
+  border: none;
+  top: 231px;
+  z-index: 2;
+  padding: 11px 15px;
+}
+
+.product-next-btn {
+  right: -5px;
+}
+
+.product-prev-btn {
+  left: -5px;
+  transform: rotate(180deg);
+}
+
+.product-prev-btn.swiper-button-disabled,
+.product-next-btn.swiper-button-disabled {
+  display: none !important;
+}

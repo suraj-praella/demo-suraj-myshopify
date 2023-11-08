@@ -7,7 +7,9 @@
     text-align: {{ settings.product_card_text_alignment }};
   "
 >
-  <a href="{{ product.url }}">
+  <a
+    href="{%- if collection_url != blank -%}{{ collection_url }}{%- endif -%}{{ product.url }}"
+  >
     {%- if product.tags contains 'Badge_New' -%}
       <div
         class="product-new-tag"
@@ -55,20 +57,51 @@
       {{ product.title }}
     </p>
 
-    {%- if product.variants[0].options[0] != 'Default Title' -%}
-      <div class="color-list-container d-flex">
-        <span style="color: {{ settings.product_card_title_font_color }};">Colors: </span>
-        <ul class="color-list-wrapper d-flex align-items-center w-75">
-          {% for variant in product.variants %}
-            {% for option in variant.options %}
-              {%- if option != 'Default Title' -%}
-                <li class="color-list" style="background-color: {{ option }};"></li>
-              {%- endif -%}
+    {%- for options in product.options_with_values -%}
+      {%- if options.name == 'Color' -%}
+        <div class="color-list-container d-flex">
+          <span style="color: {{ settings.product_card_title_font_color }};">Colors: </span>
+
+          <ul class="color-list-wrapper d-flex align-items-center w-75">
+            {%- for value in options.values -%}
+              <li class="color-list" style="background-color: {{ value }};"></li>
             {% endfor %}
-          {% endfor %}
-        </ul>
-      </div>
-    {%- endif -%}
+          </ul>
+        </div>
+
+      {%- else -%}
+        <div class="color-list-container d-flex">
+          <span style="color: {{ settings.product_card_title_font_color }};">Size: </span>
+
+          <ul class="color-list-wrapper d-flex align-items-center w-75">
+            {%- for value in options.values -%}
+              <li class="size-list d-flex align-items-center">
+                <span style="line-height:0;">
+                  {{ value | split: '' | first }}
+                </span>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      {%- endif -%}
+    {% endfor %}
+
+    {% comment %}
+      {%- if product.variants[0].options[0] != 'Default Title' -%}
+        <div class="color-list-container d-flex">
+          <span style="color: {{ settings.product_card_title_font_color }};">Colors: </span>
+          <ul class="color-list-wrapper d-flex align-items-center w-75">
+            {% for variant in product.variants %}
+              {% for option in variant.options %}
+                {%- if option != 'Default Title' -%}
+                  <li class="color-list" style="background-color: {{ option }};"></li>
+                {%- endif -%}
+              {% endfor %}
+            {% endfor %}
+          </ul>
+        </div>
+      {%- endif -%}
+    {% endcomment %}
 
     {%- if product.price == product.compare_at_price -%}
       <span

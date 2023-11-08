@@ -9,7 +9,7 @@
 <section class="mt-80" id="product-page">
   <div class="container d-flex">
     <div class="product-page-left-container w-50 position-relative">
-      <div class="swiper">
+      <div class="swiper product-image-swiper">
         <div class="swiper-wrapper">
           {%- for media in product.media -%}
             <div class="swiper-slide h-auto">
@@ -383,7 +383,7 @@
   var selectedSize = null;
   var selectedColor = null;
   function swiper() {
-    var swiper = new Swiper('.swiper', {
+    var swiper = new Swiper('.product-image-swiper', {
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
@@ -440,6 +440,7 @@
         if (variants[i].dataset.value.includes(selectedColor) && variants[i].dataset.available == 'true') {
           let input = document.querySelector('input[name="id"]');
           input.value = variants[i].value;
+          updateURL(variants[i].value);
           addToCartBtn.disabled = false;
           addToCartBtn.value = 'ADD TO CART';
           break;
@@ -451,6 +452,7 @@
         if (variants[i].dataset.value.includes(selectedSize) && variants[i].dataset.available == 'true') {
           let input = document.querySelector('input[name="id"]');
           input.value = variants[i].value;
+          updateURL(variants[i].value);
           addToCartBtn.disabled = false;
           addToCartBtn.value = 'ADD TO CART';
           break;

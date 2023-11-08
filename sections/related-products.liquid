@@ -20,31 +20,93 @@
   }
 {%- endstyle -%}
 
-<div class="no-js-hidden" style="background: {{ section.settings.color_scheme }}">
-  <product-recommendations
-    class="container mt-80 d-block"
-    data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ section.settings.products_to_show }}"
-  >
-    {% if recommendations.performed and recommendations.products_count > 0 %}
-      <h2 class="mb-4" style="text-align: center; font-size:42px; font-weight:500;">
-        Related Products
-      </h2>
-      <ul
-        class="grid product-grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down"
-        role="list"
-      >
-        {% for recommendation in recommendations.products %}
-          <li class="grid__item">
-            {%- render 'product-card', product: recommendation -%}
-          </li>
-        {% endfor %}
-      </ul>
-    {% endif %}
-  </product-recommendations>
-  {% if section.settings.image_shape == 'arch' %}
-    {% render 'mask-arch' %}
-  {%- endif -%}
-</div>
+<section>
+  <div class="container">
+    {%- if section.settings.related_products_type == 'recommended' -%}
+      <div class="no-js-hidden" style="background: {{ section.settings.color_scheme }}">
+        <product-recommendations
+          class="container mt-80 d-block"
+          data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ section.settings.products_to_show }}"
+        >
+          {% if recommendations.performed and recommendations.products_count > 0 %}
+            <h2 class="mb-4" style="text-align: center; font-size:42px; font-weight:500;">Recommended Products</h2>
+            <ul
+              class="grid product-grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down"
+              role="list"
+            >
+              {% for recommendation in recommendations.products %}
+                <li class="grid__item">
+                  {%- render 'product-card', product: recommendation -%}
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </product-recommendations>
+        {% if section.settings.image_shape == 'arch' %}
+          {% render 'mask-arch' %}
+        {%- endif -%}
+      </div>
+    {%- else -%}
+    {%- if collection.products.size > 0 -%}
+      <div class="mt-80">
+        <h2 class="mb-5" style="text-align: center; font-size:42px; font-weight:500;">Related Products</h2>
+
+        <button
+          class="product-prev-btn new-product-prev-btn d-flex align-items-center justify-content-center"
+          id="product-prev-btn"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="9"
+            height="16"
+            viewBox="0 0 9 16"
+            fill="none"
+          >
+            <path
+              d="M1 1L8 8L1 15"
+              stroke="black"
+              stroke-width="1.25"
+              stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </button>
+        <div class="swiper related-product-swiper">
+          <div class="swiper-wrapper">
+            {%- for related_product in collection.products -%}
+              {%- if related_product.id != product.id -%}
+                <div class="swiper-slide product-card-wrapper h-auto">
+                  {%- render 'product-card', product: related_product, collection_url: collection.url -%}
+                </div>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        </div>
+
+        <button
+          class="product-next-btn new-product-next-btn d-flex align-items-center justify-content-center"
+          id="product-next-btn"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="9"
+            height="16"
+            viewBox="0 0 9 16"
+            fill="none"
+          >
+            <path
+              d="M1 1L8 8L1 15"
+              stroke="black"
+              stroke-width="1.25"
+              stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </button>
+      </div>
+    {%- endif -%}
+      
+    {%- endif -%}
+  </div>
+</section>
 
 {% schema %}
 {
@@ -52,6 +114,22 @@
   "tag": "section",
   "class": "section",
   "settings": [
+    {
+      "type": "select",
+      "id": "related_products_type",
+      "options": [
+        {
+          "value": "related",
+          "label": "Related Products"
+        },
+        {
+          "value": "recommended",
+          "label": "Recommended Products"
+        }
+      ],
+      "default": "recommended",
+      "label": "Suggested Product Type"
+    },
     {
       "type": "paragraph",
       "content": "t:sections.related-products.settings.paragraph__1.content"
@@ -239,15 +317,28 @@
 }
 {% endschema %}
 
-{% comment %} <script>
-  fetch(window.Shopify.routes.root + 'recommendations/products.json?product_id=8867161735477&limit=4&intent=related')
-    .then((response) => response.json())
-    .then(({ products }) => {
-      console.log("products",products);
-      if (products.length > 0) {
-        const firstRecommendedProduct = products[0];
+<script>
+  var swiper = new Swiper('.related-product-swiper', {
+    slidesPerView: 5,
+    spaceBetween: 30,
+    navigation: {
+      nextEl: '#product-next-btn',
+      prevEl: '#product-prev-btn',
+    },
+  });
+</script>
 
-        alert(`The title of the first recommended product is: ${firstRecommendedProduct.title}`);
-      }
-    });
-</script> {% endcomment %}
+{% comment %}
+  <script>
+    fetch(window.Shopify.routes.root + 'recommendations/products.json?product_id=8867161735477&limit=4&intent=related')
+      .then((response) => response.json())
+      .then(({ products }) => {
+        console.log("products",products);
+        if (products.length > 0) {
+          const firstRecommendedProduct = products[0];
+
+          alert(`The title of the first recommended product is: ${firstRecommendedProduct.title}`);
+        }
+      });
+  </script>
+{% endcomment %}
