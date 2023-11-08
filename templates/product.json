@@ -2,11 +2,20 @@
   "sections": {
     "main": {
       "type": "product-page",
-      "settings": {}
+      "settings": {
+        "show_customer_feedback_section": true,
+        "customer_feedback_alignment": "start",
+        "customer_feedback_sub_heading": "SUB HEADING",
+        "customer_feedback_subheading_color": "#fff",
+        "customer_feedback_subheading_font_size": 15,
+        "customer_feedback_btn_bg": "#FF6E30",
+        "customer_feedback_subheading_bd_radius": 50
+      }
     },
     "related-products": {
       "type": "related-products",
       "settings": {
+        "related_products_type": "related",
         "heading": "You may also like",
         "heading_size": "h2",
         "products_to_show": 4,
@@ -23,5 +32,8 @@
       }
     }
   },
-  "order": ["main", "related-products"]
+  "order": [
+    "main",
+    "related-products"
+  ]
 }
