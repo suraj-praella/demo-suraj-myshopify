@@ -1,0 +1,333 @@
+{{ 'cart-section.css' | asset_url | stylesheet_tag }}
+
+<section id="cart-section" class="mt-80">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center">
+      <h2>Your Shopping Bag</h2>
+      <a href="/collections/all">Add Items</a>
+    </div>
+    {%- if cart != empty -%}
+      <form action="{{ routes.cart_url }}" method="post" class="mt-80" id="cart">
+        <div id="cart-items" data-id="{{ section.id }}">
+          <table class="cart-table w-100" id="cart-table">
+            <caption style="visibility: hidden;">
+              Cart
+            </caption>
+            <thead>
+              <tr>
+                <td>Image</td>
+                <td>Title</td>
+                <td>Quantity</td>
+                <td>Price Per Unit</td>
+                <td>Total Price</td>
+              </tr>
+            </thead>
+            <tbody>
+              {%- for item in cart.items -%}
+                <tr class="cart-item-row">
+                  <td>
+                    {%- if item.image != blank -%}
+                      <img
+                        src="{{ item.image | image_url: width: 300 }}"
+                        class="cart-item__image"
+                        alt="{{ item.image.alt | escape }}"
+                        loading="lazy"
+                        width="150"
+                        height="{{ 150 | divided_by: item.image.aspect_ratio | ceil }}"
+                      >
+                    {%- endif -%}
+                  </td>
+                  <td>
+                    <div class="detail-wrapper">
+                      <div>
+                        <a href="{{ item.product.url }}" style="color: black;">{{ item.product.title }}</a>
+                      </div>
+                      {%- if item.product.has_only_default_variant == false -%}
+                        <dl>
+                          {%- for option in item.options_with_values -%}
+                            <div class="product-option">
+                              <dt>{{ option.name }}:</dt>
+                              <dd>{{ option.value }}</dd>
+                            </div>
+                          {%- endfor -%}
+                        </dl>
+                      {%- endif -%}
+
+                      {%- for property in item.properties -%}
+                        {%- assign property_first_char = property.first | slice: 0 -%}
+                        {%- if property.last != blank -%}
+                          {{ property.first }} :
+                          <input
+                            data-key="{{ item.index | plus: 1 }}"
+                            type="text"
+                            name="{{ property.first }}"
+                            value="{{ property.last }}"
+                            class="property-input"
+                          >
+                        {%- endif -%}
+                      {%- endfor -%}
+                    </div>
+                  </td>
+                  <td class="d-flex align-items-center">
+                    <div class="quanitity-wrapper">
+                      <button
+                        data-key="{{ item.index | plus: 1 }}"
+                        name="minus"
+                        id="decrease-quantity"
+                        class="quantity-btn"
+                        data-id="{{ item.id }}"
+                      >
+                        -
+                      </button>
+                      <input
+                        type="number"
+                        value="{{ item.quantity }}"
+                        min="{{ item.variant.quantity_rule.min }}"
+                        {% if item.variant.quantity_rule.max != null %}
+                          max="{{ item.variant.quantity_rule.max }}"
+                        {% endif %}
+                        class="update-quantity"
+                        name="quantity"
+                        data-key="{{ item.index | plus: 1 }}"
+                      >
+                      <button
+                        data-key="{{ item.index | plus: 1 }}"
+                        name="plus"
+                        class="quantity-btn"
+                        id="increase-quantity"
+                        data-id="{{ item.id }}"
+                      >
+                        +
+                      </button>
+                    </div>
+                    <button
+                      style="margin-left: 15px; border:none;"
+                      class="delete-item"
+                      data-key="{{ item.index | plus: 1 }}"
+                    >
+                      <span>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 16 16"
+                          aria-hidden="true"
+                          focusable="false"
+                          class="icon icon-remove"
+                        >
+                          <path d="M14 3h-3.53a3.07 3.07 0 00-.6-1.65C9.44.82 8.8.5 8 .5s-1.44.32-1.87.85A3.06 3.06 0 005.53 3H2a.5.5 0 000 1h1.25v10c0 .28.22.5.5.5h8.5a.5.5 0 00.5-.5V4H14a.5.5 0 000-1zM6.91 1.98c.23-.29.58-.48 1.09-.48s.85.19 1.09.48c.2.24.3.6.36 1.02h-2.9c.05-.42.17-.78.36-1.02zm4.84 11.52h-7.5V4h7.5v9.5z" fill="currentColor"></path>
+                          <path d="M6.55 5.25a.5.5 0 00-.5.5v6a.5.5 0 001 0v-6a.5.5 0 00-.5-.5zM9.45 5.25a.5.5 0 00-.5.5v6a.5.5 0 001 0v-6a.5.5 0 00-.5-.5z" fill="currentColor"></path>
+                        </svg>
+                      </span>
+                    </button>
+                  </td>
+
+                  <td>{{ item.final_price | money }}</td>
+                  <td>
+                    <div class="loader" data-key="{{ item.index | plus: 1 }}"></div>
+                    <span class="total-price">
+                      {{ item.original_line_price | money }}
+                    </span>
+                  </td>
+                </tr>
+              {%- endfor -%}
+            </tbody>
+          </table>
+        </div>
+      </form>
+
+      <div class="cart-price-footer d-flex flex-column align-items-end">
+        <div id="total-price-container">
+          <div class="totals d-flex align-items-center justify-content-end" id="total-price-wrapper">
+            <h3 class="totals__total">Total:</h3>
+            <p class="totals__total-value">{{ cart.total_price | money_with_currency }}</p>
+          </div>
+        </div>
+        <div>
+          <input type="submit" name="checkout" value="Checkout" form="cart" class="btn-orange" id="submit-btn">
+        </div>
+      </div>
+
+      <div class="cart-cross-sell-container">
+        <h2>Suggested for You</h2>
+        <ul class="product-cards-wrapper d-flex">
+        {%- for item in cart.items -%}
+          {%- for upsell_products in item.product.metafields.custom.cross_sell.value -%}
+            <li class="product-card-wrapper">
+              {%- render 'product-card', product: upsell_products -%}
+
+            </li>
+          {%- endfor -%}
+        {%- endfor -%}
+        </ul>
+      </div>
+
+    {%- else -%}
+      <div class="empty-bag d-flex flex-column align-items-center mt-80">
+        <h3>Your Bag is Empty</h3>
+        <a href="/collections/all" class="btn-orange" style="margin-top: 20px;">GO TO SHOPPING</a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% javascript %}
+  let timeout = '';
+  function getSectionsToRender() {
+    return [
+      {
+        id: 'cart-items',
+        section: document.getElementById('cart-items').dataset.id,
+        selector: '.js-contents',
+      },
+    ];
+  }
+
+  function eventListerners() {
+    document.querySelectorAll('.quantity-btn').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        updateQuantity(e, 'UPDATE_QUANTITY');
+      });
+    });
+
+    document.querySelectorAll('.delete-item').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        updateQuantity(e, 'DELETE_QUANTITY');
+      });
+    });
+
+    document.querySelectorAll('.property-input').forEach((btn) => {
+      btn.addEventListener('input', peropertyUpdate);
+    });
+  }
+
+  function peropertyUpdate(e) {
+    let lineIndex = e.target.dataset.key;
+    const quantInput = document.querySelector(`.update-quantity[data-key="${lineIndex}"]`);
+    const row = quantInput.closest('.cart-item-row');
+    let propertyObj = {};
+    propertyObj[e.target.name] = e.target.value;
+
+    const body = JSON.stringify({
+      line: lineIndex,
+      quantity: quantInput.value,
+      properties: propertyObj,
+      sections: getSectionsToRender().map((section) => section.section),
+      sections_url: window.location.pathname,
+    });
+    console.log('timeout', timeout);
+    if (timeout != '') clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      updateCart(body, lineIndex, 'UPDATE_PROPERTY');
+    }, 1000);
+  }
+
+  function updateQuantity(e, action) {
+    e.preventDefault();
+    let lineIndex = e.currentTarget.dataset.key;
+    console.log('lineIndex', lineIndex);
+    const quantInput = document.querySelector(`.update-quantity[data-key="${lineIndex}"]`);
+    const row = quantInput.closest('.cart-item-row');
+    if (action == 'UPDATE_QUANTITY') {
+      row.querySelector('.loader').classList.add('d-block');
+      row.querySelector('.total-price').classList.add('d-none');
+    }
+
+    let updatedQuantity = quantInput.value;
+
+    if (action == 'DELETE_QUANTITY') updatedQuantity = 0;
+    else {
+      if (e.currentTarget.name == 'plus') {
+        updatedQuantity++;
+      } else {
+        updatedQuantity = updatedQuantity - 1;
+      }
+    }
+    const body = JSON.stringify({
+      line: lineIndex,
+      quantity: updatedQuantity,
+      sections: getSectionsToRender().map((section) => section.section),
+      sections_url: window.location.pathname,
+    });
+
+    updateCart(body, lineIndex, action);
+    // changeCart(e.target.dataset.id, updatedQuantity);
+  }
+
+  function updateCart(body, lineIndex, action) {
+    console.log('body', body);
+    const quantInput = document.querySelector(`.update-quantity[data-key="${lineIndex}"]`);
+    const row = quantInput.closest('.cart-item-row');
+    fetch(`${routes.cart_change_url}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      ...{ body },
+    })
+      .then((res) => res.text())
+      .then((res) => {
+        const parsedState = JSON.parse(res);
+        const sectionId = document.getElementById('cart-items').dataset.id;
+        let html = parsedState.sections[sectionId];
+        const parser = new DOMParser();
+        const htmlDoc = parser.parseFromString(html, 'text/html');
+        let sectionNode = htmlDoc.querySelector('#cart-table');
+        console.log('sectionNode', sectionNode);
+        let priceNode = htmlDoc.querySelector('#total-price-wrapper');
+
+        document.getElementById('cart-items').innerHTML = sectionNode.outerHTML;
+        document.getElementById('total-price-container').innerHTML = priceNode.outerHTML;
+
+        if (action == 'UPDATE_QUANTITY') {
+          row.querySelector('.loader').classList.remove('d-block');
+          row.querySelector('.total-price').classList.remove('d-none');
+        }
+        setTimeout(() => {
+          eventListerners();
+        }, 100);
+      })
+      .catch((err) => {
+        if (action == 'UPDATE_QUANTITY') {
+          row.querySelector('.loader').classList.remove('d-block');
+          row.querySelector('.total-price').classList.remove('d-none');
+        }
+
+        alert(`Error: ${err}`);
+        console.log('err', err);
+      });
+  }
+
+  function changeCart(id, quantity) {
+    var data = {
+      updates: {},
+    };
+
+    data.updates[id] = quantity;
+
+    const body = JSON.stringify({
+      data,
+      sections: getSectionsToRender().map((section) => section.section),
+      sections_url: window.location.pathname,
+    });
+
+    fetch(`${routes.cart_update_url}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      ...{ body },
+    })
+      .then((res) => res.text())
+      .then((res) => {
+        const parsedState = JSON.parse(res);
+        console.log('updated api result', parsedState);
+      })
+      .catch((err) => {
+        alert(`Error: ${err}`);
+        console.log('err', err);
+      });
+  }
+
+  eventListerners();
+{% endjavascript %}
