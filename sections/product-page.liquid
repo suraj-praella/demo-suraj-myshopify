@@ -498,6 +498,16 @@
     colorInputs.forEach((checkbox) => {
       checkbox.addEventListener('change', colorAndSizeEventHandler);
     });
+
+    var productForm = document.getElementsByClassName('shopify-product-form')[0];
+
+    if (productForm) {
+      productForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        document.getElementById('cart-icon-bubble').click();
+      });
+    }
+
     swiper();
   }
 

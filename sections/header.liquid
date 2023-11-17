@@ -2,6 +2,18 @@
 <link rel="stylesheet" href="{{ 'global.css' | asset_url }}">
 <link rel="stylesheet" href="{{ 'bootstrap.css' | asset_url }}">
 
+{%- if settings.cart_type == "drawer" -%}
+  {{ 'component-cart-drawer.css' | asset_url | stylesheet_tag }}
+  {{ 'component-cart.css' | asset_url | stylesheet_tag }}
+  {{ 'component-totals.css' | asset_url | stylesheet_tag }}
+  {{ 'component-price.css' | asset_url | stylesheet_tag }}
+  {{ 'component-discounts.css' | asset_url | stylesheet_tag }}
+  {{ 'component-loading-overlay.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
+
+{%- endif -%}
+
+
 {% if section.settings.show_header %}
   <header class="w-100 font-family-header" style="background:{{section.settings.header_bg}};">
     <div class="header-container container d-flex align-items-center">
@@ -110,9 +122,10 @@
           >
         </a>
         <a
-          href="/cart"
+          href="{%- if settings.cart_type == "drawer" -%}#{%- else -%}/cart{%- endif -%}"
           class="btn d-flex justify-content-center align-items-center position-relative"
           aria-label="cart button"
+          id="cart-icon-bubble"
         >
           <img
             src="https://cdn.shopify.com/s/files/1/0842/4131/8197/files/cart.svg?v=1698065601"
