@@ -149,14 +149,13 @@
       <div class="cart-cross-sell-container">
         <h2>Suggested for You</h2>
         <ul class="product-cards-wrapper d-flex">
-        {%- for item in cart.items -%}
-          {%- for upsell_products in item.product.metafields.custom.cross_sell.value -%}
-            <li class="product-card-wrapper">
-              {%- render 'product-card', product: upsell_products -%}
-
-            </li>
+          {%- for item in cart.items -%}
+            {%- for upsell_products in item.product.metafields.custom.cross_sell.value -%}
+              <li class="product-card-wrapper">
+                {%- render 'product-card', product: upsell_products -%}
+              </li>
+            {%- endfor -%}
           {%- endfor -%}
-        {%- endfor -%}
         </ul>
       </div>
 
@@ -267,6 +266,7 @@
       .then((res) => res.text())
       .then((res) => {
         const parsedState = JSON.parse(res);
+        console.log('parsedState', parsedState);
         const sectionId = document.getElementById('cart-items').dataset.id;
         let html = parsedState.sections[sectionId];
         const parser = new DOMParser();
@@ -274,9 +274,10 @@
         let sectionNode = htmlDoc.querySelector('#cart-table');
         console.log('sectionNode', sectionNode);
         let priceNode = htmlDoc.querySelector('#total-price-wrapper');
-
-        document.getElementById('cart-items').innerHTML = sectionNode.outerHTML;
-        document.getElementById('total-price-container').innerHTML = priceNode.outerHTML;
+        // if (parsedState.items.length > 0) {
+          document.getElementById('cart-items').innerHTML = sectionNode.outerHTML;
+          document.getElementById('total-price-container').innerHTML = priceNode.outerHTML;
+        // }
 
         if (action == 'UPDATE_QUANTITY') {
           row.querySelector('.loader').classList.remove('d-block');
