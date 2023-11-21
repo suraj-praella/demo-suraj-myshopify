@@ -148,6 +148,14 @@
         {{ form.errors.messages.password }}.
       </span>
     {%- endif -%}
+
+            <input
+            type="text"
+            name="customer[notes]"
+            id="RegisterForm-notes"
+            value="Customer Notes"
+          >
+                
     <button>
       {{ 'customer.register.submit' | t }}
     </button>
