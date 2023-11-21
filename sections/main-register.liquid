@@ -15,6 +15,7 @@
 {%- endstyle -%}
 
 <div class="customer register section-{{ section.id }}-padding">
+  {{ content_for_header }}
   <svg style="display: none">
     <symbol id="icon-error" viewBox="0 0 13 13">
       <circle cx="6.5" cy="6.50049" r="5.5" stroke="white" stroke-width="2"/>
@@ -80,43 +81,15 @@
         {{ 'customer.register.last_name' | t }}
       </label>
     </div>
+   
     <div class="field">
       <input
-        type="date"
-        name="customer[dob]"
-        id="RegisterForm-DOB"
-        {% if form.dob %}
-          value="{{ form.dob }}"
-        {% endif %}
-        max="2018-12-31"
-        placeholder="DOB"
-        required
+        type="text"
+        id="additional_info"
+        name="customer[metafields][custom][DOB]"
+        
       >
-      <label for="RegisterForm-DOB"> DOB </label>
-    </div>
-
-    <div class="d-flex">
-      <div>
-        <input
-          type="checkbox"
-          name="customer[interested]"
-          id="RegisterForm-Interested-Online_Shopping"
-          value="online_shopping"
-          required
-        >
-        <label for="RegisterForm-Interested-Online_Shopping"> Online Shopping </label>
-      </div>
-
-      <div>
-        <input
-        type="checkbox"
-        name="customer[interested]"
-        id="RegisterForm-Interested-Counter_Shopping"
-        value="counter_shopping"
-        required
-      >
-      <label for="RegisterForm-Interested-Counter_Shopping"> Counter Shopping </label>
-      </div>
+      <label for="additional_info"> Check Test</label>
     </div>
 
     <div class="field">
@@ -212,3 +185,68 @@
   ]
 }
 {% endschema %}
+
+{% comment %}
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var registrationForm = document.getElementById('create_customer');
+      console.log('registrationForm', registrationForm);
+
+      if (registrationForm) {
+        registrationForm.addEventListener('submit', function (event) {
+          event.preventDefault();
+
+          var formData = new FormData(registrationForm);
+          console.log('formData', formData);
+          var customerData = {};
+
+          formData.forEach(function (value, key) {
+            customerData[key] = value;
+          });
+
+          // Add your additional_info data to customerData
+          customerData['customer[metafields][custom][DOB]'] = formData.get('customer[metafields][custom][DOB]');
+
+          console.log('customerData', customerData);
+          fetch('/account', {
+            method: 'POST',
+            body: new URLSearchParams(customerData),
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+            },
+          })
+            .then((response) => {
+              if (response.ok) {
+                console.log("res",response);
+                // fetch('/account/login', {
+                //   method: 'POST',
+                //   body: new URLSearchParams({ customerData["email"], customerData["password"] }),
+                //   headers: {
+                //     'Content-Type': 'application/x-www-form-urlencoded',
+                //   },
+                // })
+                  // .then((response) => {
+                  //   if (response.ok) {
+                  //     // Login successful
+                  //     window.location.href = '/account'; // Redirect to the account page
+                  //   } else {
+                  //     // Handle login errors
+                  //     console.error('Login failed');
+                  //   }
+                  // })
+                  // .catch((error) => {
+                  //   console.error('Error:', error);
+                  // });
+              } else {
+                // Handle registration errors
+                console.error('Registration failed');
+              }
+            })
+            .catch((error) => {
+              console.error('Error:', error);
+            });
+        });
+      }
+    });
+  </script>
+{% endcomment %}
