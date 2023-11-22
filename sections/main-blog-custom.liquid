@@ -1,0 +1,31 @@
+{{ 'section-custom-blog.css' | asset_url | stylesheet_tag }}
+
+<section class="mt-80">
+  <div class="container">
+      <ul class="d-grid blog-list-container col-lg-9 w-100">
+        {%- for article in blog.articles -%}
+          <li class="blog-card w-100">
+            <div class="blog-card-wrapper">
+              <img
+                src="{{article.image |  image_url }}"
+                width=""
+                height=""
+                loading="lazy"
+              >
+
+              <h4 class="blog-title text-center">
+                {{ article.title }}
+              </h4>
+
+              <p class="blog-author text-center">
+                Author: {{ article.author }}
+              </p>
+              <h4 class="text-center">
+                <a class="read-more" href="{{ article.url }}"> READ MORE </a>
+              </h4>
+            </div>
+          </li>
+        {%- endfor -%}
+      </ul>
+  </div>
+</section>
