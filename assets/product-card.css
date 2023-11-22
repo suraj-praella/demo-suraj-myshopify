@@ -24,6 +24,10 @@
   height: 100%;
 }
 
+.product-card .placeholder-svg{
+  max-height: 150px;
+}
+
 .product-card .product-new-tag,
 .product-card .product-off-tag {
   padding: 5px 9px;
@@ -69,7 +73,7 @@
   margin-top: 29px;
   min-height: 65px;
   line-height: 22px;
-  -webkit-line-clamp: 3;
+  /* -webkit-line-clamp: 3; */
   -webkit-box-orient: vertical;
   display: -webkit-box;
   overflow: hidden;

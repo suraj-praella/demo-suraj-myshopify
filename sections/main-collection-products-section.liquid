@@ -123,9 +123,30 @@
         {%- paginate collection.products by section.settings.products_per_page -%}
           <ul class="product-cards-wrapper d-flex flex-wrap">
             {%- for product in collection.products -%}
-              <li class="mb-5 product-card-wrapper">
-                {%- render 'product-card', product: product, collection_url: collection.url -%}
-              </li>
+              {%- assign firstOption = product.options | first -%}
+              {%- if firstOption == 'Color' -%}
+                {%- for options in product.options_with_values -%}
+                  {%- if options.name == 'Color' -%}
+                    {%- for value in options.values -%}
+                      <li class="mb-5 product-card-wrapper">
+                        {%- render 'product-card', product: product, collection_url: collection.url, color: value -%}
+                      </li>
+                    {%- endfor -%}
+                  {%- endif -%}
+                {%- endfor -%}
+                {% comment %}
+                  {%- for variant in product.variants -%}
+                    <li class="mb-5 product-card-wrapper">
+                      {%- render 'product-card', product: variant, collection_url: collection.url -%}
+                    </li>
+                  {%- endfor -%}
+                {% endcomment %}
+
+              {%- else -%}
+                <li class="mb-5 product-card-wrapper">
+                  {%- render 'product-card', product: product, collection_url: collection.url -%}
+                </li>
+              {%- endif -%}
             {%- endfor -%}
           </ul>
           {%- if paginate.pages > 1 -%}
@@ -208,13 +229,52 @@
         const parser = new DOMParser();
         const htmlDoc = parser.parseFromString(domNode, 'text/html');
         let sectionNode = htmlDoc.querySelector('.container');
-        document.getElementById('main-collection-products-section').innerHTML = sectionNode.outerHTML;
+        // document.getElementById('main-collection-products-section').innerHTML = sectionNode.outerHTML;
+        // console.log("sectionNode.outerHTML",sectionNode.outerHTML);
+        setTimeout(() => {
+          if (url.includes('color')) {
+            const filtersArr = url.split('color=').slice(1);
+            const colorsArr = [];
+            filtersArr.forEach((ele) => {
+              let color = ele.split('&')[0];
+              colorsArr.push(color);
+            });
+            const productCards = sectionNode.getElementsByClassName('product-card-wrapper');
+
+            Array.from(productCards).forEach((product) => {
+              const colorDiv = product.querySelectorAll('.color-list')[0].dataset.color;
+              if (!colorsArr.includes(colorDiv)) {
+                product.style.display = 'none';
+              }
+            });
+
+            document.getElementById('main-collection-products-section').innerHTML = sectionNode.outerHTML;
+          }
+          addingEventListerner();
+        }, 200);
       });
     history.pushState(null, null, url);
-    setTimeout(() => {
-      addingEventListerner();
-    }, 200);
   }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const url = window.location.search;
+    if (url.includes('color')) {
+      const filtersArr = url.split('color=').slice(1);
+      const colorsArr = [];
+      filtersArr.forEach((ele) => {
+        let color = ele.split('&')[0];
+        colorsArr.push(color);
+      });
+      const productCards = document.getElementsByClassName('product-card-wrapper');
+
+      Array.from(productCards).forEach((product) => {
+        const colorDiv = product.querySelectorAll('.color-list')[0].dataset.color;
+        if (!colorsArr.includes(colorDiv)) {
+          product.style.display = 'none';
+        }
+      });
+    }
+  });
 
   function uncheckCorrespondingCheckbox(event) {
     const filterCheckBoxes = document.querySelectorAll('.filter-checkbox');

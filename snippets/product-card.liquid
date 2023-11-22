@@ -55,21 +55,25 @@
       style="color: {{ settings.product_card_title_font_color }}; !important;"
     >
       {{ product.title }}
+      {%- if color != null -%}
+        -{{ color }}
+      {%- endif -%}
     </p>
 
+    {%- if color != null -%}
+      <div class="color-list-container d-flex">
+        <span style="color: {{ settings.product_card_title_font_color }};">Color: </span>
+        <ul class="color-list-wrapper d-flex align-items-center w-75">
+          <li class="color-list" style="background-color: {{ color }};" data-color="{{ color }}"></li>
+        </ul>
+      </div>
+    {%- endif -%}
+
     {%- for options in product.options_with_values -%}
-      {%- if options.name == 'Color' -%}
-        <div class="color-list-container d-flex">
-          <span style="color: {{ settings.product_card_title_font_color }};">Colors: </span>
+    
 
-          <ul class="color-list-wrapper d-flex align-items-center w-75">
-            {%- for value in options.values -%}
-              <li class="color-list" style="background-color: {{ value }};"></li>
-            {% endfor %}
-          </ul>
-        </div>
-
-      {%- else -%}
+      {%- if options.name == 'Size' -%}
+        {% comment %} {%- else -%} {% endcomment %}
         <div class="color-list-container d-flex">
           <span style="color: {{ settings.product_card_title_font_color }};">Size: </span>
 
