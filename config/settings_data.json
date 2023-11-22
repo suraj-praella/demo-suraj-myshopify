@@ -112,7 +112,7 @@
     "predictive_search_show_vendor": false,
     "predictive_search_show_price": false,
     "currency_code_enabled": true,
-    "cart_type": "notification",
+    "cart_type": "drawer",
     "show_vendor": false,
     "show_cart_note": false,
     "cart_drawer_collection": "",
@@ -207,9 +207,11 @@
               "show_subscribe_form": true,
               "footer_form_heading_text": "SUBSCRIBE TO OUR NEWSLETTER",
               "footer_form_input_placeholder": "Enter Your Email",
+              "footer_form_input_size": "w-100",
               "footer_form_button_label": "Subscribe",
-              "footer_form_button_bg_color": "#FF6E30",
-              "footer_form_button_font_color": "#000"
+              "footer_form_button_bg_color": "#ff6e30",
+              "footer_form_button_font_color": "#000000",
+              "footer_form_button_size": "w-100"
             }
           }
         },
@@ -220,6 +222,16 @@
           "2df04c9c-f4b0-4e08-bf13-23ba1565c668"
         ],
         "settings": {
+          "footer_bg": "#000",
+          "footer_top_padding": 60,
+          "footer_bottom_padding": 18,
+          "show_footer_image": true,
+          "footer_image_width": 350,
+          "show_footer_line": true,
+          "footer_image_height": 5,
+          "footer_line_bg": "#fff",
+          "show_footer_bottom": true,
+          "footer_bottom_text_color": "#d1d1d1"
         }
       }
     },
