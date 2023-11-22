@@ -148,6 +148,14 @@
         {{ form.errors.messages.password }}.
       </span>
     {%- endif -%}
+
+            <input
+            type="date"
+            name="customer[metafields][custom][dob]" value="2023-11-08"
+            id="dob"
+            value="Customer DOB"
+          >
+                
     <button>
       {{ 'customer.register.submit' | t }}
     </button>
