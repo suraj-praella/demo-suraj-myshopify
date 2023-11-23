@@ -222,14 +222,14 @@
           "2df04c9c-f4b0-4e08-bf13-23ba1565c668"
         ],
         "settings": {
-          "footer_bg": "#000",
+          "footer_bg": "#000000",
           "footer_top_padding": 60,
           "footer_bottom_padding": 18,
           "show_footer_image": true,
           "footer_image_width": 350,
           "show_footer_line": true,
           "footer_image_height": 5,
-          "footer_line_bg": "#fff",
+          "footer_line_bg": "#ffffff",
           "show_footer_bottom": true,
           "footer_bottom_text_color": "#d1d1d1"
         }
@@ -238,6 +238,21 @@
     "content_for_index": [
 
     ],
+    "blocks": {
+      "7570552984445421165": {
+        "type": "shopify:\/\/apps\/yotpo-product-photo-reviews\/blocks\/settings\/eb7dfd7d-db44-4334-bc49-c893b51b36cf",
+        "disabled": false,
+        "settings": {
+        }
+      },
+      "14339172867238703359": {
+        "type": "shopify:\/\/apps\/yotpo-product-photo-reviews\/blocks\/reviews_tab\/eb7dfd7d-db44-4334-bc49-c893b51b36cf",
+        "disabled": false,
+        "settings": {
+          "product": ""
+        }
+      }
+    },
     "color_schemes": {
       "background-1": {
         "settings": {
