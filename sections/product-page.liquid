@@ -37,6 +37,8 @@
       </h2>
       {%- for block in section.blocks -%}
         {%- case block.type -%}
+          {%- when '@app' -%}
+            {% render block %}
           {%- when 'product_vendor' -%}
             <p
               class="mb-3"
@@ -157,6 +159,9 @@
   "name": "Product Page",
   "settings": [],
   "blocks": [
+    {
+      "type": "@app"
+    },
     {
       "type": "product_vendor",
       "name": "Vendor Name",
