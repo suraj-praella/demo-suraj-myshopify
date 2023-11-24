@@ -14,11 +14,11 @@
     data-product-id="{{product.id | json}}"
     data-variant-id="{{product.variants[0].id}}"
     data-product-url="{{ shop.url }}{{ product.url }}"
-  >
-  </button>
+  ></button>
 
   <a
     href="{%- if collection_url != blank -%}{{ collection_url }}{%- endif -%}{{ product.url }}"
+    class="product-link"
   >
     {%- if product.tags contains 'Badge_New' -%}
       <div
@@ -69,6 +69,11 @@
         -{{ color }}
       {%- endif -%}
     </p>
+
+    <div
+      class="yotpo bottomLine"
+      data-product-id="{{ product.id }}"
+    ></div>
 
     {%- if color != null -%}
       <div class="color-list-container d-flex">

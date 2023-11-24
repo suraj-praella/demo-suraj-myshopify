@@ -248,6 +248,8 @@
           });
         }
         document.getElementById('main-collection-products-section').innerHTML = sectionNode.outerHTML;
+        var api = new Yotpo.API(yotpo);
+        api.refreshWidgets();
       });
     history.pushState(null, null, url);
     setTimeout(() => {

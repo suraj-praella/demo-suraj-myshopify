@@ -73,7 +73,7 @@
   font-size: 13px;
 }
 
-.product-card a {
+.product-card .product-link {
   padding: 12px 20px 40px;
 }
 
