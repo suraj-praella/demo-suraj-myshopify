@@ -245,12 +245,6 @@
         "settings": {
         }
       },
-      "12526071353035850722": {
-        "type": "shopify:\/\/apps\/back-in-stock-customer-alerts\/blocks\/app-embed\/bfa6a8c4-24e2-411a-9396-e35031b33f34",
-        "disabled": false,
-        "settings": {
-        }
-      },
       "5946647744298494267": {
         "type": "shopify:\/\/apps\/wishlist-plus\/blocks\/wishlist-app-embed\/80c3b1fc-3a8f-407e-8367-ffdeebb8b612",
         "disabled": false,
@@ -267,6 +261,12 @@
       "7570552984445421165": {
         "type": "shopify:\/\/apps\/yotpo-product-photo-reviews\/blocks\/settings\/eb7dfd7d-db44-4334-bc49-c893b51b36cf",
         "disabled": false,
+        "settings": {
+        }
+      },
+      "12526071353035850722": {
+        "type": "shopify:\/\/apps\/back-in-stock-customer-alerts\/blocks\/app-embed\/bfa6a8c4-24e2-411a-9396-e35031b33f34",
+        "disabled": true,
         "settings": {
         }
       }

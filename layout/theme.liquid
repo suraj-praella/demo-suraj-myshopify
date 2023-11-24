@@ -35,6 +35,10 @@
       <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
 
+    <script type="text/javascript">
+(function e(){var e=document.createElement("script");e.type="text/javascript",e.async=true,e.src="//staticw2.yotpo.com/###APP_KEY###/widget.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)})();
+</script>
+
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js">
 
     {{ content_for_header }}
@@ -297,6 +301,8 @@
       <li id="a11y-new-window-message">{{ 'accessibility.link_messages.new_window' | t }}</li>
     </ul>
 
+    {% render 'swym-custom' %}
+
     <script>
       window.shopUrl = '{{ request.origin }}';
       window.routes = {
@@ -342,7 +348,6 @@
       <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
 
-    {% render 'swymSnippet' %}
-    {%  render  'swym-custom'%}
+
   </body>
 </html>
