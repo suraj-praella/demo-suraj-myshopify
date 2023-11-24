@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="{{ 'global.css' | asset_url }}">
 <link rel="stylesheet" href="{{ 'bootstrap.css' | asset_url }}">
 
-{%- if settings.cart_type == "drawer" -%}
+{%- if settings.cart_type == 'drawer' -%}
   {{ 'component-cart-drawer.css' | asset_url | stylesheet_tag }}
   {{ 'component-cart.css' | asset_url | stylesheet_tag }}
   {{ 'component-totals.css' | asset_url | stylesheet_tag }}
@@ -10,9 +10,7 @@
   {{ 'component-discounts.css' | asset_url | stylesheet_tag }}
   {{ 'component-loading-overlay.css' | asset_url | stylesheet_tag }}
   <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
-
 {%- endif -%}
-
 
 {% if section.settings.show_header %}
   <header class="w-100 font-family-header" style="background:{{section.settings.header_bg}};">
@@ -101,6 +99,13 @@
         <div class="predictive-results" id="predictive-results"></div>
       </div>
       <div class="header-menu-2 d-flex">
+        {%- for block in section.blocks -%}
+          {%- case block.type -%}
+            {%- when '@app' -%}
+              {% render block %}
+          {%- endcase -%}
+        {%- endfor -%}
+
         <a aria-label="account button" href="/account" class="btn d-flex justify-content-center align-items-center">
           <img
             src="https://cdn.shopify.com/s/files/1/0842/4131/8197/files/account.svg?v=1698065520"
@@ -111,15 +116,17 @@
             aria-hidden
           >
         </a>
-        <a href="#" aria-label="wishlist button" class="btn d-flex justify-content-center align-items-center">
+
+        <a href="#swym-wishlist" class="swym-wishlist btn d-flex justify-content-center align-items-center">
+          {% comment %} <i aria-hidden="true" focusable="false" role="presentation" class="fa fa-heart"></i> {% endcomment %}
           <img
-            src="https://cdn.shopify.com/s/files/1/0842/4131/8197/files/wishlist.svg?v=1698065582"
-            loading="lazy"
-            width=""
-            height=""
-            alt="wishlist icon"
-            aria-hidden
-          >
+          src="https://cdn.shopify.com/s/files/1/0842/4131/8197/files/wishlist.svg?v=1698065582"
+          loading="lazy"
+          width=""
+          height=""
+          alt="wishlist icon"
+          aria-hidden
+        >
         </a>
         <a
           href="{%- if settings.cart_type == "drawer" -%}#{%- else -%}/cart{%- endif -%}"
@@ -175,6 +182,9 @@
     }
   ],
   "blocks": [
+    {
+      "type": "@app"
+    },
     {
       "type": "megamenu",
       "name": "Mega Menu",

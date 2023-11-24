@@ -10,6 +10,18 @@
   margin-top: 6px;
 }
 
+.wishlist-btn {
+  border: none;
+  background-color: transparent;
+  width: max-content;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  padding: 0 !important;
+}
+
 .product-rating-wrapper .product-rating-stars + span {
   margin-left: 4px;
   color: var(--primary-black, #000);
@@ -24,7 +36,7 @@
   height: 100%;
 }
 
-.product-card .placeholder-svg{
+.product-card .placeholder-svg {
   max-height: 150px;
 }
 

@@ -231,29 +231,28 @@
         let sectionNode = htmlDoc.querySelector('.container');
         // document.getElementById('main-collection-products-section').innerHTML = sectionNode.outerHTML;
         // console.log("sectionNode.outerHTML",sectionNode.outerHTML);
-        setTimeout(() => {
-          if (url.includes('color')) {
-            const filtersArr = url.split('color=').slice(1);
-            const colorsArr = [];
-            filtersArr.forEach((ele) => {
-              let color = ele.split('&')[0];
-              colorsArr.push(color);
-            });
-            const productCards = sectionNode.getElementsByClassName('product-card-wrapper');
+        if (url.includes('color')) {
+          const filtersArr = url.split('color=').slice(1);
+          const colorsArr = [];
+          filtersArr.forEach((ele) => {
+            let color = ele.split('&')[0];
+            colorsArr.push(color);
+          });
+          const productCards = sectionNode.getElementsByClassName('product-card-wrapper');
 
-            Array.from(productCards).forEach((product) => {
-              const colorDiv = product.querySelectorAll('.color-list')[0].dataset.color;
-              if (!colorsArr.includes(colorDiv)) {
-                product.style.display = 'none';
-              }
-            });
-
-            document.getElementById('main-collection-products-section').innerHTML = sectionNode.outerHTML;
-          }
-          addingEventListerner();
-        }, 200);
+          Array.from(productCards).forEach((product) => {
+            const colorDiv = product.querySelectorAll('.color-list')[0].dataset.color;
+            if (!colorsArr.includes(colorDiv)) {
+              product.style.display = 'none';
+            }
+          });
+        }
+        document.getElementById('main-collection-products-section').innerHTML = sectionNode.outerHTML;
       });
     history.pushState(null, null, url);
+    setTimeout(() => {
+      addingEventListerner();
+    }, 200);
   }
 
   document.addEventListener('DOMContentLoaded', () => {
@@ -297,6 +296,7 @@
   }
 
   function addingEventListerner() {
+    document.dispatchEvent(new CustomEvent('swym:collections-loaded'));
     const filterDropdownBtns = document.querySelectorAll('.filter-dropdown-btn');
     const filterCheckBoxes = document.querySelectorAll('.filter-checkbox');
     const activeFilterSection = document.getElementById('active-filters-section');

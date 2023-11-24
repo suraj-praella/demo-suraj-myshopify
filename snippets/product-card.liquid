@@ -7,6 +7,16 @@
     text-align: {{ settings.product_card_text_alignment }};
   "
 >
+  <button
+    data-with-epi="true"
+    class="wishlist-btn position-absolute swym-button swym-add-to-wishlist-view-product product_{{product.id}}"
+    data-swaction="addToWishlist"
+    data-product-id="{{product.id | json}}"
+    data-variant-id="{{product.variants[0].id}}"
+    data-product-url="{{ shop.url }}{{ product.url }}"
+  >
+  </button>
+
   <a
     href="{%- if collection_url != blank -%}{{ collection_url }}{%- endif -%}{{ product.url }}"
   >
@@ -70,8 +80,6 @@
     {%- endif -%}
 
     {%- for options in product.options_with_values -%}
-    
-
       {%- if options.name == 'Size' -%}
         {% comment %} {%- else -%} {% endcomment %}
         <div class="color-list-container d-flex">
