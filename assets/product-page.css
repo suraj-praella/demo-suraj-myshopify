@@ -1,3 +1,6 @@
+#product-page {
+  margin-bottom: 80px;
+}
 .product-page-left-container,
 .product-page-right-container {
   padding: 0 40px;
@@ -54,9 +57,21 @@
 
 .add-to-cart {
   padding: 4px 30px;
+  margin: 10px 0;
 }
 
 .add-to-cart:disabled {
   cursor: not-allowed;
   opacity: 0.6;
+}
+
+.swym-button #BIS_trigger{
+  display: none;
+}
+
+.notify-me-btn{
+  background-color: black;
+  color: #fff;
+  padding: 5px 20px;
+  display: none;
 }

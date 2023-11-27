@@ -148,7 +148,11 @@
           value="{{ product.selected_or_first_available_variant.id }}"
           class="product-variant-id"
         >
+        <div class="swym-wishlist-button-bar mt-2 mb-2"></div>
+
         <input type="submit" name="add" value="ADD TO CART" class="add-to-cart d-block" id="add-to-cart">
+
+        <a href="#" id="BIS_trigger" class="notify-me-btn">Notify when available</a>
       {%- endform -%}
     </div>
   </div>
@@ -356,45 +360,53 @@
     for (let i = 0; i < variants.length; i++) {
       if (sizeBtns.length > 0 && colorInputs.length > 0) {
         if (selectedSize != null && selectedColor != null) {
+          let input = document.querySelector('input[name="id"]');
+          input.value = variants[i].value;
+          updateURL(variants[i].value);
           if (
             variants[i].dataset.value.includes(selectedSize) &&
             variants[i].dataset.value.includes(selectedColor) &&
             variants[i].dataset.available == 'true'
           ) {
-            let input = document.querySelector('input[name="id"]');
-            input.value = variants[i].value;
-            updateURL(variants[i].value);
             addToCartBtn.disabled = false;
             addToCartBtn.value = 'ADD TO CART';
+            document.getElementsByClassName('notify-me-btn')[0].classList.remove('d-block');
+
             break;
           } else {
             addToCartBtn.value = 'SOLD OUT';
+            document.getElementsByClassName('notify-me-btn')[0].classList.add('d-block');
             addToCartBtn.disabled = true;
           }
         }
       } else if (colorInputs.length > 0) {
+        let input = document.querySelector('input[name="id"]');
+        input.value = variants[i].value;
+        updateURL(variants[i].value);
         if (variants[i].dataset.value.includes(selectedColor) && variants[i].dataset.available == 'true') {
-          let input = document.querySelector('input[name="id"]');
-          input.value = variants[i].value;
-          updateURL(variants[i].value);
           addToCartBtn.disabled = false;
+          document.getElementsByClassName('notify-me-btn')[0].classList.remove('d-block');
+
           addToCartBtn.value = 'ADD TO CART';
           break;
         } else {
           addToCartBtn.disabled = true;
           addToCartBtn.value = 'SOLD OUT';
+          document.getElementsByClassName('notify-me-btn')[0].classList.add('d-block');
         }
       } else if (sizeBtns.length > 0) {
+        let input = document.querySelector('input[name="id"]');
+        input.value = variants[i].value;
+        updateURL(variants[i].value);
         if (variants[i].dataset.value.includes(selectedSize) && variants[i].dataset.available == 'true') {
-          let input = document.querySelector('input[name="id"]');
-          input.value = variants[i].value;
-          updateURL(variants[i].value);
           addToCartBtn.disabled = false;
+          document.getElementsByClassName('notify-me-btn')[0].classList.remove('d-block');
           addToCartBtn.value = 'ADD TO CART';
           break;
         } else {
           addToCartBtn.disabled = true;
           addToCartBtn.value = 'SOLD OUT';
+          document.getElementsByClassName('notify-me-btn')[0].classList.add('d-block');
         }
       } else {
         addToCartBtn.disabled = false;
