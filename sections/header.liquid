@@ -73,13 +73,15 @@
         {% endfor %}
       </ul>
       <div>
-        <form class="header-search-bar d-flex flex-grow-1" id="predictive-search-form">
+        <form class="search header-search-bar d-flex flex-grow-1" id="predictive-search-form" action="/search">
           <input
             placeholder="Search Out Store..."
             class="w-100 border-0"
             id="search-input"
+            name="q"
+            value="{{ search.terms | escape }}"
           >
-          <button class="border-0" type="submit" aria-label="search">
+          <button class="border-0" type="submit" aria-label="search" value="Search">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20"
@@ -95,7 +97,7 @@
               />
             </svg>
           </button>
-        </form>
+        </form> 
         <div class="predictive-results" id="predictive-results"></div>
       </div>
       <div class="header-menu-2 d-flex">
@@ -120,13 +122,13 @@
         <a href="#swym-wishlist" class="swym-wishlist btn d-flex justify-content-center align-items-center">
           {% comment %} <i aria-hidden="true" focusable="false" role="presentation" class="fa fa-heart"></i> {% endcomment %}
           <img
-          src="https://cdn.shopify.com/s/files/1/0842/4131/8197/files/wishlist.svg?v=1698065582"
-          loading="lazy"
-          width=""
-          height=""
-          alt="wishlist icon"
-          aria-hidden
-        >
+            src="https://cdn.shopify.com/s/files/1/0842/4131/8197/files/wishlist.svg?v=1698065582"
+            loading="lazy"
+            width=""
+            height=""
+            alt="wishlist icon"
+            aria-hidden
+          >
         </a>
         <a
           href="{%- if settings.cart_type == "drawer" -%}#{%- else -%}/cart{%- endif -%}"
@@ -221,7 +223,8 @@
   document.addEventListener('DOMContentLoaded', () => {
     let timeOut = '';
 
-    document.getElementById('search-input').addEventListener('input', handlePredictiveSearch);
+    // uncomment this line to add predective search using shopify ajaz apis
+    // document.getElementById('search-input').addEventListener('input', handlePredictiveSearch);
 
     function handlePredictiveSearch() {
       var query = document.getElementById('search-input').value;

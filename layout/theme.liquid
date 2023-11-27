@@ -39,7 +39,8 @@
 (function e(){var e=document.createElement("script");e.type="text/javascript",e.async=true,e.src="//staticw2.yotpo.com/xFdFA9Qz9DJclwWzJBTMiLviCvyLqkNFOBhd2yk5/widget.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)})();
 </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js">
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js" defer>
+    <script src="//searchserverapi.com/widgets/shopify/init.js?a=7w2Y2Y2p9w"></script>
 
     {{ content_for_header }}
 
@@ -345,7 +346,7 @@
     </script>
 
     {%- if settings.predictive_search_enabled -%}
-      <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
+      // <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
 
 
