@@ -191,9 +191,23 @@
 {% endschema %}
 
 <script>
-  setTimeout(() => {
-    const gender = document.getElementById('customer-gender').textContent;
-    if (gender !== '')
-      document.getElementById('shopify-section-template--21472184959285__1701155018608985e6').style.display = 'none';
-  }, 1000);
+  const main = document.getElementById('MainContent');
+  const gender = document.getElementById('customer-gender').textContent;
+
+  const observer = new MutationObserver((mutationsList, observer) => {
+    mutationsList.forEach((mutation) => {
+      if (mutation.type === 'childList') {
+        mutation.addedNodes.forEach((node) => {
+          if (node.nodeName.toLowerCase() === 'section') {
+            if (gender !== '') {
+              node.style.display = 'none';
+            }
+          }
+        });
+      }
+    });
+  });
+
+  const config = { childList: true, subtree: true };
+  observer.observe(main, config);
 </script>
