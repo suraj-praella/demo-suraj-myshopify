@@ -99,3 +99,12 @@
 .list-social__item:not(:first-child){
   margin-left: 6px;
 }
+
+.footer-container .disclosure__list{
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.footer-container .link--text{
+  color: black !important;
+}
