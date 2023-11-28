@@ -14,6 +14,14 @@
   }
 {%- endstyle -%}
 
+{%- for block in section.blocks -%}
+  {%- case block.type -%}
+    {%- when '@app' -%}
+      {%- render block -%}
+    {%- else -%}
+  {%- endcase -%}
+{%- endfor -%}
+
 <div class="customer register section-{{ section.id }}-padding">
   {{ content_for_header }}
   <svg style="display: none">
@@ -81,16 +89,6 @@
         {{ 'customer.register.last_name' | t }}
       </label>
     </div>
-   
-    <div class="field">
-      <input
-        type="text"
-        id="additional_info"
-        name="customer[metafields][custom][DOB]"
-        
-      >
-      <label for="additional_info"> Check Test</label>
-    </div>
 
     <div class="field">
       <input
@@ -149,13 +147,6 @@
       </span>
     {%- endif -%}
 
-            <input
-            type="date"
-            name="customer[metafields][custom][dob]" value="2023-11-08"
-            id="dob"
-            value="Customer DOB"
-          >
-                
     <button>
       {{ 'customer.register.submit' | t }}
     </button>
@@ -190,7 +181,8 @@
       "label": "t:sections.all.padding.padding_bottom",
       "default": 36
     }
-  ]
+  ],
+  "blocks": [{ "type": "@app" }]
 }
 {% endschema %}
 
