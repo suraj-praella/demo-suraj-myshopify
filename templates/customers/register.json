@@ -29,6 +29,7 @@
         },
         "8bacd9ae-c64b-4fbe-a334-792eaeda77e8": {
           "type": "shopify:\/\/apps\/hulk-form-builder\/blocks\/form-block\/b6b8dd14-356b-4725-a4ed-77232212b3c3",
+          "disabled": true,
           "settings": {
             "form_uuid": "l7OoU8tyvsJpoyto_qFTTg",
             "form_settings": false,
