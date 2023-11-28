@@ -37,8 +37,8 @@
         "default": "#fff"
       },
       {
-        "type":"header",
-        "content":"Title"
+        "type": "header",
+        "content": "Title"
       },
       {
         "type": "color",
@@ -47,8 +47,8 @@
         "default": "#000"
       },
       {
-        "type":"header",
-        "content":"Price"
+        "type": "header",
+        "content": "Price"
       },
       {
         "type": "color",
@@ -69,12 +69,12 @@
         "default": "#808080"
       },
       {
-        "type":"header",
-        "content":"Badges"
+        "type": "header",
+        "content": "Badges"
       },
       {
-        "type":"paragraph",
-        "content":"New Badge"
+        "type": "paragraph",
+        "content": "New Badge"
       },
       {
         "type": "color",
@@ -89,8 +89,8 @@
         "default": "#ff8139"
       },
       {
-        "type":"paragraph",
-        "content":"Off Badge"
+        "type": "paragraph",
+        "content": "Off Badge"
       },
       {
         "type": "color",
