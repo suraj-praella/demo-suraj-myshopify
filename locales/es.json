@@ -519,5 +519,26 @@
       "expanded": "Formulario del destinatario de la tarjeta de regalo expandido",
       "collapsed": "Formulario del destinatario de tarjeta de regalo contraído"
     }
+  },
+  "shopify": {
+    "checkout": {
+      "shipping": {
+        "split_cart_ships_date": "Envíos %{fecha}"
+      }
+    }
+  },
+  "customer_accounts": {
+    "navigation_and_structure": {
+      "settings_link": "Ajustes"
+    },
+    "settings": {
+      "title": "Ajustes",
+      "log_out_everywhere": {
+        "title": "Cerrar sesión en todas partes",
+        "description": "Si ha perdido un dispositivo o tiene problemas de seguridad, cierre sesión en todas partes para garantizar la seguridad de su cuenta.",
+        "button": "Cerrar sesión en todas partes",
+        "warning_message": "También cerrarás tu sesión en este dispositivo."
+      }
+    }
   }
 }
