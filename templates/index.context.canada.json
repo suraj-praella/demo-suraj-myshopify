@@ -4,5 +4,16 @@
     "market": "canada"
   },
   "sections": {
+    "e5085ec4-f0cb-4afb-841f-f43327195ba8": {
+      "settings": {
+      },
+      "blocks": {
+        "template--21472184336693__e5085ec4-f0cb-4afb-841f-f43327195ba8-image_slider-1": {
+          "settings": {
+            "image_slider_sub_heading": "Canada"
+          }
+        }
+      }
+    }
   }
 }
