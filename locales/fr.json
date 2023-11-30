@@ -519,5 +519,18 @@
       "expanded": "Formulaire de destinataire de carte-cadeau agrandi",
       "collapsed": "Formulaire de destinataire de carte-cadeau réduit"
     }
+  },
+  "shopify": {
+    "checkout": {
+      "shipping": {
+        "split_cart_multiple_shipment_quantity_label": "%{quantité} expéditions",
+        "split_cart_multiple_shipment_notice": "Votre commande arrivera en plusieurs envois"
+      },
+      "redeemable_errors": {
+        "gift_card": {
+          "throttle_limit_exceeded": "Vous avez dépassé le nombre maximum de tentatives. Réessayez plus tard."
+        }
+      }
+    }
   }
 }
