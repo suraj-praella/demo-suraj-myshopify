@@ -151,6 +151,7 @@
         <div class="swym-wishlist-button-bar mt-2 mb-2"></div>
 
         <input type="submit" name="add" value="ADD TO CART" class="add-to-cart d-block" id="add-to-cart">
+        {{ form | payment_button }}
 
         <a href="#" id="BIS_trigger" class="notify-me-btn">Notify when available</a>
       {%- endform -%}
