@@ -4,5 +4,24 @@
     "b2b": true
   },
   "sections": {
-  }
+    "788fd5ff-51ad-4a09-8bc5-8feee945cbe2": {
+      "disabled": false,
+      "settings": {
+      },
+      "blocks": {
+      },
+      "block_order": [
+        "template--21472184336693__788fd5ff-51ad-4a09-8bc5-8feee945cbe2-featured_categories-1"
+      ]
+    }
+  },
+  "order": [
+    "e5085ec4-f0cb-4afb-841f-f43327195ba8",
+    "28fb3965-6ded-4ba1-b4f4-5880e6b6c0c9",
+    "788fd5ff-51ad-4a09-8bc5-8feee945cbe2",
+    "9f1bcd7a-38f1-4e80-b5e3-5d1c4614782a",
+    "2a00c5ee-ea55-4893-b7e3-a1a8a1782bef",
+    "53e47bec-245f-46d8-b3df-0eedc28dd378",
+    "f2d5e37b-2bd2-41a4-9444-c8aad4ee81c0"
+  ]
 }
