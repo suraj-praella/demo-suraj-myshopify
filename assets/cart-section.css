@@ -27,6 +27,10 @@
   justify-content: space-evenly;
 }
 
+.quanitity-drawer-wrapper {
+  width: 75%;
+}
+
 .quantity-btn {
   border: none;
   background-color: transparent;
