@@ -21,11 +21,18 @@
           "settings": {
             "product": "{{product}}"
           }
+        },
+        "f3dbbb84-9193-49f1-854b-45122824836c": {
+          "type": "shopify:\/\/apps\/recharge-subscriptions\/blocks\/subscription-widget\/371eed76-0b44-4869-9813-730372ea378e",
+          "settings": {
+            "product": "{{product}}"
+          }
         }
       },
       "block_order": [
         "8cb25bab-bde0-42b7-9459-a89acd00ee5e",
-        "d3a66557-e656-42bf-b0d9-803707ee4f5e"
+        "d3a66557-e656-42bf-b0d9-803707ee4f5e",
+        "f3dbbb84-9193-49f1-854b-45122824836c"
       ],
       "settings": {
       }
