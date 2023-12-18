@@ -89,6 +89,12 @@ a {
   cursor: pointer;
 }
 
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  box-shadow: 0 0 0 2px black, 0 0 0 4px white;
+}
+
 ul {
   margin: 0;
   padding: 0;
