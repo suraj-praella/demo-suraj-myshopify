@@ -21,6 +21,8 @@
       {{ customer.first_name }}
     </p>
 
+    <p><a href="/tools/recurring/login/">Manage Subscriptions</a></p>
+
     {%- if customer.metafields.custom.gender_1 != 'blank' -%}
       <p id="customer-gender">{{ customer.metafields.custom.gender_1 }}</p>
     {%- endif -%}
