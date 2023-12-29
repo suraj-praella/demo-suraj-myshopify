@@ -336,4 +336,28 @@
   }
 
   addingEventListerner();
+
+  setTimeout(() => {
+    const widgetArr = [];
+    const rechargeWidgets = document.querySelectorAll('.recharge-widget');
+    rechargeWidgets.forEach((widget) => {
+      const id = widget.dataset.productId;
+
+      if (widget.dataset.sellingPlan != '[]') {
+        // window.ReChargeWidget.createWidget({
+        //   productId: Number(id),
+        //   injectionParent: `#recharge-widget-${id}`,
+        //   injectionMethod: 'prepend',
+        // })
+        widgetArr.push({
+          productId: Number(id),
+          injectionParent: `#recharge-widget-${id}`,
+          injectionMethod: 'prepend',
+        });
+      }
+    });
+
+    console.log('widgetArr', widgetArr);
+    window.ReChargeWidget.createWidgets(widgetArr);
+  }, 2000);
 </script>

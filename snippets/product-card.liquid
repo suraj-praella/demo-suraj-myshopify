@@ -141,4 +141,11 @@
       </span>
     {%- endif -%}
   </a>
+
+  <div
+    class="recharge-widget"
+    id="recharge-widget-{{ product.id }}"
+    data-product-id="{{ product.id }}"
+    data-selling-plan="{{ product.selling_plan_groups | json }}"
+  ></div>
 </div>
