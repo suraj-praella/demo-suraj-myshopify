@@ -10,6 +10,10 @@
   margin-top: 6px;
 }
 
+.product-card{
+  min-width: 190px;
+}
+
 .wishlist-btn {
   border: none;
   background-color: transparent;
