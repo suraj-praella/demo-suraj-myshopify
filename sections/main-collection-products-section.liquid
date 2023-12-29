@@ -341,7 +341,7 @@
     const widgetArr = [];
     const rechargeWidgets = document.querySelectorAll('.recharge-widget');
     rechargeWidgets.forEach((widget) => {
-      const id = widget.dataset.productId;
+      const id = widget.dataset.productid;
 
       if (widget.dataset.sellingPlan != '[]') {
         // window.ReChargeWidget.createWidget({
@@ -352,12 +352,23 @@
         widgetArr.push({
           productId: Number(id),
           injectionParent: `#recharge-widget-${id}`,
-          injectionMethod: 'prepend',
+          injectFn: (node, target) => {
+            console.log('node', node);
+            console.log('target', target);
+          },
+          // injectionMethod: 'prepend',
         });
       }
     });
 
     console.log('widgetArr', widgetArr);
+    // setTimeout(() => {
+    //   window.ReChargeWidget.createWidget(widgetArr[0]);
+    // }, 100);
+
+    // setTimeout(() => {
+    //   window.ReChargeWidget.createWidget(widgetArr[1]);
+    // }, 200);
     window.ReChargeWidget.createWidgets(widgetArr);
   }, 2000);
 </script>
